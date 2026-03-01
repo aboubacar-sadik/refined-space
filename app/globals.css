@@ -1,0 +1,75 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-DMsans: var(--font-dm-sans);
+  --font-playfair: var(--font-playfair-display);
+
+  --radius-sm: 2px --radius-md: 3px;
+  --radius-lg: 4px;
+  --radius-xl: 6px;
+
+  --color-forest: var(--forest);
+  --color-deep-forest: var(--deep-forest);
+  --color-mid-green: var(--mid-green);
+  --color-sage: var(--sage);
+  --color-light-sage: var(--light-sage);
+  --color-cream: var(--cream);
+  --color-warm-white: var(--warm-white);
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+  --color-text: var(--text);
+  --color-text-muted: var(--text-muted);
+  --color-border: var(--border);
+
+  --animate-fadeUp: fadeUp 0.8s 0.1s ease both;
+  --animate-ticker: ticker 30s linear infinite;
+}
+
+:root {
+  --forest: #1b3a2d;
+  --deep-forest: #112419;
+  --mid-green: #2d5a3d;
+  --sage: #6b9e7a;
+  --light-sage: #b8d4c0;
+  --cream: #f7f3ec;
+  --warm-white: #fdfaf5;
+  --gold: #c4933a;
+  --gold-light: #e8c87a;
+  --text: #1c2b22;
+  --text-muted: #5a7265;
+  --border: rgba(27, 58, 45, 0.12);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-warm-white text-text font-DMsans overflow-x-hidden;
+  }
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ticker {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
