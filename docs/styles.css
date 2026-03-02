@@ -214,26 +214,27 @@ nav {
   animation: fadeUp 0.8s 0.3s ease both;
 }
 
-.btn-primary {
+/* .btn-primary {
   background: var(--gold);
   color: white;
-  padding: 14px 32px;
-  border-radius: 3px;
   text-decoration: none;
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
   transition: all 0.25s;
   border: 1.5px solid var(--gold);
-}
+  
+  font-weight: 500;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-radius: 3px;
+  padding: 14px 32px;
+} */
 
-.btn-primary:hover {
+/* .btn-primary:hover {
   background: transparent;
   color: var(--gold-light);
-}
+} */
 
-.btn-ghost {
+/* .btn-ghost {
   color: rgba(255, 255, 255, 0.7);
   text-decoration: none;
   font-size: 13px;
@@ -247,7 +248,7 @@ nav {
 
 .btn-ghost:hover {
   color: white;
-}
+} */
 
 .hero-stats {
   margin-top: 64px;

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { DM_Sans, Playfair_Display } from "next/font/google";
 import "./globals.css";
+import Footer from "@/components/sections/Footer";
 
 const DMsans = DM_Sans({
   variable: "--font-dm-sans",
@@ -28,7 +29,7 @@ export default function RootLayout({
         className={`${DMsans.variable} ${playfair_display.variable} antialiased`}
       >
         {children}
-        
+        <Footer />
       </body>
     </html>
   );
