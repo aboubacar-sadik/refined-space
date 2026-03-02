@@ -1,6 +1,5 @@
 "use client";
 
-import { GET_ALL_CATEGORIES_QUERYResult } from "@/sanity.types";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
@@ -51,7 +50,7 @@ const itemVariants = {
   },
 };
 
-export function Footer({ categoryLinks }: GET_ALL_CATEGORIES_QUERYResult) {
+export function Footer() {
   return (
     <footer className="bg-forest py-12 lg:py-16">
       <div className="container">
