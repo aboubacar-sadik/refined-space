@@ -1,8 +1,6 @@
-
 html {
   scroll-behavior: smooth;
 }
-
 
 /* GRAIN OVERLAY */
 body::before {
@@ -17,7 +15,7 @@ body::before {
 
 /* ── NAV ── */
 nav {
- position: fixed;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -26,10 +24,10 @@ nav {
   align-items: center;
   justify-content: space-between;
   padding: 0 48px;
-  height: 72px;
-  background: rgba(253, 250, 245, 0.92);
+  /* height: 72px; */
+  /* background: rgba(253, 250, 245, 0.92); */
   backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
+  /* border-bottom: 1px solid var(--border); */
   transition: all 0.3s;
 }
 

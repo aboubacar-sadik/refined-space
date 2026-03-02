@@ -11,6 +11,10 @@
 }
 
 @theme {
+  --breakpoint-xs: 23rem;
+
+  --text-tiny: 0.625rem;
+
   --font-DMsans: var(--font-dm-sans);
   --font-playfair: var(--font-playfair-display);
 
@@ -31,7 +35,7 @@
   --color-text: var(--text);
   --color-text-muted: var(--text-muted);
   --color-border: var(--border);
-
+  --nav-background: rgba(253, 250, 245, 0.92);
   --animate-fadeUp: fadeUp 0.8s 0.1s ease both;
   --animate-ticker: ticker 30s linear infinite;
 }
