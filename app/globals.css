@@ -5,12 +5,12 @@
 @custom-variant dark (&:is(.dark *));
 
 @utility container {
-  max-width: 1280px;
+  max-width: 1440px;
   margin: 0 auto;
   @apply px-4 sm:px-8 lg:px-10;
 }
 
-@theme {
+@theme inline {
   --breakpoint-xs: 23rem;
 
   --text-tiny: 0.625rem;
@@ -35,6 +35,7 @@
   --color-text: var(--text);
   --color-text-muted: var(--text-muted);
   --color-border: var(--border);
+
   --nav-background: rgba(253, 250, 245, 0.92);
   --animate-fadeUp: fadeUp 0.8s 0.1s ease both;
   --animate-ticker: ticker 30s linear infinite;
@@ -53,6 +54,8 @@
   --text: #1c2b22;
   --text-muted: #5a7265;
   --border: rgba(27, 58, 45, 0.12);
+
+  --forest-gradient: linear-gradient(135deg, #2d5a3d 0%, #1b3a2d 100%);
 }
 
 @layer base {
@@ -61,6 +64,13 @@
   }
   body {
     @apply bg-warm-white text-text font-DMsans overflow-x-hidden;
+  }
+
+  h1 {
+    @apply font-playfair text-[clamp(42px,5vw,64px)] font-normal leading-[1.08em] text-white;
+  }
+  h2 {
+    @apply font-playfair font-semibold leading-5;
   }
 }
 

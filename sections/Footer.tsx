@@ -1,30 +1,22 @@
 "use client";
-                   
+
+import { GET_ALL_CATEGORIES_QUERYResult } from "@/sanity.types";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
 const exploreLinks = [
-  { label: "Guides", href: "#guides" },
-  { label: "Product Reviews", href: "#reviews" },
-  { label: "Comparisons", href: "#comparisons" },
-  { label: "Categories", href: "#categories" },
-];
-
-const categoryLinks = [
-  { label: "Sustainable Home", href: "#" },
-  { label: "Eco-Tech", href: "#" },
-  { label: "Wellness", href: "#" },
-  { label: "Personal Care", href: "#" },
-  { label: "Pet Wellness", href: "#" },
-  { label: "Baby & Child", href: "#" },
+  { label: "Guides", href: "/articles?type=guide" },
+  { label: "Product Reviews", href: "/articles?type=review" },
+  { label: "Comparisons", href: "/articles?type=comparison" },
+  { label: "Categories", href: "/categories" },
 ];
 
 const companyLinks = [
-  { label: "About Us", href: "#about" },
-  { label: "Contact", href: "#" },
+  { label: "About Us", href: "/about" },
+  { label: "Contact", href: "/contact" },
   { label: "Newsletter", href: "#newsletter" },
-  { label: "Affiliate Disclosure", href: "#" },
-  { label: "Privacy Policy", href: "#" },
+  { label: "Affiliate Disclosure", href: "/disclosure" },
+  { label: "Privacy Policy", href: "/privacy-policy" },
 ];
 
 const containerVariants = {
@@ -50,7 +42,11 @@ const itemVariants = {
   },
 };
 
-export function Footer() {
+type FooterProps = {
+  categoryLinks: GET_ALL_CATEGORIES_QUERYResult;
+};
+
+export function Footer({ categoryLinks }: FooterProps) {
   return (
     <footer className="bg-forest py-12 lg:py-16">
       <div className="container">
@@ -99,12 +95,12 @@ export function Footer() {
             </h4>
             <ul className="space-y-2.5">
               {categoryLinks.map((link) => (
-                <li key={link.label}>
+                <li key={link._id}>
                   <Link
-                    href={link.href}
+                    href={`/articles?category=${link.slug}`}
                     className="text-[13px] text-white/50 transition-colors duration-200 font-light hover:text-white/90"
                   >
-                    {link.label}
+                    {link.title}
                   </Link>
                 </li>
               ))}

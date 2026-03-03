@@ -8,14 +8,14 @@ import { Button } from "@/components/ui/button";
 
 const navLinks = [
   { label: "Home", href: "/" },
-  { label: "Ressources", href: "ressources" },
-  { label: "Categories", href: "categories" },
-  { label: "About", href: "about" },
-  { label: "Contact", href: "contact" },
+  { label: "Articles", href: "/articles" },
+  { label: "Categories", href: "/categories" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export function Navigation() {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <header className="">

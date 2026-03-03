@@ -124,7 +124,7 @@ nav {
 }
 
 /* ── HERO ── */
-.hero {
+/* .hero {
   min-height: 100vh;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -140,7 +140,7 @@ nav {
   padding: 80px 64px 80px 80px;
   position: relative;
   overflow: hidden;
-}
+} */
 
 .hero-left::before {
   content: "";
@@ -166,7 +166,7 @@ nav {
   animation: fadeUp 0.8s ease both;
 }
 
-.hero-eyebrow-line {
+/* .hero-eyebrow-line {
   width: 40px;
   height: 1px;
   background: var(--gold);
@@ -188,9 +188,9 @@ nav {
   color: #fff;
   margin-bottom: 28px;
   animation: fadeUp 0.8s 0.1s ease both;
-}
+} */
 
-.hero-headline em {
+/* .hero-headline em {
   font-style: italic;
   color: var(--gold-light);
 }
@@ -203,14 +203,14 @@ nav {
   max-width: 360px;
   margin-bottom: 48px;
   animation: fadeUp 0.8s 0.2s ease both;
-}
+} */
 
-.hero-actions {
+/* .hero-actions {
   display: flex;
   gap: 16px;
   align-items: center;
   animation: fadeUp 0.8s 0.3s ease both;
-}
+} */
 
 /* .btn-primary {
   background: var(--gold);
@@ -248,16 +248,16 @@ nav {
   color: white;
 } */
 
-.hero-stats {
+/* .hero-stats {
   margin-top: 64px;
   display: flex;
   gap: 40px;
   padding-top: 32px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   animation: fadeUp 0.8s 0.4s ease both;
-}
+} */
 
-.hero-stat-num {
+/* .hero-stat-num {
   font-family: "Playfair Display", serif;
   font-size: 28px;
   font-weight: 400;
@@ -271,17 +271,17 @@ nav {
   color: rgba(255, 255, 255, 0.4);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-}
+} */
 
-.hero-right {
+/* .hero-right {
   background: var(--cream);
   position: relative;
   display: grid;
   grid-template-rows: 1fr 1fr;
   overflow: hidden;
-}
+} */
 
-.hero-card {
+/* .hero-card {
   padding: 40px;
   border-bottom: 1px solid var(--border);
   position: relative;
@@ -291,9 +291,9 @@ nav {
   flex-direction: column;
   justify-content: flex-end;
   overflow: hidden;
-}
+} */
 
-.hero-card:hover {
+/* .hero-card:hover {
   background: white;
 }
 
@@ -303,9 +303,9 @@ nav {
 
 .hero-card-bottom {
   background: var(--warm-white);
-}
+} */
 
-.hero-card-tag {
+/* .hero-card-tag {
   font-size: 10px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -316,9 +316,9 @@ nav {
 
 .hero-card-top .hero-card-tag {
   color: var(--gold-light);
-}
+} */
 
-.hero-card-title {
+/* .hero-card-title {
   font-family: "Playfair Display", serif;
   font-size: 22px;
   font-weight: 600;
@@ -340,7 +340,7 @@ nav {
 
 .hero-card-top .hero-card-excerpt {
   color: rgba(255, 255, 255, 0.6);
-}
+} */
 
 .hero-card-arrow {
   position: absolute;
