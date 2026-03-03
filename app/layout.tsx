@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import { DM_Sans, Playfair_Display } from "next/font/google";
 import "./globals.css";
 
@@ -28,6 +29,7 @@ export default function RootLayout({
         className={`${DMsans.variable} ${playfair_display.variable} antialiased`}
       >
         {children}
+        <SpeedInsights />
       </body>
     </html>
   );
