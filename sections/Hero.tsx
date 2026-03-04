@@ -113,7 +113,7 @@ export default function Hero() {
               <span className="text-tiny tracking-[0.2em] uppercase text-gold-light mb-3 font-medium">
                 Featured review
               </span>
-              <h2 className="text-[22px] mb-2.5 text-white group-hover:text-text">
+              <h2 className="text-[22px] mb-2.5 text-white group-hover:text-text font-semibold leading-tight">
                 Avocado Green Mattress: Is It Worth $2,000?
               </h2>
               <p className="text-[13px] leading-6 font-light text-white/60 group-hover:text-text-muted">
@@ -139,7 +139,7 @@ export default function Hero() {
               <span className="text-tiny tracking-[0.2em] uppercase text-sage mb-3 font-medium">
                 Featured review
               </span>
-              <h2 className="text-[22px] text-text mb-2.5 ">
+              <h2 className="text-[22px] text-text mb-2.5 font-semibold leading-tight">
                 Lomi vs FoodCycler: Best Countertop Composter?
               </h2>
               <p className="text-[13px] leading-6 font-light text-text-muted">

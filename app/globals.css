@@ -70,7 +70,7 @@
     @apply font-playfair text-[clamp(42px,5vw,64px)] font-normal leading-[1.08em] text-white;
   }
   h2 {
-    @apply font-playfair font-semibold leading-5;
+    @apply text-[clamp(28px,3.5vw,40px)] font-playfair font-normal text-forest leading-[1.15em];
   }
 }
 

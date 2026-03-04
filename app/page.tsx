@@ -1,6 +1,8 @@
 import Marquee from "@/components/Marquee";
+import SectionTitle from "@/components/SectionTitle";
 import { GET_ALL_CATEGORIES_QUERY } from "@/lib/queries";
 import { sanityFetch } from "@/sanity/lib/live";
+import CategoryGrid from "@/sections/CategoryGrid";
 import { Footer } from "@/sections/Footer";
 import Hero from "@/sections/Hero";
 import { Navigation } from "@/sections/Navigation";
@@ -16,10 +18,15 @@ export default async function Home() {
       <main className="mt-18">
         {/* Hero section */}
         <section>
-              <Hero />
+          <Hero />
         </section>
         <section>
-          <Marquee/>
+          <Marquee categories={{ categoryLinks: categories }} />
+        </section>
+        <section>
+          <div className="bg-warm-white py-14 lg:py-24">
+            <CategoryGrid categories={{ categoryLinks: categories }} />
+          </div>
         </section>
       </main>
       <Footer categoryLinks={categories} />

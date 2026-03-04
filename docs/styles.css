@@ -400,7 +400,7 @@ nav {
   margin-bottom: 48px;
 }
 
-.section-eyebrow {
+/* .section-eyebrow {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -419,17 +419,17 @@ nav {
   text-transform: uppercase;
   color: var(--gold);
   font-weight: 500;
-}
+} */
 
-.section-title {
+/* .section-title {
   font-family: "Playfair Display", serif;
   font-size: clamp(28px, 3.5vw, 40px);
   font-weight: 400;
   color: var(--forest);
   line-height: 1.15;
-}
+} */
 
-.section-title em {
+/* .section-title em {
   font-style: italic;
 }
 
@@ -448,7 +448,7 @@ nav {
 .section-link:hover {
   color: var(--forest);
   border-color: var(--forest);
-}
+} */
 
 /* ── CATEGORIES ── */
 .categories-section {
