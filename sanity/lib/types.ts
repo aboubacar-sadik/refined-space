@@ -1,7 +1,12 @@
-import { GET_ALL_CATEGORIES_QUERYResult, GET_RECENT_ARTICLES_QUERYResult } from "@/sanity.types";
+import {
+  GET_ALL_CATEGORIES_QUERYResult,
+  GET_RECENT_ARTICLES_QUERYResult,
+} from "@/sanity.types";
 
-export type CategoryTypes = {
-  categoryLinks: GET_ALL_CATEGORIES_QUERYResult;
+// export type CategoryTypes = GET_ALL_CATEGORIES_QUERYResult;
+
+export type CategoryTypes = Omit<CategoryItem, "_id"> & {
+  _id?: CategoryItem["_id"];
 };
 
 export type ArticleTypes = {
@@ -11,3 +16,5 @@ export type ArticleTypes = {
 export type SingleArticleTypes = {
   article: GET_RECENT_ARTICLES_QUERYResult[0];
 };
+
+export type CategoryItem = GET_ALL_CATEGORIES_QUERYResult[number];

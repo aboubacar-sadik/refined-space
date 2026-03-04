@@ -72,6 +72,10 @@
   h2 {
     @apply text-[clamp(28px,3.5vw,40px)] font-playfair font-normal text-forest leading-[1.15em];
   }
+
+  h3 {
+    @apply font-playfair
+  }
 }
 
 /* ── ANIMATIONS ── */

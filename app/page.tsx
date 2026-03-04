@@ -1,5 +1,4 @@
 import Marquee from "@/components/Marquee";
-import SectionTitle from "@/components/SectionTitle";
 import { GET_ALL_CATEGORIES_QUERY } from "@/lib/queries";
 import { sanityFetch } from "@/sanity/lib/live";
 import CategoryGrid from "@/sections/CategoryGrid";
@@ -21,11 +20,11 @@ export default async function Home() {
           <Hero />
         </section>
         <section>
-          <Marquee categories={{ categoryLinks: categories }} />
+          <Marquee categories={categories} />
         </section>
         <section>
           <div className="bg-warm-white py-14 lg:py-24">
-            <CategoryGrid categories={{ categoryLinks: categories }} />
+            <CategoryGrid categories={categories} />
           </div>
         </section>
       </main>
