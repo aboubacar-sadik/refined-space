@@ -1,3 +1,4 @@
+import Marquee from "@/components/Marquee";
 import { GET_ALL_CATEGORIES_QUERY } from "@/lib/queries";
 import { sanityFetch } from "@/sanity/lib/live";
 import { Footer } from "@/sections/Footer";
@@ -15,11 +16,10 @@ export default async function Home() {
       <main className="mt-18">
         {/* Hero section */}
         <section>
-          <div>
-            <div>
               <Hero />
-            </div>
-          </div>
+        </section>
+        <section>
+          <Marquee/>
         </section>
       </main>
       <Footer categoryLinks={categories} />

@@ -342,7 +342,7 @@ nav {
   color: rgba(255, 255, 255, 0.6);
 } */
 
-.hero-card-arrow {
+/* .hero-card-arrow {
   position: absolute;
   top: 32px;
   right: 32px;
@@ -359,10 +359,10 @@ nav {
 .hero-card:hover .hero-card-arrow {
   background: var(--gold);
   border-color: var(--gold);
-}
+} */
 
 /* ── TICKER ── */
-.ticker {
+/* .ticker {
   background: var(--forest);
   padding: 14px 0;
   overflow: hidden;
@@ -390,7 +390,7 @@ nav {
   content: "✦";
   color: var(--gold);
   font-size: 8px;
-}
+} */
 
 /* ── SECTION HEADER ── */
 .section-header {
