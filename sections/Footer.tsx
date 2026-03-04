@@ -1,6 +1,6 @@
 "use client";
 
-import { GET_ALL_CATEGORIES_QUERYResult } from "@/sanity.types";
+import { CategoryTypes } from "@/sanity/lib/types";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
@@ -42,11 +42,7 @@ const itemVariants = {
   },
 };
 
-type FooterProps = {
-  categoryLinks: GET_ALL_CATEGORIES_QUERYResult;
-};
-
-export function Footer({ categoryLinks }: FooterProps) {
+export function Footer({ categories }: { categories: CategoryTypes[] }) {
   return (
     <footer className="bg-forest py-12 lg:py-16">
       <div className="container">
@@ -94,7 +90,7 @@ export function Footer({ categoryLinks }: FooterProps) {
               CATEGORIES
             </h4>
             <ul className="space-y-2.5">
-              {categoryLinks.map((link) => (
+              {categories.map((link) => (
                 <li key={link._id}>
                   <Link
                     href={`/articles?category=${link.slug}`}

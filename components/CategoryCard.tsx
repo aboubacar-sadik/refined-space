@@ -1,7 +1,5 @@
 import { cn } from "@/lib/utils";
-import { GET_ALL_CATEGORIES_QUERYResult } from "@/sanity.types";
-import { CategoryItem, CategoryTypes } from "@/sanity/lib/types";
-import { PawPrint } from "lucide-react";
+import {  CategoryTypes } from "@/sanity/lib/types";
 import Image from "next/image";
 import Link from "next/link";
 

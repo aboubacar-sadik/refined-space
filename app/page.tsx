@@ -28,7 +28,7 @@ export default async function Home() {
           </div>
         </section>
       </main>
-      <Footer categoryLinks={categories} />
+      <Footer categories={categories} />
     </>
   );
 }

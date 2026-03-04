@@ -4,7 +4,7 @@ import {
 } from "@/sanity.types";
 
 // export type CategoryTypes = GET_ALL_CATEGORIES_QUERYResult;
-
+type CategoryItem = GET_ALL_CATEGORIES_QUERYResult[number];
 export type CategoryTypes = Omit<CategoryItem, "_id"> & {
   _id?: CategoryItem["_id"];
 };
@@ -17,4 +17,4 @@ export type SingleArticleTypes = {
   article: GET_RECENT_ARTICLES_QUERYResult[0];
 };
 
-export type CategoryItem = GET_ALL_CATEGORIES_QUERYResult[number];
+
