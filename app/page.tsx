@@ -1,14 +1,22 @@
 import Marquee from "@/components/Marquee";
-import { GET_ALL_CATEGORIES_QUERY } from "@/lib/queries";
+import {
+  GET_ALL_CATEGORIES_QUERY,
+  GET_RECENT_ARTICLES_QUERY,
+} from "@/lib/queries";
 import { sanityFetch } from "@/sanity/lib/live";
 import CategoryGrid from "@/sections/CategoryGrid";
 import { Footer } from "@/sections/Footer";
 import Hero from "@/sections/Hero";
+import LatestContent from "@/sections/LatestContent";
 import { Navigation } from "@/sections/Navigation";
 
 export default async function Home() {
   const { data: categories } = await sanityFetch({
     query: GET_ALL_CATEGORIES_QUERY,
+  });
+
+  const { data: articles } = await sanityFetch({
+    query: GET_RECENT_ARTICLES_QUERY,
   });
 
   return (
@@ -26,6 +34,9 @@ export default async function Home() {
           <div className="bg-warm-white py-14 lg:py-24">
             <CategoryGrid categories={categories} />
           </div>
+        </section>
+        <section>
+          <LatestContent articles={articles} />
         </section>
       </main>
       <Footer categories={categories} />

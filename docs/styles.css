@@ -544,12 +544,12 @@ nav {
 } */
 
 /* ── FEATURED ARTICLES ── */
-.articles-section {
+/* .articles-section {
   padding: 96px 80px;
   background: var(--cream);
-}
+} */
 
-.articles-grid {
+/* .articles-grid {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
   gap: 2px;
@@ -572,7 +572,7 @@ nav {
 
 .article-card-featured {
   grid-row: span 2;
-}
+} */
 
 .article-image {
   aspect-ratio: 4/3;
@@ -610,6 +610,24 @@ nav {
       transparent 50%
     );
 }
+
+
+_id: string;
+    title: string | null;
+    slug: string | null;
+    excerpt: string | null;
+    publishedAt: string;
+    featuredImage: {
+        alt: string | null;
+        url: string | null;
+    } | null;
+    productGallery: Array<{
+        alt: string | null;
+        url: string | null;
+    }> | null;
+    author: {
+        name: string | null;
+    } | null;
 
 .article-tag {
   position: relative;

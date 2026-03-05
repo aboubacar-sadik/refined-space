@@ -12,6 +12,10 @@ export const GET_RECENT_ARTICLES_QUERY =
       alt,
       "url": asset->url
     },
+    categories[]-> {
+      title,
+      "slug": slug.current
+    },
     productGallery[] {
       alt,
       "url": asset->url
@@ -30,6 +34,10 @@ export const GET_ARTICLE_BY_SLUG_QUERY =
     excerpt,
     publishedAt,
     content, // Often needed for the full page
+    categories[]-> {
+      title,
+      "slug": slug.current
+    },
     featuredImage {
       alt,
       "url": asset->url
