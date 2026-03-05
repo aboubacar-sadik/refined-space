@@ -1,6 +1,6 @@
 "use client";
 
-import { CategoryTypes } from "@/sanity/lib/types";
+import { Category } from "@/sanity/lib/types";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
@@ -42,7 +42,11 @@ const itemVariants = {
   },
 };
 
-export function Footer({ categories }: { categories: CategoryTypes[] }) {
+type FooterCategoryProps = {
+  categories: Category[];
+};
+
+export function Footer({ categories }: FooterCategoryProps) {
   return (
     <footer className="bg-forest py-12 lg:py-16">
       <div className="container">

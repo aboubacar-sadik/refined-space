@@ -2,7 +2,7 @@
 
 import CategoryCard from "@/components/CategoryCard";
 import SectionTitle from "@/components/SectionTitle";
-import { CategoryTypes } from "@/sanity/lib/types";
+import { Category } from "@/sanity/lib/types";
 import { motion } from "framer-motion";
 
 const containerVariants = {
@@ -28,11 +28,11 @@ const itemVariants = {
   },
 };
 
-export default function CategoryGrid({
-  categories,
-}: {
-  categories: CategoryTypes[];
-}) {
+type CategoryGridProps = {
+  categories: Category[];
+};
+
+export default function CategoryGrid({ categories }: CategoryGridProps) {
   return (
     <div className="container">
       <SectionTitle
@@ -51,13 +51,7 @@ export default function CategoryGrid({
       >
         {categories.slice(0, 6).map((category) => (
           <motion.div key={category._id} variants={itemVariants} className="">
-            <CategoryCard
-              title={category.title}
-              imageUrl={category.imageUrl}
-              description={category.description}
-              articleCount={category.articleCount}
-              slug={category.slug}
-            />
+            <CategoryCard category={category} />
           </motion.div>
         ))}
       </motion.div>

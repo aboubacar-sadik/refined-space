@@ -1,15 +1,14 @@
 import { cn } from "@/lib/utils";
-import {  CategoryTypes } from "@/sanity/lib/types";
+import { Category } from "@/sanity/lib/types";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function CategoryCard({
-  imageUrl,
-  title,
-  description,
-  articleCount,
-  slug,
-}: CategoryTypes) {
+type CategoryCardProps = {
+  category: Category;
+};
+
+export default function CategoryCard({ category }: CategoryCardProps) {
+  const { slug, imageUrl, title, articleCount, description } = category;
   return (
     <Link
       href={`/articles?category=${slug}`}
