@@ -5,10 +5,12 @@ import {
 } from "@/lib/queries";
 import { sanityFetch } from "@/sanity/lib/live";
 import CategoryGrid from "@/sections/CategoryGrid";
+import ComparisonTable from "@/sections/ComparisonTable";
 import { Footer } from "@/sections/Footer";
 import Hero from "@/sections/Hero";
 import LatestContent from "@/sections/LatestContent";
 import { Navigation } from "@/sections/Navigation";
+import Philosophy from "@/sections/Philosophy";
 
 export default async function Home() {
   const { data: categories } = await sanityFetch({
@@ -37,6 +39,13 @@ export default async function Home() {
         </section>
         <section>
           <LatestContent articles={articles} />
+        </section>
+        {/* NOUS Y REVIENDRONS LATER */}
+        {/* <section>
+          <ComparisonTable />
+        </section> */}
+        <section>
+          <Philosophy />
         </section>
       </main>
       <Footer categories={categories} />

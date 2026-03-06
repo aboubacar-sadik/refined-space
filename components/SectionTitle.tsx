@@ -7,8 +7,8 @@ import { motion } from "framer-motion";
 type Props = {
   title: string;
   tagline: string;
-  link_href: string;
-  link_label: string;
+  link_href?: string;
+  link_label?: string;
   type?: "default" | "white";
   size?: "default" | "small";
 };
@@ -46,12 +46,18 @@ export default function SectionTitle({
           {formatHalfItalic(title)}
         </h2>
       </div>
-      <Link
-        href={link_href}
-        className="text-text-muted inline text-xs tracking-widest uppercase border-b border-border pb-0.5 whitespace-nowrap transition-all duration-200 hover:text-forest hover:border-forest"
-      >
-        {link_label + " →"}
-      </Link>
+      {link_href ? (
+        <Link
+          href={link_href}
+          className={cn(
+            "text-text-muted inline text-xs tracking-widest uppercase border-b border-border pb-0.5 whitespace-nowrap transition-all duration-200 hover:text-forest hover:border-forest",
+            type === "white" &&
+              "border-b text-white/40 border-white/15 hover:text-white hover:border-white",
+          )}
+        >
+          {link_label + " →"}
+        </Link>
+      ) : null}
     </motion.div>
   );
 }

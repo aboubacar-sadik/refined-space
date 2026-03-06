@@ -573,7 +573,7 @@ nav {
 .article-card-featured {
   grid-row: span 2;
 } */
-
+/* 
 .article-image {
   aspect-ratio: 4/3;
   overflow: hidden;
@@ -703,7 +703,7 @@ _id: string;
 
 .article-card:hover .article-read-more {
   gap: 10px;
-}
+} */
 
 /* ── COMPARISON SHOWCASE ── */
 .comparison-section {
@@ -822,7 +822,7 @@ _id: string;
   letter-spacing: 0.05em;
 }
 
-.badge-best {
+/* .badge-best {
   background: rgba(196, 147, 58, 0.2);
   color: var(--gold-light);
   border: 1px solid rgba(196, 147, 58, 0.3);
@@ -843,9 +843,9 @@ _id: string;
   display: grid;
   grid-template-columns: 1fr 1fr;
   min-height: 480px;
-}
+} */
 
-.about-visual {
+/* .about-visual {
   background: var(--cream);
   display: flex;
   align-items: center;
@@ -866,9 +866,9 @@ _id: string;
   line-height: 1;
   pointer-events: none;
   font-style: italic;
-}
+} */
 
-.about-quote {
+/* .about-quote {
   font-family: "Playfair Display", serif;
   font-size: 24px;
   font-style: italic;
@@ -895,9 +895,9 @@ _id: string;
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
+} */
 
-.about-content .section-title {
+/* .about-content .section-title {
   color: white;
   margin-bottom: 24px;
 }
@@ -920,7 +920,7 @@ _id: string;
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
-}
+} */
 
 .about-pill {
   border: 1px solid rgba(255, 255, 255, 0.15);

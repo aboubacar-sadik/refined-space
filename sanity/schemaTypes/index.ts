@@ -8,5 +8,12 @@ import { tag } from "./tag";
 import { articleType } from "./articleType";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [blockContent, category, tag, article, articleType, author],
+  types: [
+    blockContent,
+    category,
+    tag,
+    article,
+    articleType,
+    author,
+  ],
 };
