@@ -8,6 +8,7 @@ export const GET_RECENT_ARTICLES_QUERY =
     "slug": slug.current,
     excerpt,
     publishedAt,
+    _updatedAt,
     featuredImage {
       alt,
       "url": asset->url
@@ -33,6 +34,7 @@ export const GET_ARTICLE_BY_SLUG_QUERY =
     "slug": slug.current,
     excerpt,
     publishedAt,
+    _updatedAt,
     content, // Often needed for the full page
     categories[]-> {
       title,
@@ -61,6 +63,7 @@ export const GET_ARTICLES_BY_CATEGORY_QUERY =
     "slug": slug.current,
     excerpt,
     publishedAt,
+    _updatedAt,
     featuredImage {
       alt,
       "url": asset->url
@@ -83,6 +86,7 @@ export const GET_ARTICLES_BY_TAG_QUERY =
     "slug": slug.current,
     excerpt,
     publishedAt,
+    _updatedAt,
     featuredImage {
       alt,
       "url": asset->url
@@ -104,6 +108,7 @@ export const GET_ARTICLES_BY_TYPE_QUERY =
     "slug": slug.current,
     excerpt,
     publishedAt,
+    _updatedAt,
     featuredImage {
       alt,
       "url": asset->url
@@ -124,16 +129,17 @@ export const GET_ALL_CATEGORIES_QUERY =
     "slug": slug.current,
     description,
     "imageUrl": image.asset->url,
-    // Optional: Get the total number of articles in each category
-    "articleCount": count(*[_type == "article" && references(^._id)])
+    "articleCount": count(*[_type == "article" && references(^._id)]),
+    _updatedAt,
   }`);
+
+
 // Get all tags
-export const GET_ALL_TAGS_QUERY =
-  defineQuery(`  *[_type == "tag"] | order(title asc) {
+export const GET_ALL_TAGS_QUERY = defineQuery(`  *[_type == "tag"] | order(title asc) {
     _id,
     title,
     "slug": slug.current,
     description,
-    // Bonus: Count how many articles are actually using this tag
-    "articleCount": count(*[_type == "article" && references(^._id)])
+    "articleCount": count(*[_type == "article" && references(^._id)]),
+    _updatedAt,
   }`);

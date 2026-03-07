@@ -948,7 +948,7 @@ _id: string;
   gap: 80px;
 }
 
-.newsletter-left {
+/* .newsletter-left {
   flex: 1;
 }
 
@@ -970,7 +970,7 @@ _id: string;
   color: var(--text-muted);
   line-height: 1.6;
   font-weight: 300;
-}
+} */
 
 .newsletter-form {
   flex: 1;

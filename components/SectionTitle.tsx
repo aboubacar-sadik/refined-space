@@ -27,7 +27,10 @@ export default function SectionTitle({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className="flex flex-col items-start xs:flex-row xs:items-end justify-between mb-12 gap-6"
+      className={cn(
+        "flex flex-col items-start xs:flex-row xs:items-end justify-between gap-6",
+        link_href ? "mb-12" : "mb-4",
+      )}
     >
       <div className="w-full xs:max-w-95">
         <span className="flex items-center gap-3 mb-2.5">

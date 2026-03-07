@@ -35,6 +35,7 @@ export default function ArticleCard({ article }: ArticleCardProps) {
             alt={`${featuredImage?.alt}`}
             fill
             className="object-cover"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
           <span className="relative text-tiny tracking-[0.15em] uppercase text-gold-light font-medium bg-forest/60 backdrop-blur-sm py-1.25 px-3 rounded-sm border border-gold/30">
             In-Depth Review

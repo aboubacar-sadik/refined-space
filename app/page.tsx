@@ -10,6 +10,7 @@ import { Footer } from "@/sections/Footer";
 import Hero from "@/sections/Hero";
 import LatestContent from "@/sections/LatestContent";
 import { Navigation } from "@/sections/Navigation";
+import { Newsletter } from "@/sections/Newsletter";
 import Philosophy from "@/sections/Philosophy";
 
 export default async function Home() {
@@ -46,6 +47,9 @@ export default async function Home() {
         </section> */}
         <section>
           <Philosophy />
+        </section>
+        <section>
+          <Newsletter/>
         </section>
       </main>
       <Footer categories={categories} />
