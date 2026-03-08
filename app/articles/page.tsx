@@ -5,12 +5,12 @@ import {
 } from "@/lib/queries";
 import Marquee from "@/components/Marquee";
 import CategoryGrid from "@/sections/CategoryGrid";
-import Hero from "@/sections/Hero";
-import LatestContent from "@/sections/LatestContent";
 import Philosophy from "@/sections/Philosophy";
 import { Footer } from "@/sections/Footer";
 import { Navigation } from "@/sections/Navigation";
 import { Newsletter } from "@/sections/Newsletter";
+import ArticlesSection from "@/sections/ArticlesSection";
+import TrendingSection from "@/sections/TrendingSection";
 
 export default async function Home() {
   const { data: categories } = await sanityFetch({
@@ -25,9 +25,8 @@ export default async function Home() {
     <>
       <Navigation />
       <main className="mt-18">
-        {/* Hero section */}
         <section>
-          <Hero />
+          <TrendingSection articles={articles} />
         </section>
         <section>
           <Marquee categories={categories} />
@@ -36,17 +35,13 @@ export default async function Home() {
           <CategoryGrid categories={categories} />
         </section>
         <section>
-          <LatestContent articles={articles} />
+          <ArticlesSection articles={articles} categories={categories} />
         </section>
-        {/* NOUS Y REVIENDRONS LATER */}
-        {/* <section>
-          <ComparisonTable />
-        </section> */}
         <section>
           <Philosophy />
         </section>
         <section>
-          <Newsletter variant="cream" />
+          <Newsletter />
         </section>
       </main>
       <Footer categories={categories} />

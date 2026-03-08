@@ -36,7 +36,7 @@ const stats = [
 
 export default function Hero() {
   return (
-    <section className="flex flex-col lg:flex-row w-full min-h-[calc(100dvh-72px)]">
+    <section className="flex flex-col lg:flex-row w-full min-h-dvh">
       <div className="w-full lg:w-1/2  bg-forest flex justify-end">
         <div className="w-full lg:max-w-180 px-8 lg:pl-8 xl:pr-16 py-20 flex flex-col justify-center">
           <motion.div
@@ -74,10 +74,17 @@ export default function Hero() {
               className="flex flex-wrap items-center gap-4 mb-16"
             >
               <Link href="/articles?type=guide" className="">
-                <Button size={"lg"}>Explore guides</Button>
+                <Button size={"lg"} aria-label={`Explore guides`}>
+                  Explore guides
+                </Button>
               </Link>
               <Link href="/articles?type=guide" className="">
-                <Button size={"lg"} variant={"link"} className="px-0">
+                <Button
+                  size={"lg"}
+                  variant={"link"}
+                  aria-label={`Explore Comparisons`}
+                  className="px-0"
+                >
                   Top Comparisons →
                 </Button>
               </Link>
@@ -121,8 +128,10 @@ export default function Hero() {
                 GOLS-certified latex to the return policy fine print.
               </p>
 
+              {/* AFAIRE : mettre aria label sur ce bouton */}
               <Button
                 size={"icon"}
+                aria-label={`Read post `}
                 className="absolute top-0 right-0 border-white/20 bg-transparent group-hover:bg-gold duration-300 group-hover:border-gold"
               >
                 <ArrowRight />
@@ -144,10 +153,12 @@ export default function Hero() {
               </h2>
               <p className="text-[13px] leading-6 font-light text-text-muted">
                 Speed, noise, odor, price — we tested both for 60 days so you
-                don't have to guess.
+                don&apos;t have to guess.
               </p>
+              {/* AFAIRE : mettre aria label sur ce bouton */}
               <Button
                 size={"icon"}
+                aria-label={`Read post `}
                 className="absolute top-0 right-0 border-forest/20 text-forest bg-transparent group-hover:bg-gold duration-300 group-hover:border-gold"
               >
                 <ArrowRight />

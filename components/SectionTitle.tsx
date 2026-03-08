@@ -11,6 +11,7 @@ type Props = {
   link_label?: string;
   type?: "default" | "white";
   size?: "default" | "small";
+  inline?: boolean;
 };
 
 export default function SectionTitle({
@@ -20,6 +21,7 @@ export default function SectionTitle({
   link_label,
   type = "default",
   size = "default",
+  inline = false,
 }: Props) {
   return (
     <motion.div
@@ -30,6 +32,7 @@ export default function SectionTitle({
       className={cn(
         "flex flex-col items-start xs:flex-row xs:items-end justify-between gap-6",
         link_href ? "mb-12" : "mb-4",
+        inline === true ? "m-0" : "",
       )}
     >
       <div className="w-full xs:max-w-95">

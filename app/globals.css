@@ -35,8 +35,8 @@
   --color-text: var(--text);
   --color-text-muted: var(--text-muted);
   --color-border: var(--border);
+  --color-nav-background: rgba(253, 250, 245, 0.92);
 
-  --nav-background: rgba(253, 250, 245, 0.92);
   --animate-fadeUp: fadeUp 0.8s 0.1s ease both;
   --animate-ticker: ticker 30s linear infinite;
 }
@@ -74,7 +74,7 @@
   }
 
   h3 {
-    @apply font-playfair
+    @apply font-playfair;
   }
 }
 

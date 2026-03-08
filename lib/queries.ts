@@ -7,6 +7,9 @@ export const GET_RECENT_ARTICLES_QUERY =
     title,
     "slug": slug.current,
     excerpt,
+    type->{
+      title,"slug": slug.current
+    },
     publishedAt,
     _updatedAt,
     featuredImage {
@@ -14,6 +17,10 @@ export const GET_RECENT_ARTICLES_QUERY =
       "url": asset->url
     },
     categories[]-> {
+      title,
+      "slug": slug.current
+    },
+    tags[]-> {
       title,
       "slug": slug.current
     },
@@ -35,8 +42,15 @@ export const GET_ARTICLE_BY_SLUG_QUERY =
     excerpt,
     publishedAt,
     _updatedAt,
+    type->{
+      title,"slug": slug.current
+    },
     content, // Often needed for the full page
     categories[]-> {
+      title,
+      "slug": slug.current
+    },
+    tags[]-> {
       title,
       "slug": slug.current
     },
@@ -62,6 +76,10 @@ export const GET_ARTICLES_BY_CATEGORY_QUERY =
     title,
     "slug": slug.current,
     excerpt,
+    type->{
+      title,
+      "slug": slug.current
+    },
     publishedAt,
     _updatedAt,
     featuredImage {
@@ -70,6 +88,10 @@ export const GET_ARTICLES_BY_CATEGORY_QUERY =
     },
     // We can also pull the category names back out
     categories[]-> {
+      title,
+      "slug": slug.current
+    },
+    tags[]-> {
       title,
       "slug": slug.current
     },
@@ -85,6 +107,10 @@ export const GET_ARTICLES_BY_TAG_QUERY =
     title,
     "slug": slug.current,
     excerpt,
+    type->{
+      title,
+      "slug": slug.current
+    },
     publishedAt,
     _updatedAt,
     featuredImage {
@@ -92,6 +118,10 @@ export const GET_ARTICLES_BY_TAG_QUERY =
       "url": asset->url
     },
     categories[]-> {
+      title,
+      "slug": slug.current
+    },
+    tags[]-> {
       title,
       "slug": slug.current
     },
@@ -107,6 +137,10 @@ export const GET_ARTICLES_BY_TYPE_QUERY =
     title,
     "slug": slug.current,
     excerpt,
+    type->{
+      title,
+      "slug": slug.current
+    },
     publishedAt,
     _updatedAt,
     featuredImage {
@@ -114,6 +148,10 @@ export const GET_ARTICLES_BY_TYPE_QUERY =
       "url": asset->url
     },
     categories[]-> {
+      title,
+      "slug": slug.current
+    },
+    tags[]-> {
       title,
       "slug": slug.current
     },
@@ -133,9 +171,9 @@ export const GET_ALL_CATEGORIES_QUERY =
     _updatedAt,
   }`);
 
-
 // Get all tags
-export const GET_ALL_TAGS_QUERY = defineQuery(`  *[_type == "tag"] | order(title asc) {
+export const GET_ALL_TAGS_QUERY =
+  defineQuery(`  *[_type == "tag"] | order(title asc) {
     _id,
     title,
     "slug": slug.current,

@@ -1,6 +1,7 @@
 import { GET_ALL_CATEGORIES_QUERY } from "@/lib/queries";
 import {
   GET_ALL_CATEGORIES_QUERYResult,
+  GET_ALL_TAGS_QUERYResult,
   GET_RECENT_ARTICLES_QUERYResult,
 } from "@/sanity.types";
 
@@ -9,3 +10,6 @@ export type Article = ArticleItem;
 
 type CategoryItem = GET_ALL_CATEGORIES_QUERYResult[number];
 export type Category = CategoryItem;
+
+type TagItem = GET_ALL_TAGS_QUERYResult[number];
+export type Tag = TagItem;

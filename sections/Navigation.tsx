@@ -42,7 +42,10 @@ export function Navigation() {
 
               {/* Newsletter Button */}
               <div className="hidden lg:block">
-                <Button variant={"secondary"}>
+                <Button
+                  variant={"secondary"}
+                  aria-label={`Link to the newsletter inscription`}
+                >
                   <Link href="#newsletter" className="">
                     NEWSLETTER
                   </Link>
@@ -106,7 +109,11 @@ export function Navigation() {
                   ))}
                   {/* Newsletter Button */}
                   <div className="w-full mt-4">
-                    <Button variant={"secondary"} className="w-full">
+                    <Button
+                      variant={"secondary"}
+                      className="w-full"
+                      aria-label={`Link to the Newsletter inscription`}
+                    >
                       <Link href="#newsletter" className="">
                         NEWSLETTER
                       </Link>

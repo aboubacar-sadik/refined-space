@@ -17,5 +17,5 @@ export function formatUpdatedDate(isoString: string) {
   const month = date.toLocaleString("en-US", { month: "long" });
   const year = date.getFullYear();
 
-  return `Updated ${month} ${year}`;
+  return `${month} ${year}`;
 }

@@ -2,7 +2,7 @@
 
 import { Article } from "@/sanity/lib/types";
 import { Button } from "@/components/ui/button";
-import { formatUpdatedDate } from "@/lib/utils";
+import { cn, formatUpdatedDate } from "@/lib/utils";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -18,18 +18,24 @@ type ArticleCardProps = {
     | "featuredImage"
     | "categories"
   >;
+  variant?: string;
 };
 
-export default function ArticleCard({ article }: ArticleCardProps) {
+export default function ArticleCard({ article, variant }: ArticleCardProps) {
   const { title, slug, excerpt, publishedAt, featuredImage, categories } =
     article;
 
   const router = useRouter();
 
   return (
-    <article className="group h-full bg-warm-white col-span-2 overflow-hidden transition-all duration-300 block relative hover:-translate-y-0.75 hover:shadow-2xl">
+    <article
+      className={cn(
+        "group h-full col-span-2 overflow-hidden transition-all duration-300 block relative hover:-translate-y-0.75 hover:shadow-2xl",
+        variant === "cream" ? "bg-cream" : "bg-warm-white",
+      )}
+    >
       <Link href={`/articles/${slug}`} className="block h-full">
-        <div className="relative bg-forest flex items-end relative overflow-hidden p-6 h-70">
+        <div className="relative bg-forest flex items-end overflow-hidden p-6 h-70">
           <Image
             src={`${featuredImage?.url}`}
             alt={`${featuredImage?.alt}`}
@@ -59,6 +65,7 @@ export default function ArticleCard({ article }: ArticleCardProps) {
             onClick={() => router.push(`/articles/${slug}`)}
             variant="link"
             className="text-forest uppercase mt-4 font-medium px-0 hover:text-forest"
+            aria-label={`Read post ${title}`}
           >
             Read →
           </Button>
