@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 type Props = {
   title: string;
-  tagline: string;
+  tagline?: string;
   link_href?: string;
   link_label?: string;
   type?: "default" | "white";
@@ -36,12 +36,14 @@ export default function SectionTitle({
       )}
     >
       <div className="w-full xs:max-w-95">
-        <span className="flex items-center gap-3 mb-2.5">
-          <span className="block w-8 h-px bg-gold"></span>
-          <span className="block text-tiny tracking-[0.2em] uppercase text-gold font-medium">
-            {tagline}
+        {tagline && (
+          <span className="flex items-center gap-3 mb-2.5">
+            <span className="block w-8 h-px bg-gold"></span>
+            <span className="block text-tiny tracking-[0.2em] uppercase text-gold font-medium">
+              {tagline}
+            </span>
           </span>
-        </span>
+        )}
         <h2
           className={cn(
             "capitalize",

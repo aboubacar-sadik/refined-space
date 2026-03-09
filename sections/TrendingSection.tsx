@@ -3,11 +3,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { TrendingUp, Clock, Calendar } from "lucide-react";
-import { Article } from "@/sanity/lib/types";
+import { Articles } from "@/sanity/lib/types";
 import { formatUpdatedDate } from "@/lib/utils";
 
 interface TrendingSectionProps {
-  articles: Article[];
+  articles: Articles;
 }
 
 type ArticleTypeSlug = "guide" | "review" | "comparison";

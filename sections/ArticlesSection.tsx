@@ -1,65 +1,60 @@
 "use client";
 
-import { useMemo, useState, useEffect } from "react";
-import { useSearchParams } from "next/navigation";
+import { useState, useMemo, useEffect } from "react";
+import { useSearchParams, usePathname } from "next/navigation";
 import CategoryFilter from "@/components/CategoryFilter";
-import { Article, Category, Tag } from "@/sanity/lib/types";
 import TabsFilter from "@/components/TabsFilter";
 import ArticleGrid from "@/components/ArticleGrid";
 import SectionTitle from "@/components/SectionTitle";
+import { Articles, Categories } from "@/sanity/lib/types";
 
 export type ArticleType = "guide" | "review" | "comparison";
-
-// export type Category =
-//   | "Baby & Child"
-//   | "Eco-Tech & Energy"
-//   | "Non-Toxic Personal Care"
-//   | "Pet Wellness"
-//   | "Sustainable Home"
-//   | "Wellness & Performance";
-
 type TabValue = "all" | ArticleType;
-type ArticleProps = {
-  articles: Article[];
-  categories: Category[];
-};
 
-// Sync filter state to URL without triggering any Next.js navigation
-function syncURL(tab: TabValue, category: Category["slug"] | "all") {
-  const params = new URLSearchParams();
-  if (tab !== "all") params.set("type", tab);
-  if (category !== "all") params.set("category", category as string);
-  const qs = params.toString();
-  window.history.replaceState(
-    null,
-    "",
-    qs ? `?${qs}` : window.location.pathname,
-  );
-}
+type ArticleProps = {
+  articles: Articles;
+  categories: Categories;
+};
 
 export default function ArticlesPage({ articles, categories }: ArticleProps) {
   const searchParams = useSearchParams();
+  const pathname = usePathname();
 
-  // Initialise from URL on first render, then own the state locally
+  // ------------------------
+  // Filter state (slugs only)
+  // ------------------------
   const [activeTab, setActiveTab] = useState<TabValue>(
-    () => (searchParams.get("type") ?? "all") as TabValue,
+    () => (searchParams.get("type") as TabValue) ?? "all",
   );
-  const [selectedCategory, setSelectedCategory] = useState<
-    Category["slug"] | "all"
-  >(() => (searchParams.get("category") ?? "all") as Category["slug"] | "all");
+  const [selectedCategory, setSelectedCategory] = useState<string | "all">(
+    () => searchParams.get("category") ?? "all",
+  );
 
-  // Keep URL in sync whenever state changes (no navigation, no scroll)
+  // ------------------------
+  // Sync filters to URL WITHOUT triggering navigation
+  // ------------------------
   useEffect(() => {
-    syncURL(activeTab, selectedCategory);
-  }, [activeTab, selectedCategory]);
+    const params = new URLSearchParams();
+    if (activeTab !== "all") params.set("type", activeTab);
+    if (selectedCategory !== "all") params.set("category", selectedCategory);
 
+    const queryString = params.toString();
+    const url = queryString ? `${pathname}?${queryString}` : pathname;
+
+    // Use the browser history API, no navigation
+    window.history.replaceState(null, "", url);
+  }, [activeTab, selectedCategory, pathname]);
+
+  // ------------------------
+  // Handlers
+  // ------------------------
   const handleTabChange = (tab: TabValue) => {
     setActiveTab(tab);
-    setSelectedCategory("all");
+    setSelectedCategory("all"); // reset category on tab change
   };
 
-  const handleCategoryChange = (cat: Category["slug"] | "all") => {
-    setSelectedCategory(cat);
+  const handleCategoryChange = (slug: string | "all") => {
+    setSelectedCategory(slug);
   };
 
   const clearAll = () => {
@@ -67,17 +62,17 @@ export default function ArticlesPage({ articles, categories }: ArticleProps) {
     setSelectedCategory("all");
   };
 
-  // Non-featured articles only
-  //   const pool = useMemo(() => articles.filter((a) => a.slug), []);
-
+  // ------------------------
+  // Filter articles (client-side)
+  // ------------------------
   const filtered = useMemo(() => {
     return articles.filter((article) => {
       const typeMatch = activeTab === "all" || article.type?.slug === activeTab;
-      const catMatch =
+      const categoryMatch =
         selectedCategory === "all" ||
-        article.categories?.some((e) => e.slug === selectedCategory);
+        article.categories?.some((c) => c.slug === selectedCategory);
 
-      return typeMatch && catMatch;
+      return typeMatch && categoryMatch;
     });
   }, [articles, activeTab, selectedCategory]);
 
@@ -96,19 +91,21 @@ export default function ArticlesPage({ articles, categories }: ArticleProps) {
 
   const hasActiveFilters = activeTab !== "all" || selectedCategory !== "all";
 
+  // ------------------------
+  // Render
+  // ------------------------
   return (
     <div className="bg-cream flex flex-col pt-14 lg:pt-20 mb-14 lg:mb-20">
       <div className="container">
         <SectionTitle tagline="Browse All Content" title="Latest Articles" />
       </div>
+
       {/* Filter bar */}
       <div className="sticky bg-cream py-8 pb-14 top-18 z-40">
         <div className="flex flex-col gap-4 container">
           {/* Row 1: Type tabs + result count */}
-          <div className="flex flex-wrap items-center justify-between gap-4  ">
-            <div className="w-full ">
-              <TabsFilter activeTab={activeTab} onChange={handleTabChange} />
-            </div>
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <TabsFilter activeTab={activeTab} onChange={handleTabChange} />
             <span className="text-sm text-text font-semibold uppercase tracking-[0.02em]">
               {filtered.length} {filtered.length === 1 ? "article" : "articles"}
               {hasActiveFilters && " (filtered)"}
@@ -126,7 +123,7 @@ export default function ArticlesPage({ articles, categories }: ArticleProps) {
 
       {/* Main content */}
       <div className="bg-warm-white">
-        <div className="container flex-1 mt-4 bg-warm-white py-14 w-full flex flex-col gap-20">
+        <div className="container flex-1 mt-4 py-14 w-full flex flex-col gap-20">
           {activeTab === "all" ? (
             <>
               {guides.length > 0 && (
@@ -138,7 +135,6 @@ export default function ArticlesPage({ articles, categories }: ArticleProps) {
                   batchSize={3}
                 />
               )}
-
               {reviews.length > 0 && (
                 <ArticleGrid
                   articles={reviews}
@@ -148,9 +144,6 @@ export default function ArticlesPage({ articles, categories }: ArticleProps) {
                   batchSize={3}
                 />
               )}
-
-              {/* <TrendingSection articles={articles.slice(0, 5)} /> */}
-
               {comparisons.length > 0 && (
                 <ArticleGrid
                   articles={comparisons}

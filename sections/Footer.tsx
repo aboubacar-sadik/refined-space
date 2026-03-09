@@ -1,6 +1,6 @@
 "use client";
 
-import { Category } from "@/sanity/lib/types";
+import { Categories } from "@/sanity/lib/types";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
@@ -43,7 +43,7 @@ const itemVariants = {
 };
 
 type FooterCategoryProps = {
-  categories: Category[];
+  categories: Categories;
 };
 
 export function Footer({ categories }: FooterCategoryProps) {

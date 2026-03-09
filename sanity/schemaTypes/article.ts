@@ -19,6 +19,13 @@ export const article = defineType({
       },
     }),
     defineField({
+      name: "popular",
+      title: "Popular Article",
+      type: "boolean",
+      description: "Mark this article as popular to feature it on the site.",
+      initialValue: false,
+    }),
+    defineField({
       name: "excerpt",
       type: "text",
     }),

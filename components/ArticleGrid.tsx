@@ -3,11 +3,11 @@
 import { useState } from "react";
 import ArticleCard from "./ArticleCard";
 import { ChevronDown } from "lucide-react";
-import { Article } from "@/sanity/lib/types";
+import { Articles } from "@/sanity/lib/types";
 import SectionTitle from "./SectionTitle";
 
 interface ArticleGridProps {
-  articles: Article[];
+  articles: Articles;
   /** Initial number of articles to display */
   initialCount?: number;
   /** Batch size for Load More */

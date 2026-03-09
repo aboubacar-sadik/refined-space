@@ -1,6 +1,6 @@
-import { Category } from "@/sanity/lib/types";
+import { Categories } from "@/sanity/lib/types";
 
-export default function Marquee({ categories }: { categories: Category[] }) {
+export default function Marquee({ categories }: { categories: Categories }) {
   return (
     <div className="overflow-hidden relative py-3.5 bg-forest">
       <div className="animate-marquee flex w-max gap-0">

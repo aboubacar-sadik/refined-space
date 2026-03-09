@@ -1,12 +1,9 @@
 import ArticleCard from "@/components/ArticleCard";
 import SectionTitle from "@/components/SectionTitle";
-import { Button } from "@/components/ui/button";
-import { formatUpdatedDate } from "@/lib/utils";
-import { Article } from "@/sanity/lib/types";
-import Link from "next/link";
+import { Articles } from "@/sanity/lib/types";
 
 type LatestContentProps = {
-  articles: Article[];
+  articles: Articles;
 };
 
 export default function LatestContent({ articles }: LatestContentProps) {

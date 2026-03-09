@@ -5,8 +5,8 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function formatUpdatedDate(isoString: string) {
-  const date = new Date(isoString);
+export function formatUpdatedDate(isoString: string | null) {
+  const date = new Date(Number(isoString));
 
   // Fallback in case the string is not a valid date
   if (isNaN(date.getTime())) {

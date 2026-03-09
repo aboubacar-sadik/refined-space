@@ -2,9 +2,8 @@
 
 import CategoryCard from "@/components/CategoryCard";
 import SectionTitle from "@/components/SectionTitle";
-import { Category } from "@/sanity/lib/types";
+import { Categories, Category } from "@/sanity/lib/types";
 import { motion } from "framer-motion";
-import { usePathname, useSearchParams } from "next/navigation";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -30,7 +29,7 @@ const itemVariants = {
 };
 
 type CategoryGridProps = {
-  categories: Category[];
+  categories: Categories;
 };
 
 export default function CategoryGrid({ categories }: CategoryGridProps) {
@@ -52,7 +51,11 @@ export default function CategoryGrid({ categories }: CategoryGridProps) {
           className="grid sm:grid-cols-2 lg:grid-cols-3 gap-0.5 "
         >
           {categories.slice(0, 3).map((category) => (
-            <motion.div key={category._id} variants={itemVariants} className="">
+            <motion.div
+              key={category?._id}
+              variants={itemVariants}
+              className=""
+            >
               <CategoryCard category={category} />
             </motion.div>
           ))}

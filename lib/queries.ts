@@ -32,8 +32,63 @@ export const GET_RECENT_ARTICLES_QUERY =
       name
     }
   }`);
-// Get a single article by slug
 
+// Get popular articles
+export const GET_POPULAR_ARTICLES_QUERY = defineQuery(`
+  *[_type == "article" && popular == true && defined(publishedAt)]
+  | order(publishedAt desc)[0...6] {
+    _id,
+    title,
+    "slug": slug.current,
+    excerpt,
+    type->{
+      title,
+      "slug": slug.current
+    },
+    publishedAt,
+    _updatedAt,
+    featuredImage {
+      alt,
+      "url": asset->url
+    },
+    categories[]->{
+      title,
+      "slug": slug.current
+    }
+  }
+`);
+
+// Get related articles
+export const GET_RELATED_ARTICLES_QUERY = defineQuery(`
+  *[
+    _type == "article" &&
+    slug.current != $slug &&
+    (
+      count((categories[]->slug.current)[@ in $categorySlugs]) > 0 
+    )
+  ]
+  | order(publishedAt desc)[0...4] {
+    _id,
+    title,
+    "slug": slug.current,
+    excerpt,
+    type->{
+      title,
+      "slug": slug.current
+    },
+    publishedAt,
+    featuredImage {
+      alt,
+      "url": asset->url
+    },
+    categories[]->{
+      title,
+      "slug": slug.current
+    }
+  }
+`);
+
+// Get a single article by slug
 export const GET_ARTICLE_BY_SLUG_QUERY =
   defineQuery(`  *[_type == "article" && slug.current == $slug][0] {
     _id,
@@ -162,6 +217,18 @@ export const GET_ARTICLES_BY_TYPE_QUERY =
 // Get all categories
 export const GET_ALL_CATEGORIES_QUERY =
   defineQuery(`  *[_type == "category"] | order(title asc) {
+    _id,
+    title,
+    "slug": slug.current,
+    description,
+    "imageUrl": image.asset->url,
+    "articleCount": count(*[_type == "article" && references(^._id)]),
+    _updatedAt,
+  }`);
+
+// Get a category by slug
+export const GET_CATEGORY_BY_SLUG_QUERY =
+  defineQuery(`  *[_type == "category" && slug.current == $slug][0] {
     _id,
     title,
     "slug": slug.current,
