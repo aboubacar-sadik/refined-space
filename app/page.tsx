@@ -27,7 +27,7 @@ export default async function Home() {
       <main className="mt-18">
         {/* Hero section */}
         <section>
-          <Hero />
+          <Hero categories={categories} articles={articles} />
         </section>
         <section>
           <Marquee categories={categories} />

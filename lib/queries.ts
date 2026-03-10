@@ -7,6 +7,7 @@ export const GET_RECENT_ARTICLES_QUERY =
     title,
     "slug": slug.current,
     excerpt,
+    popular,
     type->{
       title,"slug": slug.current
     },
@@ -41,6 +42,7 @@ export const GET_POPULAR_ARTICLES_QUERY = defineQuery(`
     title,
     "slug": slug.current,
     excerpt,
+    popular,
     type->{
       title,
       "slug": slug.current
@@ -72,6 +74,7 @@ export const GET_RELATED_ARTICLES_QUERY = defineQuery(`
     title,
     "slug": slug.current,
     excerpt,
+    popular,
     type->{
       title,
       "slug": slug.current
@@ -95,6 +98,7 @@ export const GET_ARTICLE_BY_SLUG_QUERY =
     title,
     "slug": slug.current,
     excerpt,
+    popular,
     publishedAt,
     _updatedAt,
     type->{
@@ -131,6 +135,7 @@ export const GET_ARTICLES_BY_CATEGORY_QUERY =
     title,
     "slug": slug.current,
     excerpt,
+    popular,
     type->{
       title,
       "slug": slug.current
@@ -162,6 +167,7 @@ export const GET_ARTICLES_BY_TAG_QUERY =
     title,
     "slug": slug.current,
     excerpt,
+    popular,
     type->{
       title,
       "slug": slug.current
@@ -192,6 +198,7 @@ export const GET_ARTICLES_BY_TYPE_QUERY =
     title,
     "slug": slug.current,
     excerpt,
+    popular,
     type->{
       title,
       "slug": slug.current

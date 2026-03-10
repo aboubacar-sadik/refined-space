@@ -10,6 +10,7 @@ import {
   Facebook,
   Linkedin,
 } from "lucide-react";
+import Image from "next/image";
 
 interface ArticleHeroProps {
   article: Article;
@@ -68,10 +69,6 @@ export function ArticleHero({ article }: ArticleHeroProps) {
                     : formatUpdatedDate(article.publishedAt as string)}
                 </time>
               </div>
-              <div className="flex items-center gap-1.5">
-                <Clock className="w-4 h-4" />
-                {/* <span>{readingTime} min read</span> */}
-              </div>
             </div>
           </div>
 
@@ -117,10 +114,10 @@ export function ArticleHero({ article }: ArticleHeroProps) {
       {/* Featured Image */}
       <div className="mt-8 md:mt-12">
         <figure className="relative">
-          <img
+          <Image
             src={`${article.featuredImage?.url}`}
             alt={`${article.featuredImage?.alt}`}
-            className="w-full h-auto max-h-[600px] object-cover rounded-sm"
+            className="w-full h-auto max-h-150 object-cover rounded-sm"
           />
         </figure>
       </div>

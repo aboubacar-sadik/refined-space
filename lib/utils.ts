@@ -6,7 +6,7 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function formatUpdatedDate(isoString: string | null) {
-  const date = new Date(Number(isoString));
+  const date = new Date(isoString as string);
 
   // Fallback in case the string is not a valid date
   if (isNaN(date.getTime())) {

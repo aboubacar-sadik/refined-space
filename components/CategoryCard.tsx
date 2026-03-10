@@ -23,7 +23,7 @@ export default function CategoryCard({ category }: CategoryCardProps) {
       <h3 className="text-lg font-semibold text-forest mb-2 transition-colors duration-300 group-hover:text-white">
         {category?.title}
       </h3>
-      <p className="text-[13px] text-text-muted font-light transition-color leading-[1.6em] group-hover:text-white/60">
+      <p className="text-[13px] text-text-muted font-light transition-color leading-[1.6em] group-hover:text-white/60 ">
         {category?.description}
       </p>
       <span className="block mt-5 text-tiny tracking-[0.15em] uppercase text-text-muted transition-colors duration-300 group-hover:text-white/40">

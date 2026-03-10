@@ -170,13 +170,13 @@ export default function ArticlesPage({ articles, categories }: ArticleProps) {
           )}
 
           {filtered.length === 0 && (
-            <div className="py-20 text-center flex flex-col items-center gap-4">
-              <p className="text-muted-foreground text-base">
+            <div className="py-20 text-center flex flex-col items-center gap-4  bg-cream">
+              <p className="text-forest uppercase text-base">
                 No articles match your current filters.
               </p>
               <button
                 onClick={clearAll}
-                className="text-sm text-forest underline hover:text-gold transition-colors"
+                className="text-sm cursor-pointer hover:text-gold-light text-gold underline transition-colors"
               >
                 Clear all filters
               </button>

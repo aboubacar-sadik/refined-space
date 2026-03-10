@@ -10,23 +10,11 @@ interface TrendingSectionProps {
   articles: Articles;
 }
 
-type ArticleTypeSlug = "guide" | "review" | "comparison";
-const typeBadgeColors: Record<ArticleTypeSlug, string> = {
-  guide: "text-mid-green",
-  review: "text-gold",
-  comparison: "text-sage",
-};
-
-const typeBadgeLabel: Record<ArticleTypeSlug, string> = {
-  guide: "Guide",
-  review: "Review",
-  comparison: "Comparison",
-};
-
 export default function TrendingSection({ articles }: TrendingSectionProps) {
   if (articles.length === 0) return null;
 
-  const [primary, ...rest] = articles;
+  const trendingArticles = articles.filter((a) => a.popular == true);
+  const [primary, ...rest] = trendingArticles;
 
   return (
     <div className="py-14 lg:py-20 bg-forest">
@@ -60,14 +48,10 @@ export default function TrendingSection({ articles }: TrendingSectionProps) {
               </div>
               <div className="flex flex-col gap-2">
                 <span
-                  className={`text-xs font-medium uppercase tracking-wider ${typeBadgeColors[primary.type?.slug as "guide" | "review" | "comparison"]}`}
+                  className={`text-xs font-medium uppercase tracking-wider`}
                 >
-                  {
-                    typeBadgeLabel[
-                      primary.type?.slug as "guide" | "review" | "comparison"
-                    ]
-                  }{" "}
-                  · {primary.categories?.[0]?.title}
+                  <span className="text-gold">{primary.type?.title}</span> ·{" "}
+                  {primary.categories?.[0]?.title}
                 </span>
                 <h3 className="text-xl font-bold text-text leading-snug group-hover:text-forest transition-colors text-balance">
                   {primary.title}
@@ -76,13 +60,11 @@ export default function TrendingSection({ articles }: TrendingSectionProps) {
                   {primary.excerpt}
                 </p>
                 <div className="flex items-center gap-2 text-xs text-muted-foreground mt-1">
-                  <time dateTime={primary._updatedAt}>
-                    {formatUpdatedDate(primary._updatedAt)}
-                  </time>
-                  <span>·</span>
-                  <span className="flex items-center gap-1">
-                    <Clock size={11} aria-hidden="true" />
-                    {"12"} min
+                  <span className=" flex items-center gap-1">
+                    <Calendar size={10} aria-hidden="true" />
+                    <time dateTime={primary._updatedAt}>
+                      {formatUpdatedDate(primary._updatedAt)}
+                    </time>
                   </span>
                 </div>
               </div>
@@ -96,21 +78,14 @@ export default function TrendingSection({ articles }: TrendingSectionProps) {
                   href={`/articles/${article.slug}`}
                   className="group flex gap-4 py-4 first:pt-0 last:pb-0"
                 >
-                  <span className="font-playfair text-3xl font-bold text-light-sage shrink-0 w-8">
+                  <span className="font-playfair text-3xl font-bold text-sage shrink-0 w-8">
                     {String(i + 2).padStart(2, "0")}
                   </span>
                   <div className="flex flex-col gap-1 min-w-0">
                     <span
-                      className={`text-tiny font-medium uppercase tracking-[0.15em] ${typeBadgeColors[primary.type?.slug as "guide" | "review" | "comparison"]}`}
+                      className={`text-tiny text-gold font-medium uppercase tracking-[0.15em]`}
                     >
-                      {
-                        typeBadgeLabel[
-                          primary.type?.slug as
-                            | "guide"
-                            | "review"
-                            | "comparison"
-                        ]
-                      }
+                      {article.type?.title}
                     </span>
                     <h4 className="font-playfair text-base font-semibold text-text group-hover:text-forest transition-colors leading-snug text-balance">
                       {article.title}

@@ -51,15 +51,13 @@ export default function ArticleCard({ article, variant }: ArticleCardProps) {
           <h3 className="text-xl font-semibold leading-[1.3em] text-forest mb-3 transition-colors duration-200 group-hover:text-mid-green">
             {title}
           </h3>
-          <p className="text-[13px] text-text-muted leading-6 font-light mb-5">
+          <p className="text-[13px] text-text-muted leading-6 font-light mb-5 line-clamp-2">
             {excerpt}
           </p>
           <div className="flex items-center gap-4 text-[11px] text-text-muted tracking-[0.05em]">
             <span>{categories?.[0]?.title ?? "Uncategorized"}</span>
             <span className="block size-0.75 shrink-0 bg-sage rounded-full" />
             <span>{formatUpdatedDate(publishedAt)}</span>
-            <span className="block size-0.75 shrink-0 bg-sage rounded-full" />
-            <span>12 min read</span>
           </div>
           <Button
             onClick={() => router.push(`/articles/${slug}`)}

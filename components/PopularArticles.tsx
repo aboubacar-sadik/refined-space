@@ -1,6 +1,7 @@
 import { Clock } from "lucide-react";
 import { Articles } from "@/sanity/lib/types";
 import Link from "next/link";
+import Image from "next/image";
 
 interface PopularArticlesProps {
   articles: Articles;
@@ -22,7 +23,7 @@ export function PopularArticles({ articles }: PopularArticlesProps) {
           >
             {/* Thumbnail */}
             <div className="relative shrink-0">
-              <img
+              <Image
                 src={article.featuredImage?.url as string}
                 alt={article.featuredImage?.alt as string}
                 className="w-20 h-16 object-cover rounded-sm"
@@ -40,10 +41,6 @@ export function PopularArticles({ articles }: PopularArticlesProps) {
               <h4 className="text-xs font-medium text-forest group-hover:text-gold transition-colors line-clamp-2 mt-0.5">
                 {article.title}
               </h4>
-              <div className="flex items-center gap-1 mt-1 text-xs text-text-muted">
-                <Clock className="w-3 h-3" />
-                <span>12 min read</span>
-              </div>
             </div>
           </Link>
         ))}

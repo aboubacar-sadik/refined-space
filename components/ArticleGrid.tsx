@@ -34,13 +34,13 @@ export default function ArticleGrid({
     setVisible((v) => Math.min(v + batchSize, articles.length));
   };
 
-  if (articles.length === 0) {
-    return (
-      <div className="py-12 text-center text-muted-foreground text-sm">
-        No articles match your current filters.
-      </div>
-    );
-  }
+  // if (articles.length === 0) {
+  //   return (
+  //     <div className="py-12 text-center text-muted-foreground text-sm">
+  //       No articles match your current filters.
+  //     </div>
+  //   );
+  // }
 
   return (
     <section
@@ -76,7 +76,7 @@ export default function ArticleGrid({
         <div className="mt-10 flex justify-center">
           <button
             onClick={loadMore}
-            className="inline-flex items-center gap-2 border border-forest text-forest text-sm font-medium px-7 py-3 rounded-sm hover:bg-forest hover:text-primary-foreground transition-colors focus-visible:outline-2 focus-visible:outline-ring"
+            className="inline-flex items-center gap-2 border border-forest text-forest text-sm font-medium px-7 py-3 rounded-sm hover:bg-forest hover:text-white transition-colors focus-visible:outline-2 focus-visible:outline-ring cursor-pointer"
             aria-label={`Load more ${heading ?? "articles"}`}
           >
             <ChevronDown size={15} aria-hidden="true" />

@@ -24,7 +24,7 @@ export function Newsletter({ variant }: { variant?: string }) {
       id="newsletter"
       className={cn(
         " py-16 lg:py-20",
-        variant === "çream" ? "bg-cream" : "bg-warm-white",
+        variant === "cream" ? "bg-cream" : "bg-warm-white",
       )}
     >
       <div className="container">

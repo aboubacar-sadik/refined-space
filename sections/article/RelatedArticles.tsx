@@ -2,6 +2,7 @@ import type { RelatedArticles } from "@/sanity/lib/types";
 import { Clock, ArrowRight } from "lucide-react";
 import SectionTitle from "../../components/SectionTitle";
 import Link from "next/link";
+import Image from "next/image";
 
 interface RelatedArticlesProps {
   articles: RelatedArticles;
@@ -28,7 +29,7 @@ export function RelatedArticles({ articles }: RelatedArticlesProps) {
           >
             {/* Thumbnail */}
             <div className="relative overflow-hidden">
-              <img
+              <Image
                 src={article.featuredImage?.url as string}
                 alt={article.featuredImage?.alt as string}
                 className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105"
@@ -46,10 +47,6 @@ export function RelatedArticles({ articles }: RelatedArticlesProps) {
               <p className="text-sm text-text-muted line-clamp-2 mb-4">
                 {article.excerpt}
               </p>
-              <div className="flex items-center gap-1 text-xs text-text-muted">
-                <Clock className="w-3.5 h-3.5" />
-                <span>12 min read</span>
-              </div>
             </div>
           </Link>
         ))}

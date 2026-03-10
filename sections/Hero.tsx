@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { Articles, Categories } from "@/sanity/lib/types";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
@@ -28,13 +29,22 @@ const itemVariants = {
   },
 };
 
-const stats = [
-  { value: "80+", label: "IN-DEPTH GUIDES" },
-  { value: "6", label: "CURATED CATEGORIES" },
-  { value: "100%", label: "RESEARCH-BACKED" },
-];
+export default function Hero({
+  categories,
+  articles,
+}: {
+  categories: Categories;
+  articles: Articles;
+}) {
+  const stats = [
+    { value: `${articles.length - 1}+`, label: "IN-DEPTH GUIDES" },
+    { value: categories.length, label: "CURATED CATEGORIES" },
+    { value: "100%", label: "RESEARCH-BACKED" },
+  ];
 
-export default function Hero() {
+  const firstArticle = articles[0];
+  const secondArticle = articles[1];
+
   return (
     <section className="flex flex-col lg:flex-row w-full min-h-dvh">
       <div className="w-full lg:w-1/2  bg-forest flex justify-end">
@@ -78,7 +88,7 @@ export default function Hero() {
                   Explore guides
                 </Button>
               </Link>
-              <Link href="/articles?type=guide" className="">
+              <Link href="/articles?type=comparison" className="">
                 <Button
                   size={"lg"}
                   variant={"link"}
@@ -112,26 +122,24 @@ export default function Hero() {
 
       <div className="hidden w-full lg:w-1/2 lg:flex flex-col bg-cream">
         <Link
-          href={""}
+          href={`/articles/${firstArticle.slug}`}
           className="flex-1 bg-linear-[135deg,#2d5a3d_0%,#1b3a2d_100%] w-full flex justify-start hover:bg-none hover:bg-white group"
         >
           <div className="w-full max-w-180 p-10 lg:pr-8 flex flex-col justify-center ">
             <div className=" h-full relative cursor-pointer transition-colors duration-300 flex flex-col justify-end overflow-hidden">
               <span className="text-tiny tracking-[0.2em] uppercase text-gold-light mb-3 font-medium">
-                Featured review
+                Featured {firstArticle.type?.title}
               </span>
               <h2 className="text-[22px] mb-2.5 text-white group-hover:text-text font-semibold leading-tight">
-                Avocado Green Mattress: Is It Worth $2,000?
+                {firstArticle.title}
               </h2>
               <p className="text-[13px] leading-6 font-light text-white/60 group-hover:text-text-muted">
-                After 90 days of testing, we break down every detail — from
-                GOLS-certified latex to the return policy fine print.
+                {firstArticle.excerpt}
               </p>
 
-              {/* AFAIRE : mettre aria label sur ce bouton */}
               <Button
                 size={"icon"}
-                aria-label={`Read post `}
+                aria-label={`Read post ${firstArticle.title}`}
                 className="absolute top-0 right-0 border-white/20 bg-transparent group-hover:bg-gold duration-300 group-hover:border-gold"
               >
                 <ArrowRight />
@@ -140,25 +148,23 @@ export default function Hero() {
           </div>
         </Link>
         <Link
-          href={""}
+          href={`/articles/${secondArticle.slug}`}
           className="flex-1 bg-warm-white w-full flex justify-start group"
         >
           <div className="w-full max-w-180 lg:pr-8 flex flex-col justify-center p-10">
             <div className=" h-full relative transition-colors duration-300 flex flex-col justify-end overflow-hidden">
               <span className="text-tiny tracking-[0.2em] uppercase text-sage mb-3 font-medium">
-                Featured review
+                Featured {secondArticle.type?.title}
               </span>
               <h2 className="text-[22px] text-text mb-2.5 font-semibold leading-tight">
-                Lomi vs FoodCycler: Best Countertop Composter?
+                {secondArticle.title}
               </h2>
               <p className="text-[13px] leading-6 font-light text-text-muted">
-                Speed, noise, odor, price — we tested both for 60 days so you
-                don&apos;t have to guess.
+                {secondArticle.excerpt}
               </p>
-              {/* AFAIRE : mettre aria label sur ce bouton */}
               <Button
                 size={"icon"}
-                aria-label={`Read post `}
+                aria-label={`Read post ${secondArticle.title}`}
                 className="absolute top-0 right-0 border-forest/20 text-forest bg-transparent group-hover:bg-gold duration-300 group-hover:border-gold"
               >
                 <ArrowRight />
