@@ -3,6 +3,10 @@ import {
   GET_ALL_CATEGORIES_QUERY,
   GET_RECENT_ARTICLES_QUERY,
 } from "@/lib/queries";
+import {
+  GET_RECENT_ARTICLES_QUERYResult,
+  GET_ARTICLES_BY_CATEGORY_QUERYResult,
+} from "@/sanity.types";
 import Marquee from "@/components/Marquee";
 import CategoryGrid from "@/sections/CategoryGrid";
 import LatestContent from "@/sections/LatestContent";
@@ -18,9 +22,9 @@ export default async function Home() {
     query: GET_ALL_CATEGORIES_QUERY,
   });
 
-  const { data: articles } = await sanityFetch({
+  const { data: articles } = (await sanityFetch({
     query: GET_RECENT_ARTICLES_QUERY,
-  });
+  })) as { data: GET_RECENT_ARTICLES_QUERYResult };
 
   const articlesByCategory = categories.map((category) => ({
     category,
