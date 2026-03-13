@@ -34,15 +34,8 @@ type CategoryGridProps = {
 
 export default function CategoryGrid({ categories }: CategoryGridProps) {
   return (
-    <div className="bg-warm-white py-14 lg:py-24">
+    <div className="">
       <div className="container">
-        <SectionTitle
-          title="Every Room. Every Choice."
-          tagline="Browse by Category"
-          link_href="/categories"
-          link_label="View All Categories"
-        />
-
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -50,7 +43,7 @@ export default function CategoryGrid({ categories }: CategoryGridProps) {
           viewport={{ once: true }}
           className="grid sm:grid-cols-2 lg:grid-cols-3 gap-0.5 "
         >
-          {categories.slice(0, 3).map((category) => (
+          {categories.map((category) => (
             <motion.div
               key={category?._id}
               variants={itemVariants}

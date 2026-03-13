@@ -8,7 +8,6 @@ import {
 } from "@/lib/queries";
 import { Footer } from "@/sections/Footer";
 import { Navigation } from "@/sections/Navigation";
-import { Newsletter } from "@/sections/Newsletter";
 import { ArticleHero } from "@/sections/ArticleHero";
 import { notFound } from "next/navigation";
 import { ArticleContent } from "@/sections/ArticleContent";
@@ -61,20 +60,6 @@ export default async function Page({
       {/* <ReadingProgress /> */}
       <Navigation />
       <main className="pt-20">
-        {/* Breadcrumb */}
-        {/* <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Breadcrumb
-            items={[
-              { label: "Guides", href: "/guides" },
-              { label: "Baby", href: "/category/baby-child" },
-              {
-                label: "Best Baby Bottles",
-                href: "/article/best-baby-bottles",
-              },
-            ]}
-          />
-        </div> */}
-
         {/* Article Hero */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ArticleHero article={article} />
@@ -84,12 +69,12 @@ export default async function Page({
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
             {/* Main Article Content */}
-            <div className="lg:col-span-8">
-              <ArticleContent />
+            <div className="lg:col-span-8 pb-14">
+              <ArticleContent body={article.body}/>
             </div>
 
             {/* Sidebar */}
-            <aside className="lg:col-span-4 space-y-6">
+            <aside className="lg:col-span-4 space-y-6 ">
               {/* Popular Articles */}
               <PopularArticles articles={popular_articles} />
 

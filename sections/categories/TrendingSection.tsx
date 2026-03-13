@@ -33,7 +33,7 @@ export default function TrendingSection({ articles }: TrendingSectionProps) {
           <div className="grid md:grid-cols-2 gap-8">
             {/* Primary article — large */}
             <Link
-              href={`/${primary.categories ? primary.categories[0].slug : "ungategorized"}/${primary.slug}`}
+              href={`/articles/${primary.slug}`}
               className="group flex flex-col gap-4"
             >
               <div className="relative aspect-16/10 overflow-hidden rounded-2xl">
@@ -75,7 +75,7 @@ export default function TrendingSection({ articles }: TrendingSectionProps) {
               {rest.slice(0, 4).map((article, i) => (
                 <Link
                   key={article._id}
-                   href={`/${article.categories ? article.categories[0].slug : "ungategorized"}/${article.slug}`}
+                  href={`/articles/${article.slug}`}
                   className="group flex gap-4 py-4 first:pt-0 last:pb-0"
                 >
                   <span className="font-playfair text-3xl font-bold text-sage shrink-0 w-8">

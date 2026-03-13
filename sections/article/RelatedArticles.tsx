@@ -1,5 +1,4 @@
 import type { RelatedArticles } from "@/sanity/lib/types";
-import { Clock, ArrowRight } from "lucide-react";
 import SectionTitle from "../../components/SectionTitle";
 import Link from "next/link";
 import Image from "next/image";
@@ -11,20 +10,15 @@ interface RelatedArticlesProps {
 export function RelatedArticles({ articles }: RelatedArticlesProps) {
   return (
     <section className="py-12 border-t border-border-color">
-      <div className="mb-8">
-        <SectionTitle
-          title="Related Articles"
-          link_label="View all"
-          link_href="/articles"
-          size="small"
-        />
+      <div className="mb-12">
+        <SectionTitle title="Related Articles" size="small" />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {articles.slice(0, 3).map((article) => (
           <Link
             key={article._id}
-            href={`/articles/${article.slug}`}
+            href={`/${article.categories ? article.categories[0].slug : "ungategorized"}/${article.slug}`}
             className="group bg-white overflow-hidden"
           >
             {/* Thumbnail */}
@@ -33,6 +27,8 @@ export function RelatedArticles({ articles }: RelatedArticlesProps) {
                 src={article.featuredImage?.url as string}
                 alt={article.featuredImage?.alt as string}
                 className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105"
+                width={2688}
+                height={1520}
               />
             </div>
 

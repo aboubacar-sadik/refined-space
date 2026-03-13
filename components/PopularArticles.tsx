@@ -18,16 +18,21 @@ export function PopularArticles({ articles }: PopularArticlesProps) {
         {articles.slice(0, 3).map((article, index) => (
           <Link
             key={article._id}
-            href={`/articles/${article.slug}`}
+            href={`/${article.categories ? article.categories[0].slug : "uncategorized"}/${article.slug}`}
             className="group flex gap-3"
           >
             {/* Thumbnail */}
-            <div className="relative shrink-0">
+            <div className="relative shrink-0 aspect-square w-20 h-16">
               <Image
                 src={article.featuredImage?.url as string}
-                alt={article.featuredImage?.alt as string}
-                className="w-20 h-16 object-cover rounded-sm"
+                alt="Promotional banner image"
+                fill
+                style={{ objectFit: "cover" }}
+                className="rounded-sm"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw,
+        33vw"
               />
+              {/* 2688x1520 */}
               <span className="absolute -top-1 -left-1 w-5 h-5 flex items-center justify-center bg-forest text-warm-white text-xs font-medium rounded-full">
                 {index + 1}
               </span>

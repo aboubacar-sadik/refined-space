@@ -5,9 +5,9 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 
 const exploreLinks = [
-  { label: "Guides", href: "/articles?type=guide" },
-  { label: "Product Reviews", href: "/articles?type=review" },
-  { label: "Comparisons", href: "/articles?type=comparison" },
+  { label: "Guides", href: "/guides" },
+  { label: "Product Reviews", href: "/reviews" },
+  { label: "Comparisons", href: "/comparisons" },
   { label: "Categories", href: "/categories" },
 ];
 
@@ -97,7 +97,7 @@ export function Footer({ categories }: FooterCategoryProps) {
               {categories.map((link) => (
                 <li key={link._id}>
                   <Link
-                    href={`/articles?category=${link.slug}`}
+                    href={`/${link.slug}`}
                     className="text-[13px] text-white/50 transition-colors duration-200 font-light hover:text-white/90"
                   >
                     {link.title}

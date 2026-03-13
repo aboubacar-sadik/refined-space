@@ -1,34 +1,52 @@
 import { sanityFetch } from "@/sanity/lib/live";
 import {
   GET_ALL_CATEGORIES_QUERY,
+  GET_ARTICLES_BY_CATEGORY_QUERY,
   GET_RECENT_ARTICLES_QUERY,
 } from "@/lib/queries";
 import Marquee from "@/components/Marquee";
 import CategoryGrid from "@/sections/CategoryGrid";
-import Hero from "@/sections/Hero";
-import LatestContent from "@/sections/LatestContent";
 import Philosophy from "@/sections/Philosophy";
 import { Footer } from "@/sections/Footer";
 import { Navigation } from "@/sections/Navigation";
 import { Newsletter } from "@/sections/Newsletter";
-import SectionTitle from "@/components/SectionTitle";
+import ArticlesSection from "@/sections/ArticlesSection";
+import TrendingSection from "@/sections/TrendingSection";
 
-export default async function Home() {
+// app/[...slug]/page.tsx
+import { notFound } from "next/navigation";
+import SectionTitle from "@/components/SectionTitle";
+import ArticleGrid from "@/components/ArticleGrid";
+
+interface PageProps {
+  params: Promise<{
+    category: string;
+  }>;
+}
+
+export default async function Page({ params }: PageProps) {
+  const { category: categorySlug } = await params;
+
   const { data: categories } = await sanityFetch({
     query: GET_ALL_CATEGORIES_QUERY,
   });
 
   const { data: articles } = await sanityFetch({
-    query: GET_RECENT_ARTICLES_QUERY,
+    query: GET_ARTICLES_BY_CATEGORY_QUERY,
+    params: { categorySlug: categorySlug },
   });
+
+  const categoryMatching = categories.find((c) => c.slug === categorySlug);
+  if (!categories || !categoryMatching) {
+    notFound();
+  }
 
   return (
     <>
       <Navigation />
       <main className="mt-18">
-        {/* Hero section */}
         <section>
-          <Hero categories={categories} articles={articles} />
+          <TrendingSection articles={articles} />
         </section>
         <section>
           <Marquee categories={categories} />
@@ -37,28 +55,26 @@ export default async function Home() {
           <div className="container">
             <SectionTitle
               tagline="Browse by Category"
-              title={`Every Room. Every Choice.`}
-              link_href={`/categories`}
+              title="Every Room. Every Choice."
+              link_href="/categories"
               link_label="View All Categories"
             />
           </div>
-          <CategoryGrid categories={categories} />
+          <div className="mt-12">
+            <CategoryGrid categories={categories} />
+          </div>
         </section>
         <section className="py-14 lg:py-24 bg-cream">
           <div className="container">
-            <SectionTitle
-              tagline="Latest Content"
-              title={`Research First. Recommend Second.`}
-            />
+            <SectionTitle tagline="Browse All Content" title="Latest Posts." />
+            <span className="text-xs block tracking-[0.2em] uppercase text-text font-medium">
+              {articles.length} {articles.length === 1 ? "article" : "articles"}
+            </span>
           </div>
-          <div className="mt-12">
-            <LatestContent articles={articles} />
+          <div className="mt-12 container">
+            <ArticleGrid articles={articles} initialCount={3} batchSize={3}/>
           </div>
         </section>
-        {/* NOUS Y REVIENDRONS LATER */}
-        {/* <section>
-          <ComparisonTable />
-        </section> */}
         <section>
           <Philosophy />
         </section>

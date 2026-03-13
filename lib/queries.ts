@@ -8,8 +8,10 @@ export const GET_RECENT_ARTICLES_QUERY =
     "slug": slug.current,
     excerpt,
     popular,
+    body,
     type->{
-      title,"slug": slug.current
+      title,
+      "slug": slug.current
     },
     publishedAt,
     _updatedAt,
@@ -43,6 +45,7 @@ export const GET_POPULAR_ARTICLES_QUERY = defineQuery(`
     "slug": slug.current,
     excerpt,
     popular,
+    body,
     type->{
       title,
       "slug": slug.current
@@ -75,6 +78,7 @@ export const GET_RELATED_ARTICLES_QUERY = defineQuery(`
     "slug": slug.current,
     excerpt,
     popular,
+    body,
     type->{
       title,
       "slug": slug.current
@@ -99,6 +103,7 @@ export const GET_ARTICLE_BY_SLUG_QUERY =
     "slug": slug.current,
     excerpt,
     popular,
+    body,
     publishedAt,
     _updatedAt,
     type->{
@@ -136,9 +141,9 @@ export const GET_ARTICLES_BY_CATEGORY_QUERY =
     "slug": slug.current,
     excerpt,
     popular,
+    body,
     type->{
-      title,
-      "slug": slug.current
+      title,"slug": slug.current
     },
     publishedAt,
     _updatedAt,
@@ -146,7 +151,6 @@ export const GET_ARTICLES_BY_CATEGORY_QUERY =
       alt,
       "url": asset->url
     },
-    // We can also pull the category names back out
     categories[]-> {
       title,
       "slug": slug.current
@@ -154,6 +158,10 @@ export const GET_ARTICLES_BY_CATEGORY_QUERY =
     tags[]-> {
       title,
       "slug": slug.current
+    },
+    productGallery[] {
+      alt,
+      "url": asset->url
     },
     author-> {
       name
@@ -168,6 +176,7 @@ export const GET_ARTICLES_BY_TAG_QUERY =
     "slug": slug.current,
     excerpt,
     popular,
+    body,
     type->{
       title,
       "slug": slug.current
@@ -199,6 +208,7 @@ export const GET_ARTICLES_BY_TYPE_QUERY =
     "slug": slug.current,
     excerpt,
     popular,
+    body,
     type->{
       title,
       "slug": slug.current

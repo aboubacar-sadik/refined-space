@@ -14,8 +14,7 @@ interface ArticleGridProps {
   batchSize?: number;
   /** Section heading (e.g. "Guides") */
   heading?: string;
-  /** Optional section subtitle */
-  subtitle?: string;
+  cardVariant?: string;
 }
 
 export default function ArticleGrid({
@@ -23,7 +22,7 @@ export default function ArticleGrid({
   initialCount = 3,
   batchSize = 3,
   heading,
-  subtitle,
+  cardVariant,
 }: ArticleGridProps) {
   const [visible, setVisible] = useState(initialCount);
 
@@ -34,40 +33,16 @@ export default function ArticleGrid({
     setVisible((v) => Math.min(v + batchSize, articles.length));
   };
 
-  // if (articles.length === 0) {
-  //   return (
-  //     <div className="py-12 text-center text-muted-foreground text-sm">
-  //       No articles match your current filters.
-  //     </div>
-  //   );
-  // }
-
   return (
-    <section
-      aria-labelledby={heading ? `section-${heading.toLowerCase()}` : undefined}
-    >
-      {heading && (
-        <div className="flex items-end justify-between mb-8 pb-4 border-b border-border">
-          <SectionTitle
-            inline
-            tagline="Browse by type"
-            title={heading}
-            size="small"
-          />
-          <span className="text-xs block tracking-[0.2em] uppercase text-text font-medium">
-            {articles.length} {articles.length === 1 ? "article" : "articles"}
-          </span>
-        </div>
-      )}
-
+    <section>
       <div
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
         role="list"
-        aria-label={heading ? `${heading} articles` : "Articles"}
+        aria-label={"Articles"}
       >
         {shown.map((article) => (
           <div role="listitem" key={article._id}>
-            <ArticleCard article={article} variant="cream" />
+            <ArticleCard article={article} variant={cardVariant} />
           </div>
         ))}
       </div>

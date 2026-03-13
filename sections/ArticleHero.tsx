@@ -1,5 +1,6 @@
 "use client";
 
+import CarouselWithProgress from "@/components/article/Carousel";
 import { formatUpdatedDate } from "@/lib/utils";
 import { Article } from "@/sanity/lib/types";
 import {
@@ -10,15 +11,19 @@ import {
   Facebook,
   Linkedin,
 } from "lucide-react";
-import Image from "next/image";
 
 interface ArticleHeroProps {
   article: Article;
+  articleGallery: (
+    | {
+        alt: string | null;
+        url: string | null;
+      }
+    | null
+  )[];
 }
 
-export function ArticleHero({ article }: ArticleHeroProps) {
-  const { title, type, featuredImage, slug, excerpt, publishedAt, _updatedAt } =
-    article;
+export function ArticleHero({ article, articleGallery }: ArticleHeroProps) {
   const handleShare = (platform: string) => {
     const url = encodeURIComponent(window.location.href);
     const text = encodeURIComponent(article.title as string);
@@ -35,10 +40,10 @@ export function ArticleHero({ article }: ArticleHeroProps) {
   };
 
   return (
-    <header className="py-8 md:py-12">
+    <section className="py-8 md:py-12">
       <div className="max-w-4xl mx-auto">
         {/* Category Badge */}
-        <span className="mb-6 inline-flex border border-gold-light text-gold px-4 py-1.5 rounded-sm cursor-default uppercase text-[11px] tracking-[0.1em] leading-[11px]">
+        <span className="mb-6 inline-flex border border-gold-light text-gold px-4 py-1.5 rounded-sm cursor-default uppercase text-[11px] tracking-widest leading-2.75">
           {article.type?.title}
         </span>
 
@@ -57,10 +62,9 @@ export function ArticleHero({ article }: ArticleHeroProps) {
           {/* Author & Date */}
           <div className="flex flex-wrap items-center gap-4 md:gap-6">
             {/* Divider */}
-            <span className="hidden md:block w-px h-8 bg-border-color" />
 
             {/* Date & Reading Time */}
-            <div className="flex flex-wrap items-center gap-3 md:gap-4 text-sm text-text-muted">
+            <div className="flex flex-wrap items-center gap-4 md:gap-4 text-sm text-text-muted">
               <div className="flex items-center gap-1.5">
                 <Calendar className="w-4 h-4" />
                 <time dateTime={article.publishedAt as string}>
@@ -68,6 +72,19 @@ export function ArticleHero({ article }: ArticleHeroProps) {
                     ? `Updated ${formatUpdatedDate(article._updatedAt as string)}`
                     : formatUpdatedDate(article.publishedAt as string)}
                 </time>
+              </div>
+              <span className="block w-px h-8 bg-border" />
+
+              <div>
+                {article.categories?.map((category) => (
+                  <span
+                    key={category.slug}
+                    className="group flex items-center gap-4"
+                  >
+                    {category.title}
+                    <span className="block size-0.75 shrink-0 bg-sage rounded-full group-last:hidden" />
+                  </span>
+                ))}
               </div>
             </div>
           </div>
@@ -112,15 +129,8 @@ export function ArticleHero({ article }: ArticleHeroProps) {
       </div>
 
       {/* Featured Image */}
-      <div className="mt-8 md:mt-12">
-        <figure className="relative">
-          <Image
-            src={`${article.featuredImage?.url}`}
-            alt={`${article.featuredImage?.alt}`}
-            className="w-full h-auto max-h-150 object-cover rounded-sm"
-          />
-        </figure>
-      </div>
-    </header>
+      <CarouselWithProgress images={articleGallery} />
+    </section>
   );
 }
+// 3741x2494

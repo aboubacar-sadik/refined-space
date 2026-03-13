@@ -335,13 +335,14 @@ export type AllSanitySchemaTypes = Article | BlockContent | SanityImageCrop | Sa
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: lib/queries.ts
 // Variable: GET_RECENT_ARTICLES_QUERY
-// Query: *[_type == "article" && defined(publishedAt)] | order(publishedAt desc)[0...20] {    _id,    title,    "slug": slug.current,    excerpt,    popular,    type->{      title,"slug": slug.current    },    publishedAt,    _updatedAt,    featuredImage {      alt,      "url": asset->url    },    categories[]-> {      title,      "slug": slug.current    },    tags[]-> {      title,      "slug": slug.current    },    productGallery[] {      alt,      "url": asset->url    },    author-> {      name    }  }
+// Query: *[_type == "article" && defined(publishedAt)] | order(publishedAt desc)[0...20] {    _id,    title,    "slug": slug.current,    excerpt,    popular,    body,    type->{      title,"slug": slug.current    },    publishedAt,    _updatedAt,    featuredImage {      alt,      "url": asset->url    },    categories[]-> {      title,      "slug": slug.current    },    tags[]-> {      title,      "slug": slug.current    },    productGallery[] {      alt,      "url": asset->url    },    author-> {      name    }  }
 export type GET_RECENT_ARTICLES_QUERYResult = Array<{
   _id: string;
   title: string | null;
   slug: string | null;
   excerpt: string | null;
   popular: null;
+  body: BlockContent | null;
   type: {
     title: string | null;
     slug: string | null;
@@ -369,16 +370,17 @@ export type GET_RECENT_ARTICLES_QUERYResult = Array<{
   } | null;
 }>;
 // Variable: GET_POPULAR_ARTICLES_QUERY
-// Query: *[_type == "article" && popular == true && defined(publishedAt)]  | order(publishedAt desc)[0...6] {    _id,    title,    "slug": slug.current,    excerpt,    popular,    type->{      title,      "slug": slug.current    },    publishedAt,    _updatedAt,    featuredImage {      alt,      "url": asset->url    },    categories[]->{      title,      "slug": slug.current    }  }
+// Query: *[_type == "article" && popular == true && defined(publishedAt)]  | order(publishedAt desc)[0...6] {    _id,    title,    "slug": slug.current,    excerpt,    popular,    body,    type->{      title,      "slug": slug.current    },    publishedAt,    _updatedAt,    featuredImage {      alt,      "url": asset->url    },    categories[]->{      title,      "slug": slug.current    }  }
 export type GET_POPULAR_ARTICLES_QUERYResult = Array<never>;
 // Variable: GET_RELATED_ARTICLES_QUERY
-// Query: *[    _type == "article" &&    slug.current != $slug &&    (      count((categories[]->slug.current)[@ in $categorySlugs]) > 0     )  ]  | order(publishedAt desc)[0...4] {    _id,    title,    "slug": slug.current,    excerpt,    popular,    type->{      title,      "slug": slug.current    },    publishedAt,    featuredImage {      alt,      "url": asset->url    },    categories[]->{      title,      "slug": slug.current    }  }
+// Query: *[    _type == "article" &&    slug.current != $slug &&    (      count((categories[]->slug.current)[@ in $categorySlugs]) > 0     )  ]  | order(publishedAt desc)[0...4] {    _id,    title,    "slug": slug.current,    excerpt,    popular,    body,    type->{      title,      "slug": slug.current    },    publishedAt,    featuredImage {      alt,      "url": asset->url    },    categories[]->{      title,      "slug": slug.current    }  }
 export type GET_RELATED_ARTICLES_QUERYResult = Array<{
   _id: string;
   title: string | null;
   slug: string | null;
   excerpt: string | null;
   popular: null;
+  body: BlockContent | null;
   type: {
     title: string | null;
     slug: string | null;
@@ -394,13 +396,14 @@ export type GET_RELATED_ARTICLES_QUERYResult = Array<{
   }> | null;
 }>;
 // Variable: GET_ARTICLE_BY_SLUG_QUERY
-// Query: *[_type == "article" && slug.current == $slug][0] {    _id,    title,    "slug": slug.current,    excerpt,    popular,    publishedAt,    _updatedAt,    type->{      title,"slug": slug.current    },    content, // Often needed for the full page    categories[]-> {      title,      "slug": slug.current    },    tags[]-> {      title,      "slug": slug.current    },    featuredImage {      alt,      "url": asset->url    },    productGallery[] {      alt,      "url": asset->url    },    author-> {      name,      bio,      "image": image.asset->url    }  }
+// Query: *[_type == "article" && slug.current == $slug][0] {    _id,    title,    "slug": slug.current,    excerpt,    popular,    body,    publishedAt,    _updatedAt,    type->{      title,"slug": slug.current    },    content, // Often needed for the full page    categories[]-> {      title,      "slug": slug.current    },    tags[]-> {      title,      "slug": slug.current    },    featuredImage {      alt,      "url": asset->url    },    productGallery[] {      alt,      "url": asset->url    },    author-> {      name,      bio,      "image": image.asset->url    }  }
 export type GET_ARTICLE_BY_SLUG_QUERYResult = {
   _id: string;
   title: string | null;
   slug: string | null;
   excerpt: string | null;
   popular: null;
+  body: BlockContent | null;
   publishedAt: string | null;
   _updatedAt: string;
   type: {
@@ -448,13 +451,14 @@ export type GET_ARTICLE_BY_SLUG_QUERYResult = {
   } | null;
 } | null;
 // Variable: GET_ARTICLES_BY_CATEGORY_QUERY
-// Query: *[_type == "article" && references(*[_type == "category" && slug.current == $categorySlug]._id)] | order(publishedAt desc) {    _id,    title,    "slug": slug.current,    excerpt,    popular,    type->{      title,      "slug": slug.current    },    publishedAt,    _updatedAt,    featuredImage {      alt,      "url": asset->url    },    // We can also pull the category names back out    categories[]-> {      title,      "slug": slug.current    },    tags[]-> {      title,      "slug": slug.current    },    author-> {      name    }  }
+// Query: *[_type == "article" && references(*[_type == "category" && slug.current == $categorySlug]._id)] | order(publishedAt desc) {    _id,    title,    "slug": slug.current,    excerpt,    popular,    body,    type->{      title,      "slug": slug.current    },    publishedAt,    _updatedAt,    featuredImage {      alt,      "url": asset->url    },    // We can also pull the category names back out    categories[]-> {      title,      "slug": slug.current    },    tags[]-> {      title,      "slug": slug.current    },    author-> {      name    }  }
 export type GET_ARTICLES_BY_CATEGORY_QUERYResult = Array<{
   _id: string;
   title: string | null;
   slug: string | null;
   excerpt: string | null;
   popular: null;
+  body: BlockContent | null;
   type: {
     title: string | null;
     slug: string | null;
@@ -478,13 +482,14 @@ export type GET_ARTICLES_BY_CATEGORY_QUERYResult = Array<{
   } | null;
 }>;
 // Variable: GET_ARTICLES_BY_TAG_QUERY
-// Query: *[_type == "article" && references(*[_type == "tag" && slug.current == $tagSlug]._id)] | order(publishedAt desc) {    _id,    title,    "slug": slug.current,    excerpt,    popular,    type->{      title,      "slug": slug.current    },    publishedAt,    _updatedAt,    featuredImage {      alt,      "url": asset->url    },    categories[]-> {      title,      "slug": slug.current    },    tags[]-> {      title,      "slug": slug.current    },    author-> {      name    }  }
+// Query: *[_type == "article" && references(*[_type == "tag" && slug.current == $tagSlug]._id)] | order(publishedAt desc) {    _id,    title,    "slug": slug.current,    excerpt,    popular,    body,    type->{      title,      "slug": slug.current    },    publishedAt,    _updatedAt,    featuredImage {      alt,      "url": asset->url    },    categories[]-> {      title,      "slug": slug.current    },    tags[]-> {      title,      "slug": slug.current    },    author-> {      name    }  }
 export type GET_ARTICLES_BY_TAG_QUERYResult = Array<{
   _id: string;
   title: string | null;
   slug: string | null;
   excerpt: string | null;
   popular: null;
+  body: BlockContent | null;
   type: {
     title: string | null;
     slug: string | null;
@@ -508,13 +513,14 @@ export type GET_ARTICLES_BY_TAG_QUERYResult = Array<{
   } | null;
 }>;
 // Variable: GET_ARTICLES_BY_TYPE_QUERY
-// Query: *[_type == "article" && references(*[_type == "articleType" && slug.current == $articleTypeSlug]._id)] | order(publishedAt desc) {    _id,    title,    "slug": slug.current,    excerpt,    popular,    type->{      title,      "slug": slug.current    },    publishedAt,    _updatedAt,    featuredImage {      alt,      "url": asset->url    },    categories[]-> {      title,      "slug": slug.current    },    tags[]-> {      title,      "slug": slug.current    },    author-> {      name    }  }
+// Query: *[_type == "article" && references(*[_type == "articleType" && slug.current == $articleTypeSlug]._id)] | order(publishedAt desc) {    _id,    title,    "slug": slug.current,    excerpt,    popular,    body,    type->{      title,      "slug": slug.current    },    publishedAt,    _updatedAt,    featuredImage {      alt,      "url": asset->url    },    categories[]-> {      title,      "slug": slug.current    },    tags[]-> {      title,      "slug": slug.current    },    author-> {      name    }  }
 export type GET_ARTICLES_BY_TYPE_QUERYResult = Array<{
   _id: string;
   title: string | null;
   slug: string | null;
   excerpt: string | null;
   popular: null;
+  body: BlockContent | null;
   type: {
     title: string | null;
     slug: string | null;
@@ -574,13 +580,13 @@ export type GET_ALL_TAGS_QUERYResult = Array<{
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "  *[_type == \"article\" && defined(publishedAt)] | order(publishedAt desc)[0...20] {\n    _id,\n    title,\n    \"slug\": slug.current,\n    excerpt,\n    popular,\n    type->{\n      title,\"slug\": slug.current\n    },\n    publishedAt,\n    _updatedAt,\n    featuredImage {\n      alt,\n      \"url\": asset->url\n    },\n    categories[]-> {\n      title,\n      \"slug\": slug.current\n    },\n    tags[]-> {\n      title,\n      \"slug\": slug.current\n    },\n    productGallery[] {\n      alt,\n      \"url\": asset->url\n    },\n    author-> {\n      name\n    }\n  }": GET_RECENT_ARTICLES_QUERYResult;
-    "\n  *[_type == \"article\" && popular == true && defined(publishedAt)]\n  | order(publishedAt desc)[0...6] {\n    _id,\n    title,\n    \"slug\": slug.current,\n    excerpt,\n    popular,\n    type->{\n      title,\n      \"slug\": slug.current\n    },\n    publishedAt,\n    _updatedAt,\n    featuredImage {\n      alt,\n      \"url\": asset->url\n    },\n    categories[]->{\n      title,\n      \"slug\": slug.current\n    }\n  }\n": GET_POPULAR_ARTICLES_QUERYResult;
-    "\n  *[\n    _type == \"article\" &&\n    slug.current != $slug &&\n    (\n      count((categories[]->slug.current)[@ in $categorySlugs]) > 0 \n    )\n  ]\n  | order(publishedAt desc)[0...4] {\n    _id,\n    title,\n    \"slug\": slug.current,\n    excerpt,\n    popular,\n    type->{\n      title,\n      \"slug\": slug.current\n    },\n    publishedAt,\n    featuredImage {\n      alt,\n      \"url\": asset->url\n    },\n    categories[]->{\n      title,\n      \"slug\": slug.current\n    }\n  }\n": GET_RELATED_ARTICLES_QUERYResult;
-    "  *[_type == \"article\" && slug.current == $slug][0] {\n    _id,\n    title,\n    \"slug\": slug.current,\n    excerpt,\n    popular,\n    publishedAt,\n    _updatedAt,\n    type->{\n      title,\"slug\": slug.current\n    },\n    content, // Often needed for the full page\n    categories[]-> {\n      title,\n      \"slug\": slug.current\n    },\n    tags[]-> {\n      title,\n      \"slug\": slug.current\n    },\n    featuredImage {\n      alt,\n      \"url\": asset->url\n    },\n    productGallery[] {\n      alt,\n      \"url\": asset->url\n    },\n    author-> {\n      name,\n      bio,\n      \"image\": image.asset->url\n    }\n  }": GET_ARTICLE_BY_SLUG_QUERYResult;
-    "  *[_type == \"article\" && references(*[_type == \"category\" && slug.current == $categorySlug]._id)] | order(publishedAt desc) {\n    _id,\n    title,\n    \"slug\": slug.current,\n    excerpt,\n    popular,\n    type->{\n      title,\n      \"slug\": slug.current\n    },\n    publishedAt,\n    _updatedAt,\n    featuredImage {\n      alt,\n      \"url\": asset->url\n    },\n    // We can also pull the category names back out\n    categories[]-> {\n      title,\n      \"slug\": slug.current\n    },\n    tags[]-> {\n      title,\n      \"slug\": slug.current\n    },\n    author-> {\n      name\n    }\n  }": GET_ARTICLES_BY_CATEGORY_QUERYResult;
-    "  *[_type == \"article\" && references(*[_type == \"tag\" && slug.current == $tagSlug]._id)] | order(publishedAt desc) {\n    _id,\n    title,\n    \"slug\": slug.current,\n    excerpt,\n    popular,\n    type->{\n      title,\n      \"slug\": slug.current\n    },\n    publishedAt,\n    _updatedAt,\n    featuredImage {\n      alt,\n      \"url\": asset->url\n    },\n    categories[]-> {\n      title,\n      \"slug\": slug.current\n    },\n    tags[]-> {\n      title,\n      \"slug\": slug.current\n    },\n    author-> {\n      name\n    }\n  }": GET_ARTICLES_BY_TAG_QUERYResult;
-    "  *[_type == \"article\" && references(*[_type == \"articleType\" && slug.current == $articleTypeSlug]._id)] | order(publishedAt desc) {\n    _id,\n    title,\n    \"slug\": slug.current,\n    excerpt,\n    popular,\n    type->{\n      title,\n      \"slug\": slug.current\n    },\n    publishedAt,\n    _updatedAt,\n    featuredImage {\n      alt,\n      \"url\": asset->url\n    },\n    categories[]-> {\n      title,\n      \"slug\": slug.current\n    },\n    tags[]-> {\n      title,\n      \"slug\": slug.current\n    },\n    author-> {\n      name\n    }\n  }": GET_ARTICLES_BY_TYPE_QUERYResult;
+    "  *[_type == \"article\" && defined(publishedAt)] | order(publishedAt desc)[0...20] {\n    _id,\n    title,\n    \"slug\": slug.current,\n    excerpt,\n    popular,\n    body,\n    type->{\n      title,\"slug\": slug.current\n    },\n    publishedAt,\n    _updatedAt,\n    featuredImage {\n      alt,\n      \"url\": asset->url\n    },\n    categories[]-> {\n      title,\n      \"slug\": slug.current\n    },\n    tags[]-> {\n      title,\n      \"slug\": slug.current\n    },\n    productGallery[] {\n      alt,\n      \"url\": asset->url\n    },\n    author-> {\n      name\n    }\n  }": GET_RECENT_ARTICLES_QUERYResult;
+    "\n  *[_type == \"article\" && popular == true && defined(publishedAt)]\n  | order(publishedAt desc)[0...6] {\n    _id,\n    title,\n    \"slug\": slug.current,\n    excerpt,\n    popular,\n    body,\n    type->{\n      title,\n      \"slug\": slug.current\n    },\n    publishedAt,\n    _updatedAt,\n    featuredImage {\n      alt,\n      \"url\": asset->url\n    },\n    categories[]->{\n      title,\n      \"slug\": slug.current\n    }\n  }\n": GET_POPULAR_ARTICLES_QUERYResult;
+    "\n  *[\n    _type == \"article\" &&\n    slug.current != $slug &&\n    (\n      count((categories[]->slug.current)[@ in $categorySlugs]) > 0 \n    )\n  ]\n  | order(publishedAt desc)[0...4] {\n    _id,\n    title,\n    \"slug\": slug.current,\n    excerpt,\n    popular,\n    body,\n    type->{\n      title,\n      \"slug\": slug.current\n    },\n    publishedAt,\n    featuredImage {\n      alt,\n      \"url\": asset->url\n    },\n    categories[]->{\n      title,\n      \"slug\": slug.current\n    }\n  }\n": GET_RELATED_ARTICLES_QUERYResult;
+    "  *[_type == \"article\" && slug.current == $slug][0] {\n    _id,\n    title,\n    \"slug\": slug.current,\n    excerpt,\n    popular,\n    body,\n    publishedAt,\n    _updatedAt,\n    type->{\n      title,\"slug\": slug.current\n    },\n    content, // Often needed for the full page\n    categories[]-> {\n      title,\n      \"slug\": slug.current\n    },\n    tags[]-> {\n      title,\n      \"slug\": slug.current\n    },\n    featuredImage {\n      alt,\n      \"url\": asset->url\n    },\n    productGallery[] {\n      alt,\n      \"url\": asset->url\n    },\n    author-> {\n      name,\n      bio,\n      \"image\": image.asset->url\n    }\n  }": GET_ARTICLE_BY_SLUG_QUERYResult;
+    "  *[_type == \"article\" && references(*[_type == \"category\" && slug.current == $categorySlug]._id)] | order(publishedAt desc) {\n    _id,\n    title,\n    \"slug\": slug.current,\n    excerpt,\n    popular,\n    body,\n    type->{\n      title,\n      \"slug\": slug.current\n    },\n    publishedAt,\n    _updatedAt,\n    featuredImage {\n      alt,\n      \"url\": asset->url\n    },\n    // We can also pull the category names back out\n    categories[]-> {\n      title,\n      \"slug\": slug.current\n    },\n    tags[]-> {\n      title,\n      \"slug\": slug.current\n    },\n    author-> {\n      name\n    }\n  }": GET_ARTICLES_BY_CATEGORY_QUERYResult;
+    "  *[_type == \"article\" && references(*[_type == \"tag\" && slug.current == $tagSlug]._id)] | order(publishedAt desc) {\n    _id,\n    title,\n    \"slug\": slug.current,\n    excerpt,\n    popular,\n    body,\n    type->{\n      title,\n      \"slug\": slug.current\n    },\n    publishedAt,\n    _updatedAt,\n    featuredImage {\n      alt,\n      \"url\": asset->url\n    },\n    categories[]-> {\n      title,\n      \"slug\": slug.current\n    },\n    tags[]-> {\n      title,\n      \"slug\": slug.current\n    },\n    author-> {\n      name\n    }\n  }": GET_ARTICLES_BY_TAG_QUERYResult;
+    "  *[_type == \"article\" && references(*[_type == \"articleType\" && slug.current == $articleTypeSlug]._id)] | order(publishedAt desc) {\n    _id,\n    title,\n    \"slug\": slug.current,\n    excerpt,\n    popular,\n    body,\n    type->{\n      title,\n      \"slug\": slug.current\n    },\n    publishedAt,\n    _updatedAt,\n    featuredImage {\n      alt,\n      \"url\": asset->url\n    },\n    categories[]-> {\n      title,\n      \"slug\": slug.current\n    },\n    tags[]-> {\n      title,\n      \"slug\": slug.current\n    },\n    author-> {\n      name\n    }\n  }": GET_ARTICLES_BY_TYPE_QUERYResult;
     "  *[_type == \"category\"] | order(title asc) {\n    _id,\n    title,\n    \"slug\": slug.current,\n    description,\n    \"imageUrl\": image.asset->url,\n    \"articleCount\": count(*[_type == \"article\" && references(^._id)]),\n    _updatedAt,\n  }": GET_ALL_CATEGORIES_QUERYResult;
     "  *[_type == \"category\" && slug.current == $slug][0] {\n    _id,\n    title,\n    \"slug\": slug.current,\n    description,\n    \"imageUrl\": image.asset->url,\n    \"articleCount\": count(*[_type == \"article\" && references(^._id)]),\n    _updatedAt,\n  }": GET_CATEGORY_BY_SLUG_QUERYResult;
     "  *[_type == \"tag\"] | order(title asc) {\n    _id,\n    title,\n    \"slug\": slug.current,\n    description,\n    \"articleCount\": count(*[_type == \"article\" && references(^._id)]),\n    _updatedAt,\n  }": GET_ALL_TAGS_QUERYResult;

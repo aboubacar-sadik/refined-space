@@ -4,26 +4,23 @@ import { Articles } from "@/sanity/lib/types";
 
 type LatestContentProps = {
   articles: Articles;
+  cardVariant?: string;
 };
 
-export default function LatestContent({ articles }: LatestContentProps) {
+export default function LatestContent({
+  articles,
+  cardVariant,
+}: LatestContentProps) {
   return (
-    <div className="py-14 lg:py-24 bg-cream">
+    <div>
       <div className="container">
-        <SectionTitle
-          tagline="Latest Content"
-          title="Research First. Recommend Second."
-          link_href="/articles"
-          link_label="All articles"
-        />
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0.5 xl:grid-cols-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-1 xl:grid-cols-4">
           {articles.slice(0, 3).map((post) => (
             <div
               key={post._id}
               className="col-span-1 sm:col-span-1 lg:col-span-1 xl:col-span-1  xl:first-of-type:col-span-2"
             >
-              <ArticleCard article={post} />
+              <ArticleCard article={post} variant={cardVariant} />
             </div>
           ))}
         </div>

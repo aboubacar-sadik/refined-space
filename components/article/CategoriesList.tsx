@@ -15,7 +15,7 @@ export function CategoriesList({ categories }: CategoriesListProps) {
         {categories.map((category) => (
           <a
             key={category._id}
-            href={`/articles?cat=${category.slug}`}
+            href={`/${category.slug}`}
             className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-forest/5 text-forest text-sm rounded-full hover:bg-forest hover:text-warm-white transition-colors"
           >
             <span>{category.title}</span>

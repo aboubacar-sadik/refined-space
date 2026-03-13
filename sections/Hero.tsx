@@ -133,7 +133,7 @@ export default function Hero({
               <h2 className="text-[22px] mb-2.5 text-white group-hover:text-text font-semibold leading-tight">
                 {firstArticle.title}
               </h2>
-              <p className="text-[13px] leading-6 font-light text-white/60 group-hover:text-text-muted">
+              <p className="text-[13px] leading-6 font-light text-white/60 group-hover:text-text-muted line-clamp-2">
                 {firstArticle.excerpt}
               </p>
 
@@ -159,7 +159,7 @@ export default function Hero({
               <h2 className="text-[22px] text-text mb-2.5 font-semibold leading-tight">
                 {secondArticle.title}
               </h2>
-              <p className="text-[13px] leading-6 font-light text-text-muted">
+              <p className="text-[13px] leading-6 font-light text-text-muted line-clamp-2">
                 {secondArticle.excerpt}
               </p>
               <Button

@@ -17,12 +17,13 @@ type ArticleCardProps = {
     | "publishedAt"
     | "featuredImage"
     | "categories"
+    | "type"
   >;
   variant?: string;
 };
 
 export default function ArticleCard({ article, variant }: ArticleCardProps) {
-  const { title, slug, excerpt, publishedAt, featuredImage, categories } =
+  const { title, slug, type, excerpt, publishedAt, featuredImage, categories } =
     article;
 
   const router = useRouter();
@@ -34,7 +35,10 @@ export default function ArticleCard({ article, variant }: ArticleCardProps) {
         variant === "cream" ? "bg-cream" : "bg-warm-white",
       )}
     >
-      <Link href={`/articles/${slug}`} className="block h-full">
+      <Link
+        href={`/${categories ? categories[0].slug : "ungategorized"}/${slug}`}
+        className="block h-full"
+      >
         <div className="relative bg-forest flex items-end overflow-hidden p-6 h-70">
           <Image
             src={`${featuredImage?.url}`}
@@ -43,8 +47,8 @@ export default function ArticleCard({ article, variant }: ArticleCardProps) {
             className="object-cover"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
-          <span className="relative text-tiny tracking-[0.15em] uppercase text-gold-light font-medium bg-forest/60 backdrop-blur-sm py-1.25 px-3 rounded-sm border border-gold/30">
-            In-Depth Review
+          <span className="relative text-tiny tracking-[0.15em] uppercase text-gold-light font-medium bg-forest/60 backdrop-blur-sm py-1 px-3 rounded-sm border border-gold/30">
+            {type?.title}
           </span>
         </div>
         <div className="py-6 px-8 flex-1">
