@@ -85,7 +85,7 @@ export function Navigation() {
             >
               <div className="flex flex-col h-full">
                 <div className="flex items-center justify-between border-b border-border h-18 p-6 bg-cream">
-                  <span className="text-lg font-playfair">Menu</span>
+                  <span className="text-lg font-serif">Menu</span>
                   <button
                     onClick={() => setIsOpen(false)}
                     className="p-2 text-forest hover:text-forest-light transition-colors"

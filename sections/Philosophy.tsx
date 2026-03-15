@@ -20,11 +20,11 @@ export default function Philosophy() {
               "hidden w-1/2 lg:flex justify-end items-center bg-cream  relative",
             )}
           >
-            <span className="absolute -top-5 right-12 font-playfair text-[280px] leading-none italic text-text/10">
+            <span className="absolute -top-5 right-12 font-serif text-[280px] leading-none italic text-text/10">
               &quot;
             </span>
             <div className="lg:block py-14 lg:py-24 max-w-180 px-8 lg:pl-8 xl:pr-16">
-              <p className="text-2xl italic leading-6 text-forest font-playfair relative">
+              <p className="text-2xl italic leading-6 text-forest font-serif relative">
                 &quot;We don&apos;t just want you to buy — we want you to buy
                 better.&quot;
               </p>

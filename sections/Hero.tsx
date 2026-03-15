@@ -107,7 +107,7 @@ export default function Hero({
             >
               {stats.map((stat) => (
                 <div key={stat.label}>
-                  <p className="font-playfair text-[28px] font-normal text-white leading-4 mb-2.5">
+                  <p className="font-serif text-[28px] font-normal text-white leading-4 mb-2.5">
                     {stat.value}
                   </p>
                   <p className="text-[11px] text-white/40 font-medium tracking-widest uppercase">
@@ -122,7 +122,7 @@ export default function Hero({
 
       <div className="hidden w-full lg:w-1/2 lg:flex flex-col bg-cream">
         <Link
-          href={`/articles/${firstArticle.slug}`}
+          href={`/${firstArticle.categories ? firstArticle.categories[0].slug : "ungategorized"}/${firstArticle.slug}`}
           className="flex-1 bg-linear-[135deg,#2d5a3d_0%,#1b3a2d_100%] w-full flex justify-start hover:bg-none hover:bg-white group"
         >
           <div className="w-full max-w-180 p-10 lg:pr-8 flex flex-col justify-center ">
@@ -148,7 +148,7 @@ export default function Hero({
           </div>
         </Link>
         <Link
-          href={`/articles/${secondArticle.slug}`}
+          href={`/${secondArticle.categories ? secondArticle.categories[0].slug : "ungategorized"}/${secondArticle.slug}`}
           className="flex-1 bg-warm-white w-full flex justify-start group"
         >
           <div className="w-full max-w-180 lg:pr-8 flex flex-col justify-center p-10">

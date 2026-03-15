@@ -78,7 +78,7 @@ export default function TrendingSection({ articles }: TrendingSectionProps) {
                   href={`/articles/${article.slug}`}
                   className="group flex gap-4 py-4 first:pt-0 last:pb-0"
                 >
-                  <span className="font-playfair text-3xl font-bold text-sage shrink-0 w-8">
+                  <span className="font-serif text-3xl font-bold text-sage shrink-0 w-8">
                     {String(i + 2).padStart(2, "0")}
                   </span>
                   <div className="flex flex-col gap-1 min-w-0">
@@ -87,7 +87,7 @@ export default function TrendingSection({ articles }: TrendingSectionProps) {
                     >
                       {article.type?.title}
                     </span>
-                    <h4 className="font-playfair text-base font-semibold text-text group-hover:text-forest transition-colors leading-snug text-balance">
+                    <h4 className="font-serif text-base font-semibold text-text group-hover:text-forest transition-colors leading-snug text-balance">
                       {article.title}
                     </h4>
                     <span className="text-xs text-text-muted flex items-center gap-1">

@@ -47,33 +47,33 @@ export const components: PortableTextComponents = {
 
   block: {
     h1: ({ children }) => (
-      <h1 className="text-4xl font-playfair font-bold mt-12 mb-6 leading-tight -tracking-[0.025em]">
+      <h1 className="text-4xl font-serif font-bold mt-12 mb-6 leading-tight -tracking-[0.025em]">
         {children}
       </h1>
     ),
 
     h2: ({ children }) => (
-      <h2 className="mt-12 mb-6 text-forest font-playfair">{children}</h2>
+      <h2 className="mt-12 mb-6 text-forest font-serif">{children}</h2>
     ),
 
     h3: ({ children }) => (
-      <h3 className="mt-10 mb-4 text-forest font-playfair">{children}</h3>
+      <h3 className="mt-10 mb-4 text-forest font-serif">{children}</h3>
     ),
 
     h4: ({ children }) => (
-      <h4 className="text-xl font-medium -tracking-[0.025em] mt-6 mb-3 font-playfair">
+      <h4 className="text-xl font-medium -tracking-[0.025em] mt-6 mb-3 font-serif">
         {children}
       </h4>
     ),
 
     h5: ({ children }) => (
-      <h5 className="text-lg font-medium -tracking-[0.025em] mt-5 mb-2 font-playfair">
+      <h5 className="text-lg font-medium -tracking-[0.025em] mt-5 mb-2 font-serif">
         {children}
       </h5>
     ),
 
     h6: ({ children }) => (
-      <h6 className="text-base font-medium -tracking-[0.025em] mt-4 mb-2 font-playfair uppercase">
+      <h6 className="text-base font-medium -tracking-[0.025em] mt-4 mb-2 font-serif uppercase">
         {children}
       </h6>
     ),

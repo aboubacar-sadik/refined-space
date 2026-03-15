@@ -17,7 +17,7 @@
   --text-tiny: 0.625rem;
 
   --font-DMsans: var(--font-dm-sans);
-  --font-playfair: var(--font-playfair-display);
+  --font-serif: var(--font-playfair-display);
 
   --radius-sm: 2px;
   --radius-md: 3px;
@@ -63,19 +63,23 @@
   * {
     @apply border-border;
   }
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-warm-white text-text font-DMsans overflow-x-hidden;
   }
 
   h1 {
-    @apply font-playfair text-[clamp(42px,5vw,64px)] font-normal leading-[1.08em] text-white;
+    @apply font-serif text-[clamp(42px,5vw,64px)] font-normal leading-[1.08em] text-white;
   }
   h2 {
-    @apply text-[clamp(28px,3.5vw,40px)] font-playfair font-normal text-forest leading-[1.15em];
+    @apply text-[clamp(28px,3.5vw,40px)] font-serif font-normal text-forest leading-[1.15em];
   }
 
   h3 {
-    @apply font-playfair;
+    @apply font-serif;
   }
   h1,
   h2,
@@ -83,7 +87,7 @@
   h4,
   h5,
   h6 {
-    @apply font-playfair;
+    @apply font-serif;
   }
 }
 

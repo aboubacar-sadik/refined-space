@@ -43,7 +43,7 @@ export default function CategoryGrid({ categories }: CategoryGridProps) {
           viewport={{ once: true }}
           className="grid sm:grid-cols-2 lg:grid-cols-3 gap-0.5 "
         >
-          {categories.map((category) => (
+          {categories.slice(0, 6).map((category) => (
             <motion.div
               key={category?._id}
               variants={itemVariants}
