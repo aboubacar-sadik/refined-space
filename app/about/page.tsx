@@ -7,6 +7,7 @@ import MissionSection from "@/sections/about/MissionSection";
 import CategoriesGrid from "@/sections/about/CategoriesGrid";
 import ReviewProcess from "@/sections/about/ReviewProcess";
 import CTASection from "@/sections/about/CTASection";
+import { Newsletter } from "@/sections/Newsletter";
 
 export default async function Home() {
   const { data: categories } = await sanityFetch({
@@ -31,8 +32,11 @@ export default async function Home() {
           <ReviewProcess />
         </section>
 
-        <section>
-          <CTASection/>
+        <section className="pt-24 lg:pt-32 bg-cream-warm">
+          <CTASection />
+        </section>
+        <section className="">
+          <Newsletter />
         </section>
       </main>
       <Footer categories={categories} />

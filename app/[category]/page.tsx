@@ -31,13 +31,20 @@ export default async function Page({ params }: PageProps) {
     query: GET_ALL_CATEGORIES_QUERY,
   });
 
-  const { data: articles } = await sanityFetch({
+  // Guard against API issues returning undefined/null
+  if (!categories || !Array.isArray(categories) || categories.length === 0) {
+    notFound();
+  }
+
+  const { data: articlesData } = await sanityFetch({
     query: GET_ARTICLES_BY_CATEGORY_QUERY,
-    params: { categorySlug: categorySlug },
+    params: { categorySlug },
   });
 
+  const articles = Array.isArray(articlesData) ? articlesData : [];
+
   const categoryMatching = categories.find((c) => c.slug === categorySlug);
-  if (!categories || !categoryMatching) {
+  if (!categoryMatching) {
     notFound();
   }
 
@@ -72,7 +79,7 @@ export default async function Page({ params }: PageProps) {
             </span>
           </div>
           <div className="mt-12 container">
-            <ArticleGrid articles={articles} initialCount={3} batchSize={3}/>
+            <ArticleGrid articles={articles} initialCount={3} batchSize={3} />
           </div>
         </section>
         <section>
