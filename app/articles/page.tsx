@@ -25,7 +25,7 @@ export default async function Home() {
     <>
       <Navigation />
       <main className="mt-18">
-        <section>
+        {/* <section>
           <TrendingSection articles={articles} />
         </section>
         <section>
@@ -42,7 +42,8 @@ export default async function Home() {
         </section>
         <section>
           <Newsletter />
-        </section>
+        </section> */}
+        All ressources page
       </main>
       <Footer categories={categories} />
     </>

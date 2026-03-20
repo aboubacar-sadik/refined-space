@@ -68,10 +68,10 @@ export default async function Page({ params }: PageProps) {
   }
 
   return (
-    <div className="min-h-screen bg-cream">
+    <div className="min-h-screen bg-cream ">
       {/* <ReadingProgress /> */}
       <Navigation />
-      <main className="pt-20">
+      <main className="pt-20 mt-18">
         {/* Article Hero */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ArticleHero article={article} articleGallery={productImages} />

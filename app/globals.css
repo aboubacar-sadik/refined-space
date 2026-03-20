@@ -37,6 +37,7 @@
   --color-text-muted: var(--text-muted);
   --color-border: var(--border);
   --color-nav-background: rgba(253, 250, 245, 0.92);
+  --color-destructive: var(--destructive);
 
   --animate-fadeUp: fadeUp 0.8s 0.1s ease both;
   --animate-ticker: ticker 30s linear infinite;
@@ -49,12 +50,14 @@
   --sage: #6b9e7a;
   --light-sage: #b8d4c0;
   --cream: #f7f3ec;
+  --white: #ffffff;
   --warm-white: #fdfaf5;
   --gold: #c4933a;
   --gold-light: #e8c87a;
   --text: #1c2b22;
   --text-muted: #5a7265;
   --border: rgba(27, 58, 45, 0.12);
+  --destructive: #e4001;
 
   --forest-gradient: linear-gradient(135deg, #2d5a3d 0%, #1b3a2d 100%);
 }
