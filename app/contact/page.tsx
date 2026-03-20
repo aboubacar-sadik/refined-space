@@ -5,6 +5,13 @@ import ContactHero from "@/sections/contact/ContactHero";
 import FaqSection from "@/sections/FaqSection";
 import { sanityFetch } from "@/sanity/lib/live";
 import { GET_ALL_CATEGORIES_QUERY } from "@/lib/queries";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Contact Us | Let's Talk",
+  description:
+    "Reach out for support, business inquiries, or collaboration opportunities. We're here to help and respond as quickly as possible.",
+};
 
 export default async function ContactPage() {
   const { data: categories } = await sanityFetch({

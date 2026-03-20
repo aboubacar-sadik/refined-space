@@ -265,3 +265,17 @@ export const GET_ALL_TAGS_QUERY =
     "articleCount": count(*[_type == "article" && references(^._id)]),
     _updatedAt,
   }`);
+
+// Sitemap data
+export const SITEMAP_DATA_QUERY = defineQuery(`
+  *[_type in ["article", "category"] && (_type == "category" || defined(publishedAt))] {
+    _type,
+    "slug": slug.current,
+    _updatedAt,
+    ...select(
+      _type == "article" => {
+        "categorySlug": categories[0]->slug.current
+      }
+    )
+  }
+`);

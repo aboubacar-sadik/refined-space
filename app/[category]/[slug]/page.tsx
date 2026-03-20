@@ -16,6 +16,30 @@ import { ArticleHero } from "@/sections/ArticleHero";
 import { Footer } from "@/sections/Footer";
 import { Navigation } from "@/sections/Navigation";
 import { notFound } from "next/navigation";
+import type { Metadata, ResolvingMetadata } from "next";
+
+type Props = {
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+};
+
+export async function generateMetadata(
+  { params, searchParams }: Props,
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
+  const { slug } = await params;
+
+  // fetch post information
+  const { data: article } = await sanityFetch({
+    query: GET_ARTICLE_BY_SLUG_QUERY,
+    params: { slug: slug },
+  });
+
+  return {
+    title: article?.title || process.env.NEXT_PUBLIC_SITE_TITLE,
+    description: article?.excerpt || process.env.NEXT_PUBLIC_SITE_TITLE,
+  };
+}
 
 interface PageProps {
   params: Promise<{
@@ -28,10 +52,6 @@ export default async function Page({ params }: PageProps) {
 
   const { data: categories } = await sanityFetch({
     query: GET_ALL_CATEGORIES_QUERY,
-  });
-
-  const { data: articles } = await sanityFetch({
-    query: GET_RECENT_ARTICLES_QUERY,
   });
 
   const { data: popular_articles } = await sanityFetch({

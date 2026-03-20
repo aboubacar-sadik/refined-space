@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -23,7 +24,15 @@ export function Navigation() {
         <nav className="container">
           <div className="flex items-center justify-between h-18">
             {/* Logo */}
-            <Link href={"/"}>Logo</Link>
+            <Link href={"/"}>
+              <Image
+                src={"/logo.svg"}
+                alt="The refined space logo"
+                width={120}
+                height={32}
+                style={{ width: "auto", height: "32px" }}
+              />
+            </Link>
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center gap-9">

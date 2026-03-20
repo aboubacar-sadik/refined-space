@@ -2,6 +2,7 @@ import { sanityFetch } from "@/sanity/lib/live";
 import {
   GET_ALL_CATEGORIES_QUERY,
   GET_ARTICLES_BY_CATEGORY_QUERY,
+  GET_CATEGORY_BY_SLUG_QUERY,
   GET_RECENT_ARTICLES_QUERY,
 } from "@/lib/queries";
 import Marquee from "@/components/Marquee";
@@ -12,11 +13,33 @@ import { Navigation } from "@/sections/Navigation";
 import { Newsletter } from "@/sections/Newsletter";
 import ArticlesSection from "@/sections/ArticlesSection";
 import TrendingSection from "@/sections/TrendingSection";
-
-// app/[...slug]/page.tsx
 import { notFound } from "next/navigation";
 import SectionTitle from "@/components/SectionTitle";
 import ArticleGrid from "@/components/ArticleGrid";
+import type { Metadata, ResolvingMetadata } from "next";
+
+type Props = {
+  params: Promise<{ category: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+};
+
+export async function generateMetadata(
+  { params, searchParams }: Props,
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
+  const { category: categorySlug } = await params;
+
+  // fetch post information
+  const { data: category } = await sanityFetch({
+    query: GET_CATEGORY_BY_SLUG_QUERY,
+    params: { slug: categorySlug },
+  });
+
+  return {
+    title: category?.title || process.env.NEXT_PUBLIC_SITE_TITLE,
+    description: category?.description || process.env.NEXT_PUBLIC_SITE_TITLE,
+  };
+}
 
 interface PageProps {
   params: Promise<{

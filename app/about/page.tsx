@@ -8,6 +8,13 @@ import CategoriesGrid from "@/sections/about/CategoriesGrid";
 import ReviewProcess from "@/sections/about/ReviewProcess";
 import CTASection from "@/sections/about/CTASection";
 import { Newsletter } from "@/sections/Newsletter";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "About Us | Trusted Reviews & Expert Buying Guides",
+  description:
+    "Discover who we are, our mission, and how we provide reliable product reviews, detailed comparisons, and expert buying advice.",
+};
 
 export default async function Home() {
   const { data: categories } = await sanityFetch({

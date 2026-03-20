@@ -16,6 +16,13 @@ import { Navigation } from "@/sections/Navigation";
 import { Newsletter } from "@/sections/Newsletter";
 import TrendingSection from "@/sections/categories/TrendingSection";
 import SectionTitle from "@/components/SectionTitle";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "All Categories | Reviews, Comparisons & Buying Guides",
+  description:
+    "Discover top-rated products across all categories. Read reviews, compare features, and find the perfect choice with our expert guides.",
+};
 
 export default async function Home() {
   const { data: categories } = await sanityFetch({
