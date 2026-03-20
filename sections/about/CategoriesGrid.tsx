@@ -79,6 +79,7 @@ export default function CategoriesGrid({ categories }: CategoryGridProps) {
                       src={`${category?.imageUrl}`}
                       alt={`${category?.title}`}
                       fill
+                      loading="lazy"
                     />
                   </motion.div>
                   <h3 className="font-serif text-xl font-medium text-forest mb-3 group-hover:text-sage transition-colors">

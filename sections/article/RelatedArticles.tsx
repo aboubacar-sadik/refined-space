@@ -29,6 +29,7 @@ export function RelatedArticles({ articles }: RelatedArticlesProps) {
                 className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105"
                 width={2688}
                 height={1520}
+                loading="lazy"
               />
             </div>
 

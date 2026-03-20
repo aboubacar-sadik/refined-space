@@ -44,6 +44,7 @@ export default function ArticleCard({ article, variant }: ArticleCardProps) {
             src={`${featuredImage?.url}`}
             alt={`${featuredImage?.alt}`}
             fill
+            loading="lazy"
             className="object-cover"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />

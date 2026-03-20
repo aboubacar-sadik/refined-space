@@ -63,18 +63,19 @@ export default function Hero({
               THOUGHTFULLY CURATED · EST. 2025
             </motion.p>
 
-            <motion.h1
-              initial={{ opacity: 1, y: 0 }} // 👈 visible immédiatement
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0 }}
-              className="mb-7"
-            >
-              Live <em className="text-gold-light italic">Better.</em>
+            <h1 className="mb-7">
+              <motion.span variants={itemVariants}>
+                Live <em className="text-gold-light italic">Better.</em>
+              </motion.span>
               <br />
-              Choose <em className="text-gold-light italic">Wiser.</em>
+              <motion.span variants={itemVariants}>
+                Choose <em className="text-gold-light italic">Wiser.</em>
+              </motion.span>
               <br />
-              Buy <em className="text-gold-light italic">Cleaner.</em>
-            </motion.h1>
+              <motion.span variants={itemVariants}>
+                Buy <em className="text-gold-light italic">Cleaner.</em>
+              </motion.span>
+            </h1>
 
             <motion.p
               variants={itemVariants}

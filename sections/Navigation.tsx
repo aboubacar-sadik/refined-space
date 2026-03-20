@@ -30,6 +30,7 @@ export function Navigation() {
                 alt="The refined space logo"
                 width={120}
                 height={32}
+                loading="lazy"
                 style={{ width: "auto", height: "32px" }}
               />
             </Link>

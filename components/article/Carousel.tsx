@@ -58,6 +58,7 @@ export default function CarouselWithProgress({ images }: CarouselImageProps) {
                     alt={`${image?.alt || "Article feature image"}`}
                     width={3741} /* Add the actual original width here */
                     height={2498} /* Add the actual original height here */
+                    loading="lazy"
                     className="w-full h-auto max-h-150 object-cover rounded-sm"
                   />
                 </figure>

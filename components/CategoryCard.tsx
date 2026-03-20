@@ -18,7 +18,12 @@ export default function CategoryCard({ category }: CategoryCardProps) {
       )}
     >
       <div className="mb-5 relative transition-all duration-300 size-7">
-        <Image src={`${category?.imageUrl}`} alt={`${category?.title}`} fill />
+        <Image
+          src={`${category?.imageUrl}`}
+          alt={`${category?.title}`}
+          fill
+          loading="lazy"
+        />
       </div>
       <h3 className="text-lg font-semibold text-forest mb-2 transition-colors duration-300 group-hover:text-white">
         {category?.title}

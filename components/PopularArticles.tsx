@@ -27,6 +27,7 @@ export function PopularArticles({ articles }: PopularArticlesProps) {
                 src={article.featuredImage?.url as string}
                 alt="Promotional banner image"
                 fill
+                loading="lazy"
                 style={{ objectFit: "cover" }}
                 className="rounded-sm"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw,
