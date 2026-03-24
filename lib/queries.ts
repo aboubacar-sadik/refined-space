@@ -1,16 +1,12 @@
 import { defineQuery } from "next-sanity";
 
-export const PAGE_QUERY =
-  defineQuery(`*[_type == "page" && slug.current == $slug][0]{
-  ...,
-  content[]{
-    ...,
-    _type == "faqs" => {
-      ...,
-      faqs[]->
-    }
+export const PAGE_QUERY = defineQuery(`
+  *[_type == "page" && slug.current == $slug][0] {
+    _id,
+    _type,
+    content
   }
-}`);
+`);
 
 // Get all articles
 export const GET_RECENT_ARTICLES_QUERY =

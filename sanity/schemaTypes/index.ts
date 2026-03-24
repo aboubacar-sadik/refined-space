@@ -12,6 +12,7 @@ import { page } from "./page";
 import { heroType } from "./blocks/hero";
 import { ourMissionType } from "./blocks/ourMission";
 import { ctaCard } from "./blocks/ctaCard";
+import { ctaSectionType } from "./blocks/ctaSection";
 // import { contentType } from "./blocks/content";
 // import { imageType } from "./blocks/image";
 // import { ctaType } from "./blocks/cta";
@@ -29,6 +30,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     page,
     heroType,
     ourMissionType,
-    ctaCard
+    ctaCard,
+    ctaSectionType,
   ],
 };

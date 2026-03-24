@@ -7,6 +7,7 @@ export const pageBuilder = defineType({
   of: [
     defineArrayMember({ type: "heroSimple" }),
     defineArrayMember({ type: "ourMission" }),
+    defineArrayMember({ type: "ctaSection" }),
   ],
 
   options: {

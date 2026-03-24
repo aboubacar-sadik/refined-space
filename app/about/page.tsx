@@ -6,14 +6,10 @@ import {
 } from "@/lib/queries";
 import { Footer } from "@/sections/Footer";
 import { Navigation } from "@/sections/Navigation";
-import AboutHero from "@/sections/about/AboutHero";
-import MissionSection from "@/sections/about/MissionSection";
 import CategoriesGrid from "@/sections/about/CategoriesGrid";
 import ReviewProcess from "@/sections/about/ReviewProcess";
-import CTASection from "@/sections/about/CTASection";
 import { Newsletter } from "@/sections/Newsletter";
 import type { Metadata } from "next";
-import Hero from "@/components/blocks/hero";
 import { PageBuilder } from "@/components/page-builder";
 
 export const metadata: Metadata = {
@@ -50,9 +46,6 @@ export default async function Home() {
         </section>
         <section className="py-24 lg:py-32 bg-cream">
           <ReviewProcess processes={processes} />
-        </section>
-        <section className="pt-24 lg:pt-32 bg-cream-warm">
-          <CTASection />
         </section>
         <section className="">
           <Newsletter />

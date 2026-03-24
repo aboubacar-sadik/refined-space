@@ -1,25 +1,37 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Mail, Check } from "lucide-react";
-import { useState } from "react";
+import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { fadeInUp, staggerContainer, scaleIn } from "@/lib/animations";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import Link from "next/link";
 
-export default function CTASection() {
-  const [email, setEmail] = useState("");
-  const [isSubmitted, setIsSubmitted] = useState(false);
+type CTASectionProps = {
+  heading?: string;
+  highlightedText?: string;
+  description?: string;
+  button?: {
+    label?: string;
+    href?: string;
+  };
+};
+
+export default function CTASection({
+  heading,
+  highlightedText,
+  description,
+  button,
+}: CTASectionProps) {
   const { ref, isInView } = useScrollAnimation(0.2);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (email) {
-      setIsSubmitted(true);
-      setEmail("");
-    }
-  };
+  const resolvedHeading = heading || "Ready to Shop";
+  const resolvedHighlightedText = highlightedText || "Smarter?";
+  const resolvedDescription =
+    description ||
+    "Start exploring our expert guides and product comparisons. Make informed decisions for a healthier, more sustainable lifestyle.";
+  const resolvedButtonLabel = button?.label || "Explore Guides";
+  const resolvedButtonHref = button?.href || "/categories";
 
   return (
     <div className="" ref={ref}>
@@ -40,14 +52,14 @@ export default function CTASection() {
               variants={fadeInUp}
               className="font-serif text-3xl lg:text-5xl font-medium text-cream mb-6"
             >
-              Ready to Shop <em className="text-gold">Smarter?</em>
+              {resolvedHeading}{" "}
+              <em className="text-gold">{resolvedHighlightedText}</em>
             </motion.h2>
             <motion.p
               variants={fadeInUp}
               className="text-cream/70 text-lg max-w-2xl mx-auto mb-8"
             >
-              Start exploring our expert guides and product comparisons. Make
-              informed decisions for a healthier, more sustainable lifestyle.
+              {resolvedDescription}
             </motion.p>
             <motion.div
               variants={fadeInUp}
@@ -59,8 +71,8 @@ export default function CTASection() {
                 className=" group inline-flex"
               >
                 <Button variant={"default"} asChild>
-                  <Link href="/categories">
-                    Explore Guides
+                  <Link href={resolvedButtonHref}>
+                    {resolvedButtonLabel}
                     <ArrowRight
                       size={16}
                       className="ml-2 transition-transform group-hover:translate-x-1"

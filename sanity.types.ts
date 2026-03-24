@@ -13,6 +13,17 @@
  */
 
 // Source: schema.json
+export type CtaSection = {
+  _type: "ctaSection";
+  heading?: string;
+  highlightedText?: string;
+  description?: string;
+  button?: {
+    label?: string;
+    href?: string;
+  };
+};
+
 export type CtaCard = {
   _type: "ctaCard";
   heading?: string;
@@ -60,11 +71,13 @@ export type PageBuilder = Array<{
   _key: string;
 } & HeroSimple | {
   _key: string;
-} & OurMission>;
+} & OurMission | {
+  _key: string;
+} & CtaSection>;
 
 export type Slug = {
   _type: "slug";
-  current: string;
+  current?: string;
   source?: string;
 };
 
@@ -74,9 +87,9 @@ export type Process = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  title: string;
-  order: number;
-  description: string;
+  title?: string;
+  order?: number;
+  description?: string;
   icon?: "Search" | "FlaskConical" | "Scale" | "ShieldCheck" | "RefreshCw" | "CheckCircle" | "Zap" | "Target" | "Heart" | "Star" | "Leaf" | "Lightbulb";
 };
 
@@ -125,7 +138,7 @@ export type Article = {
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
-    alt: string;
+    alt?: string;
     caption?: string;
     _type: "image";
     _key: string;
@@ -158,8 +171,8 @@ export type BlockContent = Array<{
   style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "blockquote";
   listItem?: "bullet" | "number";
   markDefs?: Array<{
-    linkType: "internal" | "external";
-    href: string;
+    linkType?: "internal" | "external";
+    href?: string;
     _type: "link";
     _key: string;
   }>;
@@ -167,8 +180,8 @@ export type BlockContent = Array<{
   _type: "block";
   _key: string;
 } | {
-  label: string;
-  url: string;
+  label?: string;
+  url?: string;
   variant?: "primary" | "secondary" | "outline";
   alignment?: "left" | "center" | "right";
   openInNewTab?: boolean;
@@ -188,8 +201,8 @@ export type BlockContent = Array<{
   _type: "image";
   _key: string;
 } | {
-  type: "youtube" | "vimeo" | "custom";
-  url: string;
+  type?: "youtube" | "vimeo" | "custom";
+  url?: string;
   caption?: string;
   aspectRatio?: "16/9" | "4/3" | "1/1" | "auto";
   _type: "embed";
@@ -198,18 +211,18 @@ export type BlockContent = Array<{
 
 export type SanityImageCrop = {
   _type: "sanity.imageCrop";
-  top: number;
-  bottom: number;
-  left: number;
-  right: number;
+  top?: number;
+  bottom?: number;
+  left?: number;
+  right?: number;
 };
 
 export type SanityImageHotspot = {
   _type: "sanity.imageHotspot";
-  x: number;
-  y: number;
-  height: number;
-  width: number;
+  x?: number;
+  y?: number;
+  height?: number;
+  width?: number;
 };
 
 export type Author = {
@@ -318,9 +331,9 @@ export type SanityImagePalette = {
 
 export type SanityImageDimensions = {
   _type: "sanity.imageDimensions";
-  height: number;
-  width: number;
-  aspectRatio: number;
+  height?: number;
+  width?: number;
+  aspectRatio?: number;
 };
 
 export type SanityImageMetadata = {
@@ -393,40 +406,15 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type AllSanitySchemaTypes = CtaCard | OurMission | HeroSimple | Page | PageBuilder | Slug | Process | Article | BlockContent | SanityImageCrop | SanityImageHotspot | Author | ArticleType | Tag | Category | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
+export type AllSanitySchemaTypes = CtaSection | CtaCard | OurMission | HeroSimple | Page | PageBuilder | Slug | Process | Article | BlockContent | SanityImageCrop | SanityImageHotspot | Author | ArticleType | Tag | Category | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: lib/queries.ts
 // Variable: PAGE_QUERY
-// Query: *[_type == "page" && slug.current == $slug][0]{  ...,  content[]{    ...,    _type == "faqs" => {      ...,      faqs[]->    }  }}
+// Query: *[_type == "page" && slug.current == $slug][0] {    _id,    _type,    content  }
 export type PAGE_QUERYResult = {
   _id: string;
   _type: "page";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title?: string;
-  slug?: Slug;
-  content: Array<{
-    _key: string;
-    _type: "heroSimple";
-    eyebrow?: string;
-    heading?: string;
-    description?: string;
-    button?: {
-      label?: string;
-      href?: string;
-    };
-  } | {
-    _key: string;
-    _type: "ourMission";
-    eyebrow?: string;
-    heading?: string;
-    description?: string;
-    button?: {
-      label?: string;
-      href?: string;
-    };
-  }> | null;
+  content: PageBuilder | null;
 } | null;
 // Variable: GET_RECENT_ARTICLES_QUERY
 // Query: *[_type == "article" && defined(publishedAt)] | order(publishedAt desc)[0...20] {    _id,    title,    "slug": slug.current,    excerpt,    popular,    body,    type->{      title,      "slug": slug.current    },    publishedAt,    _updatedAt,    featuredImage {      alt,      "url": asset->url    },    categories[]-> {      title,      "slug": slug.current    },    tags[]-> {      title,      "slug": slug.current    },    productGallery[] {      alt,      "url": asset->url    },    author-> {      name    }  }
@@ -456,7 +444,7 @@ export type GET_RECENT_ARTICLES_QUERYResult = Array<{
     slug: string | null;
   }> | null;
   productGallery: Array<{
-    alt: string;
+    alt: string | null;
     url: string | null;
   }> | null;
   author: {
@@ -539,7 +527,7 @@ export type GET_ARTICLE_BY_SLUG_QUERYResult = {
     url: string | null;
   } | null;
   productGallery: Array<{
-    alt: string;
+    alt: string | null;
     url: string | null;
   }> | null;
   author: {
@@ -593,7 +581,7 @@ export type GET_ARTICLES_BY_CATEGORY_QUERYResult = Array<{
     slug: string | null;
   }> | null;
   productGallery: Array<{
-    alt: string;
+    alt: string | null;
     url: string | null;
   }> | null;
   author: {
@@ -710,17 +698,17 @@ export type SITEMAP_DATA_QUERYResult = Array<{
 // Query: *[_type == "process"] | order(order asc) {    _id,    title,    description,    icon,    order,  }
 export type GET_ALL_PROCESSES_QUERYResult = Array<{
   _id: string;
-  title: string;
-  description: string;
+  title: string | null;
+  description: string | null;
   icon: "CheckCircle" | "FlaskConical" | "Heart" | "Leaf" | "Lightbulb" | "RefreshCw" | "Scale" | "Search" | "ShieldCheck" | "Star" | "Target" | "Zap" | null;
-  order: number;
+  order: number | null;
 }>;
 
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "*[_type == \"page\" && slug.current == $slug][0]{\n  ...,\n  content[]{\n    ...,\n    _type == \"faqs\" => {\n      ...,\n      faqs[]->\n    }\n  }\n}": PAGE_QUERYResult;
+    "\n  *[_type == \"page\" && slug.current == $slug][0] {\n    _id,\n    _type,\n    content\n  }\n": PAGE_QUERYResult;
     "  *[_type == \"article\" && defined(publishedAt)] | order(publishedAt desc)[0...20] {\n    _id,\n    title,\n    \"slug\": slug.current,\n    excerpt,\n    popular,\n    body,\n    type->{\n      title,\n      \"slug\": slug.current\n    },\n    publishedAt,\n    _updatedAt,\n    featuredImage {\n      alt,\n      \"url\": asset->url\n    },\n    categories[]-> {\n      title,\n      \"slug\": slug.current\n    },\n    tags[]-> {\n      title,\n      \"slug\": slug.current\n    },\n    productGallery[] {\n      alt,\n      \"url\": asset->url\n    },\n    author-> {\n      name\n    }\n  }": GET_RECENT_ARTICLES_QUERYResult;
     "\n  *[_type == \"article\" && popular == true && defined(publishedAt)]\n  | order(publishedAt desc)[0...6] {\n    _id,\n    title,\n    \"slug\": slug.current,\n    excerpt,\n    popular,\n    body,\n    type->{\n      title,\n      \"slug\": slug.current\n    },\n    publishedAt,\n    _updatedAt,\n    featuredImage {\n      alt,\n      \"url\": asset->url\n    },\n    categories[]->{\n      title,\n      \"slug\": slug.current\n    }\n  }\n": GET_POPULAR_ARTICLES_QUERYResult;
     "\n  *[\n    _type == \"article\" &&\n    slug.current != $slug &&\n    (\n      count((categories[]->slug.current)[@ in $categorySlugs]) > 0 \n    )\n  ]\n  | order(publishedAt desc)[0...4] {\n    _id,\n    title,\n    \"slug\": slug.current,\n    excerpt,\n    popular,\n    body,\n    type->{\n      title,\n      \"slug\": slug.current\n    },\n    publishedAt,\n    featuredImage {\n      alt,\n      \"url\": asset->url\n    },\n    categories[]->{\n      title,\n      \"slug\": slug.current\n    }\n  }\n": GET_RELATED_ARTICLES_QUERYResult;
