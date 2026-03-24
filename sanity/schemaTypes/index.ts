@@ -13,6 +13,7 @@ import { heroType } from "./blocks/hero";
 import { ourMissionType } from "./blocks/ourMission";
 import { ctaCard } from "./blocks/ctaCard";
 import { ctaSectionType } from "./blocks/ctaSection";
+import { categoryGridType } from "./blocks/categoryGrid";
 // import { contentType } from "./blocks/content";
 // import { imageType } from "./blocks/image";
 // import { ctaType } from "./blocks/cta";
@@ -32,5 +33,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     ourMissionType,
     ctaCard,
     ctaSectionType,
+    categoryGridType,
   ],
 };

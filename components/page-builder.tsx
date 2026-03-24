@@ -3,12 +3,15 @@ import { createSanityDataAttribute } from "@/sanity/lib/data-attribute";
 import Hero from "./blocks/hero";
 import OurMission from "./blocks/our-mission";
 import CTASection from "@/sections/about/CTASection";
+import CategoryGridBlock from "./blocks/category-grid";
+import { Categories } from "@/sanity/lib/types";
 
 type PageBuilderProps = {
   page: NonNullable<PAGE_QUERYResult>;
+  categories?: Categories;
 };
 
-export function PageBuilder({ page }: PageBuilderProps) {
+export function PageBuilder({ page, categories = [] }: PageBuilderProps) {
   const { _id, _type, content } = page;
 
   if (!Array.isArray(content)) {
@@ -44,6 +47,12 @@ export function PageBuilder({ page }: PageBuilderProps) {
             return (
               <div key={block._key} data-sanity={blockDataAttribute()}>
                 <CTASection {...block} />
+              </div>
+            );
+          case "categoryGrid":
+            return (
+              <div key={block._key} data-sanity={blockDataAttribute()}>
+                <CategoryGridBlock {...block} categories={categories} />
               </div>
             );
           default:
