@@ -6,6 +6,15 @@ import { article } from "./article";
 import { author } from "./author";
 import { tag } from "./tag";
 import { articleType } from "./articleType";
+import { process } from "./process";
+import { pageBuilder } from "./pageBuilder";
+import { page } from "./page";
+import { heroType } from "./blocks/hero";
+import { ourMissionType } from "./blocks/ourMission";
+import { ctaCard } from "./blocks/ctaCard";
+// import { contentType } from "./blocks/content";
+// import { imageType } from "./blocks/image";
+// import { ctaType } from "./blocks/cta";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -15,5 +24,11 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     article,
     articleType,
     author,
+    process,
+    pageBuilder,
+    page,
+    heroType,
+    ourMissionType,
+    ctaCard
   ],
 };

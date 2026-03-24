@@ -3,7 +3,6 @@ import {
   GET_ALL_CATEGORIES_QUERY,
   GET_ARTICLES_BY_CATEGORY_QUERY,
   GET_CATEGORY_BY_SLUG_QUERY,
-  GET_RECENT_ARTICLES_QUERY,
 } from "@/lib/queries";
 import Marquee from "@/components/Marquee";
 import CategoryGrid from "@/sections/CategoryGrid";
@@ -11,7 +10,6 @@ import Philosophy from "@/sections/Philosophy";
 import { Footer } from "@/sections/Footer";
 import { Navigation } from "@/sections/Navigation";
 import { Newsletter } from "@/sections/Newsletter";
-import ArticlesSection from "@/sections/ArticlesSection";
 import TrendingSection from "@/sections/TrendingSection";
 import { notFound } from "next/navigation";
 import SectionTitle from "@/components/SectionTitle";

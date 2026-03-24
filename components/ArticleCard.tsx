@@ -6,6 +6,7 @@ import { cn, formatUpdatedDate } from "@/lib/utils";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { urlFor } from "@/sanity/lib/image";
 
 type ArticleCardProps = {
   article: Pick<
@@ -35,19 +36,21 @@ export default function ArticleCard({ article, variant }: ArticleCardProps) {
         variant === "cream" ? "bg-cream" : "bg-warm-white",
       )}
     >
-      <Link
-        href={`/${categories ? categories[0].slug : "ungategorized"}/${slug}`}
-        className="block h-full"
-      >
+      <Link href={`/article/${slug}`} className="block h-full">
         <div className="relative bg-forest flex items-end overflow-hidden p-6 h-70">
-          <Image
-            src={`${featuredImage?.url}`}
-            alt={`${featuredImage?.alt}`}
-            fill
-            loading="lazy"
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          />
+          {featuredImage?.url && (
+            <Image
+              src={urlFor(featuredImage.url)
+                .width(800)
+                .height(600)
+                .auto("format")
+                .url()}
+              alt={featuredImage.alt || ""}
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            />
+          )}
           <span className="relative text-tiny tracking-[0.15em] uppercase text-gold-light font-medium bg-forest/60 backdrop-blur-sm py-1 px-3 rounded-sm border border-gold/30">
             {type?.title}
           </span>

@@ -13,6 +13,63 @@
  */
 
 // Source: schema.json
+export type OurMission = {
+  _type: "ourMission";
+  eyebrow?: string;
+  heading?: string;
+  description?: string;
+  button?: {
+    label?: string;
+    href?: string;
+  };
+};
+
+export type HeroSimple = {
+  _type: "heroSimple";
+  eyebrow?: string;
+  heading?: string;
+  description?: string;
+  button?: {
+    label?: string;
+    href?: string;
+  };
+};
+
+export type Page = {
+  _id: string;
+  _type: "page";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  content?: PageBuilder;
+};
+
+export type PageBuilder = Array<{
+  _key: string;
+} & HeroSimple | {
+  _key: string;
+} & OurMission>;
+
+export type Slug = {
+  _type: "slug";
+  current: string;
+  source?: string;
+};
+
+export type Process = {
+  _id: string;
+  _type: "process";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title: string;
+  order: number;
+  description: string;
+  icon?: "Search" | "FlaskConical" | "Scale" | "ShieldCheck" | "RefreshCw" | "CheckCircle" | "Zap" | "Target" | "Heart" | "Star" | "Leaf" | "Lightbulb";
+};
+
 export type Article = {
   _id: string;
   _type: "article";
@@ -21,6 +78,7 @@ export type Article = {
   _rev: string;
   title?: string;
   slug?: Slug;
+  popular?: boolean;
   excerpt?: string;
   type?: {
     _ref: string;
@@ -57,7 +115,7 @@ export type Article = {
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
-    alt?: string;
+    alt: string;
     caption?: string;
     _type: "image";
     _key: string;
@@ -90,8 +148,8 @@ export type BlockContent = Array<{
   style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "blockquote";
   listItem?: "bullet" | "number";
   markDefs?: Array<{
-    linkType?: "internal" | "external";
-    href?: string;
+    linkType: "internal" | "external";
+    href: string;
     _type: "link";
     _key: string;
   }>;
@@ -99,8 +157,8 @@ export type BlockContent = Array<{
   _type: "block";
   _key: string;
 } | {
-  label?: string;
-  url?: string;
+  label: string;
+  url: string;
   variant?: "primary" | "secondary" | "outline";
   alignment?: "left" | "center" | "right";
   openInNewTab?: boolean;
@@ -120,8 +178,8 @@ export type BlockContent = Array<{
   _type: "image";
   _key: string;
 } | {
-  type?: "youtube" | "vimeo" | "custom";
-  url?: string;
+  type: "youtube" | "vimeo" | "custom";
+  url: string;
   caption?: string;
   aspectRatio?: "16/9" | "4/3" | "1/1" | "auto";
   _type: "embed";
@@ -130,18 +188,18 @@ export type BlockContent = Array<{
 
 export type SanityImageCrop = {
   _type: "sanity.imageCrop";
-  top?: number;
-  bottom?: number;
-  left?: number;
-  right?: number;
+  top: number;
+  bottom: number;
+  left: number;
+  right: number;
 };
 
 export type SanityImageHotspot = {
   _type: "sanity.imageHotspot";
-  x?: number;
-  y?: number;
-  height?: number;
-  width?: number;
+  x: number;
+  y: number;
+  height: number;
+  width: number;
 };
 
 export type Author = {
@@ -182,12 +240,6 @@ export type Author = {
     _type: "block";
     _key: string;
   }>;
-};
-
-export type Slug = {
-  _type: "slug";
-  current?: string;
-  source?: string;
 };
 
 export type ArticleType = {
@@ -256,9 +308,9 @@ export type SanityImagePalette = {
 
 export type SanityImageDimensions = {
   _type: "sanity.imageDimensions";
-  height?: number;
-  width?: number;
-  aspectRatio?: number;
+  height: number;
+  width: number;
+  aspectRatio: number;
 };
 
 export type SanityImageMetadata = {
@@ -331,17 +383,49 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type AllSanitySchemaTypes = Article | BlockContent | SanityImageCrop | SanityImageHotspot | Author | Slug | ArticleType | Tag | Category | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
+export type AllSanitySchemaTypes = OurMission | HeroSimple | Page | PageBuilder | Slug | Process | Article | BlockContent | SanityImageCrop | SanityImageHotspot | Author | ArticleType | Tag | Category | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: lib/queries.ts
+// Variable: PAGE_QUERY
+// Query: *[_type == "page" && slug.current == $slug][0]{  ...,  content[]{    ...,    _type == "faqs" => {      ...,      faqs[]->    }  }}
+export type PAGE_QUERYResult = {
+  _id: string;
+  _type: "page";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  content: Array<{
+    _key: string;
+    _type: "heroSimple";
+    eyebrow?: string;
+    heading?: string;
+    description?: string;
+    button?: {
+      label?: string;
+      href?: string;
+    };
+  } | {
+    _key: string;
+    _type: "ourMission";
+    eyebrow?: string;
+    heading?: string;
+    description?: string;
+    button?: {
+      label?: string;
+      href?: string;
+    };
+  }> | null;
+} | null;
 // Variable: GET_RECENT_ARTICLES_QUERY
-// Query: *[_type == "article" && defined(publishedAt)] | order(publishedAt desc)[0...20] {    _id,    title,    "slug": slug.current,    excerpt,    popular,    body,    type->{      title,"slug": slug.current    },    publishedAt,    _updatedAt,    featuredImage {      alt,      "url": asset->url    },    categories[]-> {      title,      "slug": slug.current    },    tags[]-> {      title,      "slug": slug.current    },    productGallery[] {      alt,      "url": asset->url    },    author-> {      name    }  }
+// Query: *[_type == "article" && defined(publishedAt)] | order(publishedAt desc)[0...20] {    _id,    title,    "slug": slug.current,    excerpt,    popular,    body,    type->{      title,      "slug": slug.current    },    publishedAt,    _updatedAt,    featuredImage {      alt,      "url": asset->url    },    categories[]-> {      title,      "slug": slug.current    },    tags[]-> {      title,      "slug": slug.current    },    productGallery[] {      alt,      "url": asset->url    },    author-> {      name    }  }
 export type GET_RECENT_ARTICLES_QUERYResult = Array<{
   _id: string;
   title: string | null;
   slug: string | null;
   excerpt: string | null;
-  popular: null;
+  popular: boolean | null;
   body: BlockContent | null;
   type: {
     title: string | null;
@@ -362,7 +446,7 @@ export type GET_RECENT_ARTICLES_QUERYResult = Array<{
     slug: string | null;
   }> | null;
   productGallery: Array<{
-    alt: string | null;
+    alt: string;
     url: string | null;
   }> | null;
   author: {
@@ -371,7 +455,28 @@ export type GET_RECENT_ARTICLES_QUERYResult = Array<{
 }>;
 // Variable: GET_POPULAR_ARTICLES_QUERY
 // Query: *[_type == "article" && popular == true && defined(publishedAt)]  | order(publishedAt desc)[0...6] {    _id,    title,    "slug": slug.current,    excerpt,    popular,    body,    type->{      title,      "slug": slug.current    },    publishedAt,    _updatedAt,    featuredImage {      alt,      "url": asset->url    },    categories[]->{      title,      "slug": slug.current    }  }
-export type GET_POPULAR_ARTICLES_QUERYResult = Array<never>;
+export type GET_POPULAR_ARTICLES_QUERYResult = Array<{
+  _id: string;
+  title: string | null;
+  slug: string | null;
+  excerpt: string | null;
+  popular: true;
+  body: BlockContent | null;
+  type: {
+    title: string | null;
+    slug: string | null;
+  } | null;
+  publishedAt: string;
+  _updatedAt: string;
+  featuredImage: {
+    alt: string | null;
+    url: string | null;
+  } | null;
+  categories: Array<{
+    title: string | null;
+    slug: string | null;
+  }> | null;
+}>;
 // Variable: GET_RELATED_ARTICLES_QUERY
 // Query: *[    _type == "article" &&    slug.current != $slug &&    (      count((categories[]->slug.current)[@ in $categorySlugs]) > 0     )  ]  | order(publishedAt desc)[0...4] {    _id,    title,    "slug": slug.current,    excerpt,    popular,    body,    type->{      title,      "slug": slug.current    },    publishedAt,    featuredImage {      alt,      "url": asset->url    },    categories[]->{      title,      "slug": slug.current    }  }
 export type GET_RELATED_ARTICLES_QUERYResult = Array<{
@@ -379,7 +484,7 @@ export type GET_RELATED_ARTICLES_QUERYResult = Array<{
   title: string | null;
   slug: string | null;
   excerpt: string | null;
-  popular: null;
+  popular: boolean | null;
   body: BlockContent | null;
   type: {
     title: string | null;
@@ -402,7 +507,7 @@ export type GET_ARTICLE_BY_SLUG_QUERYResult = {
   title: string | null;
   slug: string | null;
   excerpt: string | null;
-  popular: null;
+  popular: boolean | null;
   body: BlockContent | null;
   publishedAt: string | null;
   _updatedAt: string;
@@ -424,7 +529,7 @@ export type GET_ARTICLE_BY_SLUG_QUERYResult = {
     url: string | null;
   } | null;
   productGallery: Array<{
-    alt: string | null;
+    alt: string;
     url: string | null;
   }> | null;
   author: {
@@ -451,13 +556,13 @@ export type GET_ARTICLE_BY_SLUG_QUERYResult = {
   } | null;
 } | null;
 // Variable: GET_ARTICLES_BY_CATEGORY_QUERY
-// Query: *[_type == "article" && references(*[_type == "category" && slug.current == $categorySlug]._id)] | order(publishedAt desc) {    _id,    title,    "slug": slug.current,    excerpt,    popular,    body,    type->{      title,      "slug": slug.current    },    publishedAt,    _updatedAt,    featuredImage {      alt,      "url": asset->url    },    // We can also pull the category names back out    categories[]-> {      title,      "slug": slug.current    },    tags[]-> {      title,      "slug": slug.current    },    author-> {      name    }  }
+// Query: *[_type == "article" && references(*[_type == "category" && slug.current == $categorySlug]._id)] | order(publishedAt desc) {    _id,    title,    "slug": slug.current,    excerpt,    popular,    body,    type->{      title,"slug": slug.current    },    publishedAt,    _updatedAt,    featuredImage {      alt,      "url": asset->url    },    categories[]-> {      title,      "slug": slug.current    },    tags[]-> {      title,      "slug": slug.current    },    productGallery[] {      alt,      "url": asset->url    },    author-> {      name    }  }
 export type GET_ARTICLES_BY_CATEGORY_QUERYResult = Array<{
   _id: string;
   title: string | null;
   slug: string | null;
   excerpt: string | null;
-  popular: null;
+  popular: boolean | null;
   body: BlockContent | null;
   type: {
     title: string | null;
@@ -477,6 +582,10 @@ export type GET_ARTICLES_BY_CATEGORY_QUERYResult = Array<{
     title: string | null;
     slug: string | null;
   }> | null;
+  productGallery: Array<{
+    alt: string;
+    url: string | null;
+  }> | null;
   author: {
     name: string | null;
   } | null;
@@ -488,7 +597,7 @@ export type GET_ARTICLES_BY_TAG_QUERYResult = Array<{
   title: string | null;
   slug: string | null;
   excerpt: string | null;
-  popular: null;
+  popular: boolean | null;
   body: BlockContent | null;
   type: {
     title: string | null;
@@ -513,13 +622,13 @@ export type GET_ARTICLES_BY_TAG_QUERYResult = Array<{
   } | null;
 }>;
 // Variable: GET_ARTICLES_BY_TYPE_QUERY
-// Query: *[_type == "article" && references(*[_type == "articleType" && slug.current == $articleTypeSlug]._id)] | order(publishedAt desc) {    _id,    title,    "slug": slug.current,    excerpt,    popular,    body,    type->{      title,      "slug": slug.current    },    publishedAt,    _updatedAt,    featuredImage {      alt,      "url": asset->url    },    categories[]-> {      title,      "slug": slug.current    },    tags[]-> {      title,      "slug": slug.current    },    author-> {      name    }  }
+// Query: *[_type == "article" && references(*[_type == "articleType" && slug.current == $articleTypeSlug]._id)] | order(publishedAt desc) {    _id,    title,    "slug": slug.current,    excerpt,    popular,    body,    type->{      title,      "slug": slug.current    },    publishedAt,    _updatedAt,    featuredImage {      alt,            "url": asset->url    },    categories[]-> {      title,      "slug": slug.current    },    tags[]-> {      title,      "slug": slug.current    },    author-> {      name    }  }
 export type GET_ARTICLES_BY_TYPE_QUERYResult = Array<{
   _id: string;
   title: string | null;
   slug: string | null;
   excerpt: string | null;
-  popular: null;
+  popular: boolean | null;
   body: BlockContent | null;
   type: {
     title: string | null;
@@ -575,20 +684,44 @@ export type GET_ALL_TAGS_QUERYResult = Array<{
   articleCount: number;
   _updatedAt: string;
 }>;
+// Variable: SITEMAP_DATA_QUERY
+// Query: *[_type in ["article", "category"] && (_type == "category" || defined(publishedAt))] {    _type,    "slug": slug.current,    _updatedAt,    ...select(      _type == "article" => {        "categorySlug": categories[0]->slug.current      }    )  }
+export type SITEMAP_DATA_QUERYResult = Array<{
+  _type: "article";
+  slug: string | null;
+  _updatedAt: string;
+  categorySlug: string | null;
+} | {
+  _type: "category";
+  slug: string | null;
+  _updatedAt: string;
+}>;
+// Variable: GET_ALL_PROCESSES_QUERY
+// Query: *[_type == "process"] | order(order asc) {    _id,    title,    description,    icon,    order,  }
+export type GET_ALL_PROCESSES_QUERYResult = Array<{
+  _id: string;
+  title: string;
+  description: string;
+  icon: "CheckCircle" | "FlaskConical" | "Heart" | "Leaf" | "Lightbulb" | "RefreshCw" | "Scale" | "Search" | "ShieldCheck" | "Star" | "Target" | "Zap" | null;
+  order: number;
+}>;
 
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "  *[_type == \"article\" && defined(publishedAt)] | order(publishedAt desc)[0...20] {\n    _id,\n    title,\n    \"slug\": slug.current,\n    excerpt,\n    popular,\n    body,\n    type->{\n      title,\"slug\": slug.current\n    },\n    publishedAt,\n    _updatedAt,\n    featuredImage {\n      alt,\n      \"url\": asset->url\n    },\n    categories[]-> {\n      title,\n      \"slug\": slug.current\n    },\n    tags[]-> {\n      title,\n      \"slug\": slug.current\n    },\n    productGallery[] {\n      alt,\n      \"url\": asset->url\n    },\n    author-> {\n      name\n    }\n  }": GET_RECENT_ARTICLES_QUERYResult;
+    "*[_type == \"page\" && slug.current == $slug][0]{\n  ...,\n  content[]{\n    ...,\n    _type == \"faqs\" => {\n      ...,\n      faqs[]->\n    }\n  }\n}": PAGE_QUERYResult;
+    "  *[_type == \"article\" && defined(publishedAt)] | order(publishedAt desc)[0...20] {\n    _id,\n    title,\n    \"slug\": slug.current,\n    excerpt,\n    popular,\n    body,\n    type->{\n      title,\n      \"slug\": slug.current\n    },\n    publishedAt,\n    _updatedAt,\n    featuredImage {\n      alt,\n      \"url\": asset->url\n    },\n    categories[]-> {\n      title,\n      \"slug\": slug.current\n    },\n    tags[]-> {\n      title,\n      \"slug\": slug.current\n    },\n    productGallery[] {\n      alt,\n      \"url\": asset->url\n    },\n    author-> {\n      name\n    }\n  }": GET_RECENT_ARTICLES_QUERYResult;
     "\n  *[_type == \"article\" && popular == true && defined(publishedAt)]\n  | order(publishedAt desc)[0...6] {\n    _id,\n    title,\n    \"slug\": slug.current,\n    excerpt,\n    popular,\n    body,\n    type->{\n      title,\n      \"slug\": slug.current\n    },\n    publishedAt,\n    _updatedAt,\n    featuredImage {\n      alt,\n      \"url\": asset->url\n    },\n    categories[]->{\n      title,\n      \"slug\": slug.current\n    }\n  }\n": GET_POPULAR_ARTICLES_QUERYResult;
     "\n  *[\n    _type == \"article\" &&\n    slug.current != $slug &&\n    (\n      count((categories[]->slug.current)[@ in $categorySlugs]) > 0 \n    )\n  ]\n  | order(publishedAt desc)[0...4] {\n    _id,\n    title,\n    \"slug\": slug.current,\n    excerpt,\n    popular,\n    body,\n    type->{\n      title,\n      \"slug\": slug.current\n    },\n    publishedAt,\n    featuredImage {\n      alt,\n      \"url\": asset->url\n    },\n    categories[]->{\n      title,\n      \"slug\": slug.current\n    }\n  }\n": GET_RELATED_ARTICLES_QUERYResult;
     "  *[_type == \"article\" && slug.current == $slug][0] {\n    _id,\n    title,\n    \"slug\": slug.current,\n    excerpt,\n    popular,\n    body,\n    publishedAt,\n    _updatedAt,\n    type->{\n      title,\"slug\": slug.current\n    },\n    content, // Often needed for the full page\n    categories[]-> {\n      title,\n      \"slug\": slug.current\n    },\n    tags[]-> {\n      title,\n      \"slug\": slug.current\n    },\n    featuredImage {\n      alt,\n      \"url\": asset->url\n    },\n    productGallery[] {\n      alt,\n      \"url\": asset->url\n    },\n    author-> {\n      name,\n      bio,\n      \"image\": image.asset->url\n    }\n  }": GET_ARTICLE_BY_SLUG_QUERYResult;
-    "  *[_type == \"article\" && references(*[_type == \"category\" && slug.current == $categorySlug]._id)] | order(publishedAt desc) {\n    _id,\n    title,\n    \"slug\": slug.current,\n    excerpt,\n    popular,\n    body,\n    type->{\n      title,\n      \"slug\": slug.current\n    },\n    publishedAt,\n    _updatedAt,\n    featuredImage {\n      alt,\n      \"url\": asset->url\n    },\n    // We can also pull the category names back out\n    categories[]-> {\n      title,\n      \"slug\": slug.current\n    },\n    tags[]-> {\n      title,\n      \"slug\": slug.current\n    },\n    author-> {\n      name\n    }\n  }": GET_ARTICLES_BY_CATEGORY_QUERYResult;
+    "  *[_type == \"article\" && references(*[_type == \"category\" && slug.current == $categorySlug]._id)] | order(publishedAt desc) {\n    _id,\n    title,\n    \"slug\": slug.current,\n    excerpt,\n    popular,\n    body,\n    type->{\n      title,\"slug\": slug.current\n    },\n    publishedAt,\n    _updatedAt,\n    featuredImage {\n      alt,\n      \"url\": asset->url\n    },\n    categories[]-> {\n      title,\n      \"slug\": slug.current\n    },\n    tags[]-> {\n      title,\n      \"slug\": slug.current\n    },\n    productGallery[] {\n      alt,\n      \"url\": asset->url\n    },\n    author-> {\n      name\n    }\n  }": GET_ARTICLES_BY_CATEGORY_QUERYResult;
     "  *[_type == \"article\" && references(*[_type == \"tag\" && slug.current == $tagSlug]._id)] | order(publishedAt desc) {\n    _id,\n    title,\n    \"slug\": slug.current,\n    excerpt,\n    popular,\n    body,\n    type->{\n      title,\n      \"slug\": slug.current\n    },\n    publishedAt,\n    _updatedAt,\n    featuredImage {\n      alt,\n      \"url\": asset->url\n    },\n    categories[]-> {\n      title,\n      \"slug\": slug.current\n    },\n    tags[]-> {\n      title,\n      \"slug\": slug.current\n    },\n    author-> {\n      name\n    }\n  }": GET_ARTICLES_BY_TAG_QUERYResult;
-    "  *[_type == \"article\" && references(*[_type == \"articleType\" && slug.current == $articleTypeSlug]._id)] | order(publishedAt desc) {\n    _id,\n    title,\n    \"slug\": slug.current,\n    excerpt,\n    popular,\n    body,\n    type->{\n      title,\n      \"slug\": slug.current\n    },\n    publishedAt,\n    _updatedAt,\n    featuredImage {\n      alt,\n      \"url\": asset->url\n    },\n    categories[]-> {\n      title,\n      \"slug\": slug.current\n    },\n    tags[]-> {\n      title,\n      \"slug\": slug.current\n    },\n    author-> {\n      name\n    }\n  }": GET_ARTICLES_BY_TYPE_QUERYResult;
+    "  *[_type == \"article\" && references(*[_type == \"articleType\" && slug.current == $articleTypeSlug]._id)] | order(publishedAt desc) {\n    _id,\n    title,\n    \"slug\": slug.current,\n    excerpt,\n    popular,\n    body,\n    type->{\n      title,\n      \"slug\": slug.current\n    },\n    publishedAt,\n    _updatedAt,\n    featuredImage {\n      alt,\n            \"url\": asset->url\n\n    },\n    categories[]-> {\n      title,\n      \"slug\": slug.current\n    },\n    tags[]-> {\n      title,\n      \"slug\": slug.current\n    },\n    author-> {\n      name\n    }\n  }": GET_ARTICLES_BY_TYPE_QUERYResult;
     "  *[_type == \"category\"] | order(title asc) {\n    _id,\n    title,\n    \"slug\": slug.current,\n    description,\n    \"imageUrl\": image.asset->url,\n    \"articleCount\": count(*[_type == \"article\" && references(^._id)]),\n    _updatedAt,\n  }": GET_ALL_CATEGORIES_QUERYResult;
     "  *[_type == \"category\" && slug.current == $slug][0] {\n    _id,\n    title,\n    \"slug\": slug.current,\n    description,\n    \"imageUrl\": image.asset->url,\n    \"articleCount\": count(*[_type == \"article\" && references(^._id)]),\n    _updatedAt,\n  }": GET_CATEGORY_BY_SLUG_QUERYResult;
     "  *[_type == \"tag\"] | order(title asc) {\n    _id,\n    title,\n    \"slug\": slug.current,\n    description,\n    \"articleCount\": count(*[_type == \"article\" && references(^._id)]),\n    _updatedAt,\n  }": GET_ALL_TAGS_QUERYResult;
+    "\n  *[_type in [\"article\", \"category\"] && (_type == \"category\" || defined(publishedAt))] {\n    _type,\n    \"slug\": slug.current,\n    _updatedAt,\n    ...select(\n      _type == \"article\" => {\n        \"categorySlug\": categories[0]->slug.current\n      }\n    )\n  }\n": SITEMAP_DATA_QUERYResult;
+    "\n  *[_type == \"process\"] | order(order asc) {\n    _id,\n    title,\n    description,\n    icon,\n    order,\n  }\n": GET_ALL_PROCESSES_QUERYResult;
   }
 }

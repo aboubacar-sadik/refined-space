@@ -1,5 +1,6 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
+import * as Icons from "lucide-react";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -18,4 +19,9 @@ export function formatUpdatedDate(isoString: string | null) {
   const year = date.getFullYear();
 
   return `${month} ${year}`;
+}
+
+type IconName = keyof typeof Icons;
+export function getIcon(name: IconName) {
+  return Icons[name];
 }

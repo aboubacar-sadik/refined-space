@@ -18,7 +18,7 @@ export function RelatedArticles({ articles }: RelatedArticlesProps) {
         {articles.slice(0, 3).map((article) => (
           <Link
             key={article._id}
-            href={`/${article.categories ? article.categories[0].slug : "ungategorized"}/${article.slug}`}
+            href={`/article/${article.slug}`}
             className="group bg-white overflow-hidden"
           >
             {/* Thumbnail */}

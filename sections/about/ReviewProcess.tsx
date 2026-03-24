@@ -1,51 +1,20 @@
 "use client";
 
 import { motion } from "framer-motion";
-import {
-  Search,
-  FlaskConical,
-  Scale,
-  ShieldCheck,
-  RefreshCw,
-} from "lucide-react";
-import { fadeInUp, staggerContainer, scaleIn } from "@/lib/animations";
+import { fadeInUp, staggerContainer } from "@/lib/animations";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import ProcessCard from "@/components/ProcessCard";
+import { GET_ALL_PROCESSES_QUERYResult } from "@/sanity.types";
+import { getIcon } from "@/lib/utils";
 
-const processSteps = [
-  {
-    icon: Search,
-    title: "Research",
-    description:
-      "We start with extensive market research, analyzing hundreds of products, reading scientific studies, and consulting industry experts.",
-  },
-  {
-    icon: FlaskConical,
-    title: "Testing",
-    description:
-      "Our team personally tests products in real-world conditions, evaluating performance, durability, and user experience.",
-  },
-  {
-    icon: Scale,
-    title: "Comparison",
-    description:
-      "We compare products side-by-side, analyzing features, specifications, pricing, and value propositions.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Verification",
-    description:
-      "We verify certifications, check ingredient lists, and confirm sustainability claims through independent sources.",
-  },
-  {
-    icon: RefreshCw,
-    title: "Updates",
-    description:
-      "Our guides are regularly updated to reflect new products, price changes, and emerging research.",
-  },
-];
+type ReviewProcessProps = {
+  processes: NonNullable<GET_ALL_PROCESSES_QUERYResult>;
+};
 
-export default function ReviewProcess() {
+export default function ReviewProcess({ processes }: ReviewProcessProps) {
   const { ref, isInView } = useScrollAnimation(0.2);
+
+  const Icon = getIcon("Search");
 
   return (
     <div className="" ref={ref}>
@@ -85,37 +54,16 @@ export default function ReviewProcess() {
           variants={staggerContainer}
           className="grid md:grid-cols-2 lg:grid-cols-3 gap-2"
         >
-          {processSteps.map((step, index) => {
-            const Icon = step.icon;
+          {processes.map((step) => {
             return (
-              <motion.div
-                key={step.title}
-                variants={scaleIn}
-                custom={index}
-                whileHover={{ y: -5 }}
-                className="relative bg-warm-white p-6 lg:p-8 border border-forest/5 group hover:shadow-card transition-shadow"
-              >
-                {/* Step Number */}
-                <span className="absolute top-4 right-4 font-serif text-5xl font-medium text-forest/5 group-hover:text-forest/10 transition-colors">
-                  0{index + 1}
-                </span>
-
-                <motion.div
-                  whileHover={{ scale: 1.1, rotate: -5 }}
-                  transition={{ duration: 0.3 }}
-                  className="w-12 h-12 bg-forest/5 rounded-md flex items-center justify-center mb-5"
-                >
-                  <Icon size={24} className="text-sage" strokeWidth={1.5} />
-                </motion.div>
-
-                <h3 className="font-serif text-xl font-medium text-forest mb-3">
-                  {step.title}
-                </h3>
-
-                <p className="text-sm leading-relaxed text-forest/60">
-                  {step.description}
-                </p>
-              </motion.div>
+              <ProcessCard
+                _id={step._id}
+                key={step._id}
+                title={step.title}
+                description={step.description}
+                icon={step.icon}
+                order={step.order}
+              />
             );
           })}
         </motion.div>

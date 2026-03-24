@@ -1,5 +1,17 @@
 import { defineQuery } from "next-sanity";
 
+export const PAGE_QUERY =
+  defineQuery(`*[_type == "page" && slug.current == $slug][0]{
+  ...,
+  content[]{
+    ...,
+    _type == "faqs" => {
+      ...,
+      faqs[]->
+    }
+  }
+}`);
+
 // Get all articles
 export const GET_RECENT_ARTICLES_QUERY =
   defineQuery(`  *[_type == "article" && defined(publishedAt)] | order(publishedAt desc)[0...20] {
@@ -217,7 +229,8 @@ export const GET_ARTICLES_BY_TYPE_QUERY =
     _updatedAt,
     featuredImage {
       alt,
-      "url": asset->url
+            "url": asset->url
+
     },
     categories[]-> {
       title,
@@ -277,5 +290,16 @@ export const SITEMAP_DATA_QUERY = defineQuery(`
         "categorySlug": categories[0]->slug.current
       }
     )
+  }
+`);
+
+// Get all processes
+export const GET_ALL_PROCESSES_QUERY = defineQuery(`
+  *[_type == "process"] | order(order asc) {
+    _id,
+    title,
+    description,
+    icon,
+    order,
   }
 `);

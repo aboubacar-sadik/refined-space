@@ -6,7 +6,6 @@ import {
   GET_ALL_CATEGORIES_QUERY,
   GET_ARTICLE_BY_SLUG_QUERY,
   GET_POPULAR_ARTICLES_QUERY,
-  GET_RECENT_ARTICLES_QUERY,
   GET_RELATED_ARTICLES_QUERY,
 } from "@/lib/queries";
 import { sanityFetch } from "@/sanity/lib/live";
