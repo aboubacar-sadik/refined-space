@@ -41,7 +41,7 @@ export default async function Home() {
       <Navigation />
       <main className="mt-18">
         {/* <AboutHero /> */}
-        {page?.content ? <PageBuilder content={page.content} /> : null}
+        {page?.content ? <PageBuilder page={page} /> : null}
         <section id="mission" className="py-16 lg:py-20 bg-cream">
           {/* <MissionSection /> */}
         </section>

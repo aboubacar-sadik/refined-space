@@ -3,6 +3,7 @@
 import CarouselWithProgress from "@/components/article/Carousel";
 import { formatUpdatedDate } from "@/lib/utils";
 import { Article } from "@/sanity/lib/types";
+import { createSanityDataAttribute } from "@/sanity/lib/data-attribute";
 import {
   Clock,
   Calendar,
@@ -24,6 +25,8 @@ interface ArticleHeroProps {
 }
 
 export function ArticleHero({ article, articleGallery }: ArticleHeroProps) {
+  const dataAttribute = createSanityDataAttribute(article._id, "article");
+
   const handleShare = (platform: string) => {
     const url = encodeURIComponent(window.location.href);
     const text = encodeURIComponent(article.title as string);
@@ -43,17 +46,26 @@ export function ArticleHero({ article, articleGallery }: ArticleHeroProps) {
     <section className="py-8 md:py-12">
       <div className="max-w-4xl mx-auto">
         {/* Category Badge */}
-        <span className="mb-6 inline-flex border border-gold-light text-gold px-4 py-1.5 rounded-sm cursor-default uppercase text-[11px] tracking-widest leading-2.75">
+        <span
+          className="mb-6 inline-flex border border-gold-light text-gold px-4 py-1.5 rounded-sm cursor-default uppercase text-[11px] tracking-widest leading-2.75"
+          data-sanity={dataAttribute.scope(["type"])()}
+        >
           {article.type?.title}
         </span>
 
         {/* Title */}
-        <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-serif font-medium text-forest mb-6">
+        <h1
+          className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-serif font-medium text-forest mb-6"
+          data-sanity={dataAttribute.scope(["title"])()}
+        >
           {article.title}
         </h1>
 
         {/* Subtitle */}
-        <p className=" md:text-lg text-text-muted leading-relaxed mb-8 max-w-3xl">
+        <p
+          className=" md:text-lg text-text-muted leading-relaxed mb-8 max-w-3xl"
+          data-sanity={dataAttribute.scope(["excerpt"])()}
+        >
           {article.excerpt}
         </p>
 
@@ -67,7 +79,10 @@ export function ArticleHero({ article, articleGallery }: ArticleHeroProps) {
             <div className="flex flex-wrap items-center gap-4 md:gap-4 text-sm text-text-muted">
               <div className="flex items-center gap-1.5">
                 <Calendar className="w-4 h-4" />
-                <time dateTime={article.publishedAt as string}>
+                <time
+                  dateTime={article.publishedAt as string}
+                  data-sanity={dataAttribute.scope(["publishedAt"])()}
+                >
                   {(article._updatedAt as string)
                     ? `Updated ${formatUpdatedDate(article._updatedAt as string)}`
                     : formatUpdatedDate(article.publishedAt as string)}
@@ -75,7 +90,7 @@ export function ArticleHero({ article, articleGallery }: ArticleHeroProps) {
               </div>
               <span className="block w-px h-8 bg-border" />
 
-              <div>
+              <div data-sanity={dataAttribute.scope(["categories"])()}>
                 {article.categories?.map((category) => (
                   <span
                     key={category.slug}
@@ -129,7 +144,9 @@ export function ArticleHero({ article, articleGallery }: ArticleHeroProps) {
       </div>
 
       {/* Featured Image */}
-      <CarouselWithProgress images={articleGallery} />
+      <div data-sanity={dataAttribute.scope(["featuredImage"])()}>
+        <CarouselWithProgress images={articleGallery} />
+      </div>
     </section>
   );
 }

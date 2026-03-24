@@ -102,7 +102,7 @@ export default async function Page({ params }: PageProps) {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
             {/* Main Article Content */}
             <div className="lg:col-span-8 pb-14">
-              <ArticleContent body={article.body} />
+              <ArticleContent articleId={article._id} body={article.body} />
             </div>
 
             {/* Sidebar */}
