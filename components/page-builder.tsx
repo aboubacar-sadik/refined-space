@@ -2,26 +2,8 @@ import { PAGE_QUERYResult } from "@/sanity.types";
 import Hero from "./blocks/hero";
 import OurMission from "./blocks/our-mission";
 
-// type PageBuilderProps = {
-//   content: NonNullable<PAGE_QUERYResult>["content"];
-// };
-
-type HeroBlock = {
-  _type: "heroSimple";
-  _key: string;
-  // other props used in <Hero />
-};
-
-type OurMissionBlock = {
-  _type: "ourMission";
-  _key: string;
-  // other props used in <OurMission />
-};
-
-type PageBlock = HeroBlock | OurMissionBlock;
-
 type PageBuilderProps = {
-  content: PageBlock[];
+  content: NonNullable<PAGE_QUERYResult>["content"];
 };
 
 export function PageBuilder({ content }: PageBuilderProps) {
