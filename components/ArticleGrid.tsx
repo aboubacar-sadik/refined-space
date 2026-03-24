@@ -5,9 +5,10 @@ import ArticleCard from "./ArticleCard";
 import { ChevronDown } from "lucide-react";
 import { Articles } from "@/sanity/lib/types";
 import SectionTitle from "./SectionTitle";
+import { GET_ARTICLES_BY_CATEGORY_QUERYResult } from "@/sanity.types";
 
 interface ArticleGridProps {
-  articles: Articles;
+  articles: GET_ARTICLES_BY_CATEGORY_QUERYResult;
   /** Initial number of articles to display */
   initialCount?: number;
   /** Batch size for Load More */

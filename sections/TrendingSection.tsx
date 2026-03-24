@@ -5,9 +5,10 @@ import Link from "next/link";
 import { TrendingUp, Clock, Calendar } from "lucide-react";
 import { Articles } from "@/sanity/lib/types";
 import { formatUpdatedDate } from "@/lib/utils";
+import { GET_ARTICLES_BY_CATEGORY_QUERYResult } from "@/sanity.types";
 
 interface TrendingSectionProps {
-  articles: Articles;
+  articles: GET_ARTICLES_BY_CATEGORY_QUERYResult;
 }
 
 export default function TrendingSection({ articles }: TrendingSectionProps) {
