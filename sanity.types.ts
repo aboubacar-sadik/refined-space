@@ -13,6 +13,16 @@
  */
 
 // Source: schema.json
+export type CtaCard = {
+  _type: "ctaCard";
+  heading?: string;
+  description?: string;
+  button?: {
+    label?: string;
+    href?: string;
+  };
+};
+
 export type OurMission = {
   _type: "ourMission";
   eyebrow?: string;
@@ -383,7 +393,7 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type AllSanitySchemaTypes = OurMission | HeroSimple | Page | PageBuilder | Slug | Process | Article | BlockContent | SanityImageCrop | SanityImageHotspot | Author | ArticleType | Tag | Category | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
+export type AllSanitySchemaTypes = CtaCard | OurMission | HeroSimple | Page | PageBuilder | Slug | Process | Article | BlockContent | SanityImageCrop | SanityImageHotspot | Author | ArticleType | Tag | Category | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: lib/queries.ts
 // Variable: PAGE_QUERY
