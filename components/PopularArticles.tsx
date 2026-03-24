@@ -2,9 +2,10 @@ import { Clock } from "lucide-react";
 import { Articles } from "@/sanity/lib/types";
 import Link from "next/link";
 import Image from "next/image";
+import { GET_POPULAR_ARTICLES_QUERYResult } from "@/sanity.types";
 
 interface PopularArticlesProps {
-  articles: Articles;
+  articles: GET_POPULAR_ARTICLES_QUERYResult;
 }
 
 export function PopularArticles({ articles }: PopularArticlesProps) {
