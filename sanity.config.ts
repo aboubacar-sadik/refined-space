@@ -13,6 +13,7 @@ import { presentationTool } from "sanity/presentation";
 import { apiVersion, dataset, projectId } from "./sanity/env";
 import { schema } from "./sanity/schemaTypes";
 import { structure } from "./sanity/structure";
+import { locations, mainDocuments } from "./sanity/presentation/resolve";
 
 export default defineConfig({
   basePath: "/studio",
@@ -30,7 +31,12 @@ export default defineConfig({
       previewUrl: {
         previewMode: {
           enable: "/api/draft-mode/enable",
+          disable: "/api/draft-mode/disable",
         },
+      },
+      resolve: {
+        locations,
+        mainDocuments,
       },
     }),
   ],
