@@ -32,6 +32,7 @@ export async function generateMetadata(
   const { data: article } = await sanityFetch({
     query: GET_ARTICLE_BY_SLUG_QUERY,
     params: { slug: slug },
+    stega: false,
   });
 
   return {

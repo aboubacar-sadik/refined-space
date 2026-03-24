@@ -6,6 +6,7 @@ import "./globals.css";
 import { draftMode } from "next/headers";
 import { VisualEditing } from "next-sanity/visual-editing";
 import { DisableDraftMode } from "@/components/disable-draft-mode";
+import { SanityLive } from "@/sanity/lib/live";
 
 const DMsans = DM_Sans({
   variable: "--font-dm-sans",
@@ -33,6 +34,7 @@ export default async function RootLayout({
         className={`${DMsans.variable} ${playfair_display.variable} antialiased`}
       >
         {children}
+        <SanityLive />
         {(await draftMode()).isEnabled && (
           <>
             <DisableDraftMode />
