@@ -38,7 +38,7 @@ export default function CategoryGridBlock({
   const itemLimit = maxItems && maxItems > 0 ? maxItems : 6;
 
   return (
-    <section id={sectionId || "categories"} ref={ref} className="py-24 lg:py-32 bg-cream-warm">
+    <section id={sectionId || "categories"} ref={ref} className="">
       <div className="container">
         <motion.div
           initial="hidden"

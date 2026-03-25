@@ -23,7 +23,7 @@ export default function Hero({
   button,
 }: HeroProps) {
   return (
-    <section className="relative bg-forest py-20 overflow-hidden">
+    <div className="relative overflow-hidden">
       <div className="absolute -right-10 top-1/2 -translate-y-1/2 font-serif text-[22vw] font-bold leading-none text-white/2.5 pointer-events-none select-none whitespace-nowrap">
         About us
       </div>
@@ -101,6 +101,6 @@ export default function Hero({
           </motion.div>
         </div>
       </div>
-    </section>
+    </div>
   );
 }

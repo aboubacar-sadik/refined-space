@@ -27,7 +27,7 @@ export default function OurMission({
     "At Refined Space, our mission is to make mindful living approachable through trusted research, sustainable recommendations, and transparent reviews.";
 
   return (
-    <section className="py-16" ref={ref}>
+    <div className="" ref={ref}>
       <div className="max-w-3xl mx-auto text-center">
         <motion.div
           initial="hidden"
@@ -88,6 +88,6 @@ export default function OurMission({
           ) : null}
         </motion.div>
       </div>
-    </section>
+    </div>
   );
 }

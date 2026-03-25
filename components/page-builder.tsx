@@ -15,7 +15,11 @@ type PageBuilderProps = {
   processes?: NonNullable<GET_ALL_PROCESSES_QUERYResult>;
 };
 
-export function PageBuilder({ page, categories = [], processes = [] }: PageBuilderProps) {
+export function PageBuilder({
+  page,
+  categories = [],
+  processes = [],
+}: PageBuilderProps) {
   const { _id, _type, content } = page;
 
   if (!Array.isArray(content)) {
@@ -37,45 +41,68 @@ export function PageBuilder({ page, categories = [], processes = [] }: PageBuild
         switch (block._type) {
           case "heroSimple":
             return (
-              <div key={block._key} data-sanity={blockDataAttribute()}>
+              <section
+                key={block._key}
+                data-sanity={blockDataAttribute()}
+                className="bg-forest py-20 "
+              >
                 <Hero {...block} />
-              </div>
+              </section>
             );
           case "ourMission":
             return (
-              <div key={block._key} data-sanity={blockDataAttribute()}>
+              <section
+                key={block._key}
+                data-sanity={blockDataAttribute()}
+                className="py-16"
+              >
                 <OurMission {...block} />
-              </div>
+              </section>
             );
           case "ctaSection":
             return (
-              <div key={block._key} data-sanity={blockDataAttribute()}>
+              <section
+                key={block._key}
+                data-sanity={blockDataAttribute()}
+                className="py-24 lg:py-32"
+              >
                 <CTASection {...block} />
-              </div>
+              </section>
             );
           case "categoryGrid":
             return (
-              <div key={block._key} data-sanity={blockDataAttribute()}>
+              <div
+                key={block._key}
+                data-sanity={blockDataAttribute()}
+                className="py-24 lg:py-32 bg-cream-warm"
+              >
                 <CategoryGridBlock {...block} categories={categories} />
               </div>
             );
           case "reviewProcess":
             return (
-              <div key={block._key} data-sanity={blockDataAttribute()}>
+              <section key={block._key} data-sanity={blockDataAttribute()}>
                 <ReviewProcessBlock {...block} processes={processes} />
-              </div>
+              </section>
             );
           case "newsletterForm":
             return (
-              <div key={block._key} data-sanity={blockDataAttribute()}>
+              <div
+                key={block._key}
+                data-sanity={blockDataAttribute()}
+                className="py-24 lg:py-32 bg-cream"
+              >
                 <NewsletterFormBlock {...block} />
               </div>
             );
           default:
             return (
-              <div key={`unknown-block-${index}`} data-sanity={blockDataAttribute()}>
+              <section
+                key={`unknown-block-${index}`}
+                data-sanity={blockDataAttribute()}
+              >
                 Block not found
-              </div>
+              </section>
             );
         }
       })}

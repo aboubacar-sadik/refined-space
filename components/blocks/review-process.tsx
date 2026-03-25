@@ -32,7 +32,7 @@ export default function ReviewProcessBlock({
     "Our rigorous evaluation process ensures every recommendation is backed by thorough research and real-world testing.";
 
   return (
-    <section id={sectionId || "review-process"} ref={ref} className="py-24 lg:py-32 bg-cream">
+    <section id={sectionId || "review-process"} ref={ref} className="">
       <div className="container">
         <motion.div
           initial="hidden"
