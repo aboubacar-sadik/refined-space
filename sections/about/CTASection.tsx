@@ -46,7 +46,7 @@ export default function CTASection({
             variants={scaleIn}
             whileHover={{ scale: 1.01 }}
             transition={{ duration: 0.3 }}
-            className="bg-forest  p-8 lg:p-16 text-center mb-12"
+            className="bg-forest  p-8 lg:p-16 text-center"
           >
             <motion.h2
               variants={fadeInUp}

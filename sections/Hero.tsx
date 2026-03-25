@@ -46,8 +46,8 @@ export default function Hero({
   const secondArticle = articles[1];
 
   return (
-    <section className="flex flex-col lg:flex-row w-full min-h-dvh">
-      <div className="w-full lg:w-1/2  bg-forest flex justify-end">
+    <div className="flex flex-col lg:flex-row w-full min-h-dvh bg-forest">
+      <div className="w-full lg:w-1/2 flex justify-end">
         <div className="w-full lg:max-w-180 px-8 lg:pl-8 xl:pr-16 py-20 flex flex-col justify-center">
           <motion.div
             variants={containerVariants}
@@ -128,7 +128,7 @@ export default function Hero({
 
       <div className="hidden w-full lg:w-1/2 lg:flex flex-col bg-cream">
         <Link
-          href={`/${firstArticle.categories ? firstArticle.categories[0].slug : "ungategorized"}/${firstArticle.slug}`}
+          href={`/article/${firstArticle.slug}`}
           className="flex-1 bg-linear-[135deg,#2d5a3d_0%,#1b3a2d_100%] w-full flex justify-start hover:bg-none hover:bg-white group"
         >
           <div className="w-full max-w-180 p-10 lg:pr-8 flex flex-col justify-center ">
@@ -154,7 +154,7 @@ export default function Hero({
           </div>
         </Link>
         <Link
-          href={`/${secondArticle.categories ? secondArticle.categories[0].slug : "ungategorized"}/${secondArticle.slug}`}
+          href={`/article/${secondArticle.slug}`}
           className="flex-1 bg-warm-white w-full flex justify-start group"
         >
           <div className="w-full max-w-180 lg:pr-8 flex flex-col justify-center p-10">
@@ -179,6 +179,6 @@ export default function Hero({
           </div>
         </Link>
       </div>
-    </section>
+    </div>
   );
 }

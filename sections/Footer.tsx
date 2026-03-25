@@ -97,7 +97,7 @@ export function Footer({ categories }: FooterCategoryProps) {
               {categories.map((link) => (
                 <li key={link._id}>
                   <Link
-                    href={`/${link.slug}`}
+                    href={`/category/${link.slug}`}
                     className="text-[13px] text-white/50 transition-colors duration-200 font-light hover:text-white/90"
                   >
                     {link.title}

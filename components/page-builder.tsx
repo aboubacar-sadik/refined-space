@@ -64,7 +64,7 @@ export function PageBuilder({
               <section
                 key={block._key}
                 data-sanity={blockDataAttribute()}
-                className="py-24 lg:py-32"
+                className="py-16 lg:py-24"
               >
                 <CTASection {...block} />
               </section>
@@ -74,14 +74,18 @@ export function PageBuilder({
               <div
                 key={block._key}
                 data-sanity={blockDataAttribute()}
-                className="py-24 lg:py-32 bg-cream-warm"
+                className="py-16 lg:py-24 bg-cream-warm"
               >
                 <CategoryGridBlock {...block} categories={categories} />
               </div>
             );
           case "reviewProcess":
             return (
-              <section key={block._key} data-sanity={blockDataAttribute()}>
+              <section
+                key={block._key}
+                data-sanity={blockDataAttribute()}
+                className="py-24 lg:py-32 bg-cream"
+              >
                 <ReviewProcessBlock {...block} processes={processes} />
               </section>
             );
@@ -90,9 +94,9 @@ export function PageBuilder({
               <div
                 key={block._key}
                 data-sanity={blockDataAttribute()}
-                className="py-24 lg:py-32 bg-cream"
+                className="bg-warm-white"
               >
-                <NewsletterFormBlock {...block} />
+                <NewsletterFormBlock {...block} variant={"cream"} />
               </div>
             );
           default:

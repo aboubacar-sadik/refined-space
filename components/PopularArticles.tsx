@@ -19,7 +19,7 @@ export function PopularArticles({ articles }: PopularArticlesProps) {
         {articles.slice(0, 3).map((article, index) => (
           <Link
             key={article._id}
-            href={`/${article.categories ? article.categories[0].slug : "uncategorized"}/${article.slug}`}
+            href={`/article/${article.slug}`}
             className="group flex gap-3"
           >
             {/* Thumbnail */}

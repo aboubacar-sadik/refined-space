@@ -54,7 +54,8 @@ export default function CategoryGridBlock({
               </span>
             </span>
             <h2 className="text-4xl text-forest mt-4">
-              {resolvedHeading} <em className="text-gold">{resolvedHighlightedText}</em>
+              {resolvedHeading}{" "}
+              <em className="text-gold">{resolvedHighlightedText}</em>
             </h2>
           </motion.div>
           <motion.div variants={fadeInUp}>
@@ -82,7 +83,12 @@ export default function CategoryGridBlock({
                 whileHover={cardHover}
                 className="group bg-cream border border-forest/5"
               >
-                <Link href={category.slug ? `/category/${category.slug}` : "/categories"} className="p-6 block lg:p-8">
+                <Link
+                  href={
+                    category.slug ? `/category/${category.slug}` : "/categories"
+                  }
+                  className="p-6 block lg:p-8"
+                >
                   <motion.div
                     whileHover={{ scale: 1.1, rotate: 5 }}
                     transition={{ duration: 0.3 }}
@@ -98,7 +104,9 @@ export default function CategoryGridBlock({
                   <h3 className="font-serif text-xl font-medium text-forest mb-3 group-hover:text-sage transition-colors">
                     {category.title}
                   </h3>
-                  <p className="body-sm mb-4">{category.description}</p>
+                  <p className="body-sm mb-4 line-clamp-1 md:line-clamp-none">
+                    {category.description}
+                  </p>
                   <span className="text-xs font-sans font-medium uppercase tracking-wider text-sage">
                     {category.articleCount} guides
                   </span>

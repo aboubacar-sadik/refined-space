@@ -10,7 +10,7 @@ type CategoryCardProps = {
 export default function CategoryCard({ category }: CategoryCardProps) {
   return (
     <Link
-      href={`/${category?.slug}`}
+      href={`/category/${category?.slug}`}
       className={cn(
         "group bg-cream py-10 px-9 cursor-pointer transition-all duration-300 relative overflow-hidden block ",
         "before:block before:absolute before:bottom-0 before:left-0 before:right-0 before:h-0.75 before:bg-gold before:scale-x-0 before:origin-left before:transition-transform before:duration-500",

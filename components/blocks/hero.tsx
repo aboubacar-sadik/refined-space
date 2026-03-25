@@ -88,15 +88,6 @@ export default function Hero({
                   </Button>
                 </Link>
               )}
-              <Link href={"#categories"}>
-                <Button variant={"outline"}>
-                  What We Cover
-                  <ArrowRight
-                    size={16}
-                    className="ml-2 transition-transform group-hover:translate-x-1"
-                  />
-                </Button>
-              </Link>
             </motion.div>
           </motion.div>
         </div>

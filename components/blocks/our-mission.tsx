@@ -27,7 +27,7 @@ export default function OurMission({
     "At Refined Space, our mission is to make mindful living approachable through trusted research, sustainable recommendations, and transparent reviews.";
 
   return (
-    <div className="" ref={ref}>
+    <div className="container" ref={ref}>
       <div className="max-w-3xl mx-auto text-center">
         <motion.div
           initial="hidden"

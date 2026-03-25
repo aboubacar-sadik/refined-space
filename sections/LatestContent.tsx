@@ -1,5 +1,4 @@
 import ArticleCard from "@/components/ArticleCard";
-import SectionTitle from "@/components/SectionTitle";
 import { Articles } from "@/sanity/lib/types";
 
 type LatestContentProps = {
@@ -14,7 +13,7 @@ export default function LatestContent({
   return (
     <div>
       <div className="container">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-1 xl:grid-cols-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 xl:grid-cols-4">
           {articles.slice(0, 3).map((post) => (
             <div
               key={post._id}
