@@ -15,6 +15,7 @@ import { ctaCard } from "./blocks/ctaCard";
 import { ctaSectionType } from "./blocks/ctaSection";
 import { categoryGridType } from "./blocks/categoryGrid";
 import { reviewProcessType } from "./blocks/reviewProcess";
+import { newsletterFormType } from "./blocks/newsletterForm";
 // import { contentType } from "./blocks/content";
 // import { imageType } from "./blocks/image";
 // import { ctaType } from "./blocks/cta";
@@ -36,5 +37,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     ctaSectionType,
     categoryGridType,
     reviewProcessType,
+    newsletterFormType,
   ],
 };

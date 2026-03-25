@@ -13,6 +13,17 @@
  */
 
 // Source: schema.json
+export type NewsletterForm = {
+  _type: "newsletterForm";
+  sectionId?: string;
+  variant?: "warm-white" | "cream";
+  tagline?: string;
+  title?: string;
+  description?: string;
+  buttonLabel?: string;
+  successMessage?: string;
+};
+
 export type ReviewProcess = {
   _type: "reviewProcess";
   eyebrow?: string;
@@ -99,7 +110,9 @@ export type PageBuilder = Array<{
   _key: string;
 } & CategoryGrid | {
   _key: string;
-} & ReviewProcess>;
+} & ReviewProcess | {
+  _key: string;
+} & NewsletterForm>;
 
 export type Slug = {
   _type: "slug";
@@ -432,7 +445,7 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type AllSanitySchemaTypes = ReviewProcess | CategoryGrid | CtaSection | CtaCard | OurMission | HeroSimple | Page | PageBuilder | Slug | Process | Article | BlockContent | SanityImageCrop | SanityImageHotspot | Author | ArticleType | Tag | Category | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
+export type AllSanitySchemaTypes = NewsletterForm | ReviewProcess | CategoryGrid | CtaSection | CtaCard | OurMission | HeroSimple | Page | PageBuilder | Slug | Process | Article | BlockContent | SanityImageCrop | SanityImageHotspot | Author | ArticleType | Tag | Category | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: lib/queries.ts
 // Variable: PAGE_QUERY

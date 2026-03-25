@@ -7,6 +7,7 @@ import CategoryGridBlock from "./blocks/category-grid";
 import { Categories } from "@/sanity/lib/types";
 import { GET_ALL_PROCESSES_QUERYResult } from "@/sanity.types";
 import ReviewProcessBlock from "./blocks/review-process";
+import NewsletterFormBlock from "./blocks/newsletter-form";
 
 type PageBuilderProps = {
   page: NonNullable<PAGE_QUERYResult>;
@@ -62,6 +63,12 @@ export function PageBuilder({ page, categories = [], processes = [] }: PageBuild
             return (
               <div key={block._key} data-sanity={blockDataAttribute()}>
                 <ReviewProcessBlock {...block} processes={processes} />
+              </div>
+            );
+          case "newsletterForm":
+            return (
+              <div key={block._key} data-sanity={blockDataAttribute()}>
+                <NewsletterFormBlock {...block} />
               </div>
             );
           default:
