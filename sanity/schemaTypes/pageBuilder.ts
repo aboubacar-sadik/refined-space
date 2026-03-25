@@ -9,6 +9,7 @@ export const pageBuilder = defineType({
     defineArrayMember({ type: "ourMission" }),
     defineArrayMember({ type: "ctaSection" }),
     defineArrayMember({ type: "categoryGrid" }),
+    defineArrayMember({ type: "reviewProcess" }),
   ],
 
   options: {

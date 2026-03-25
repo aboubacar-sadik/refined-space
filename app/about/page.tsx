@@ -6,7 +6,6 @@ import {
 } from "@/lib/queries";
 import { Footer } from "@/sections/Footer";
 import { Navigation } from "@/sections/Navigation";
-import ReviewProcess from "@/sections/about/ReviewProcess";
 import { Newsletter } from "@/sections/Newsletter";
 import type { Metadata } from "next";
 import { PageBuilder } from "@/components/page-builder";
@@ -36,12 +35,11 @@ export default async function Home() {
       <Navigation />
       <main className="mt-18">
         {/* <AboutHero /> */}
-        {page?.content ? <PageBuilder page={page} categories={categories} /> : null}
+        {page?.content ? (
+          <PageBuilder page={page} categories={categories} processes={processes} />
+        ) : null}
         <section id="mission" className="py-16 lg:py-20 bg-cream">
           {/* <MissionSection /> */}
-        </section>
-        <section className="py-24 lg:py-32 bg-cream">
-          <ReviewProcess processes={processes} />
         </section>
         <section className="">
           <Newsletter />

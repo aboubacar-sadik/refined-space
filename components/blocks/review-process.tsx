@@ -5,19 +5,34 @@ import { fadeInUp, staggerContainer } from "@/lib/animations";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import ProcessCard from "@/components/ProcessCard";
 import { GET_ALL_PROCESSES_QUERYResult } from "@/sanity.types";
-import { getIcon } from "@/lib/utils";
 
-type ReviewProcessProps = {
+type ReviewProcessBlockProps = {
+  eyebrow?: string;
+  heading?: string;
+  highlightedText?: string;
+  description?: string;
+  sectionId?: string;
   processes: NonNullable<GET_ALL_PROCESSES_QUERYResult>;
 };
 
-export default function ReviewProcess({ processes }: ReviewProcessProps) {
+export default function ReviewProcessBlock({
+  processes,
+  eyebrow,
+  heading,
+  highlightedText,
+  description,
+  sectionId,
+}: ReviewProcessBlockProps) {
   const { ref, isInView } = useScrollAnimation(0.2);
-
-  const Icon = getIcon("Search");
+  const resolvedEyebrow = eyebrow || "How We Work";
+  const resolvedHeading = heading || "Our Review";
+  const resolvedHighlightedText = highlightedText || "Process";
+  const resolvedDescription =
+    description ||
+    "Our rigorous evaluation process ensures every recommendation is backed by thorough research and real-world testing.";
 
   return (
-    <div className="" ref={ref}>
+    <section id={sectionId || "review-process"} ref={ref} className="py-24 lg:py-32 bg-cream">
       <div className="container">
         <motion.div
           initial="hidden"
@@ -30,21 +45,20 @@ export default function ReviewProcess({ processes }: ReviewProcessProps) {
             className="flex items-center justify-center gap-3 mb-2.5"
           >
             <span className="block text-center text-tiny tracking-[0.2em] uppercase text-gold font-medium">
-              How We Work
+              {resolvedEyebrow}
             </span>
           </motion.span>
           <motion.h2
             variants={fadeInUp}
             className="text-4xl text-center text-forest my-4"
           >
-            Our Review <em className="text-gold">Process</em>
+            {resolvedHeading} <em className="text-gold">{resolvedHighlightedText}</em>
           </motion.h2>
           <motion.p
             variants={fadeInUp}
             className="text-base leading-relaxed text-forest/70"
           >
-            Our rigorous evaluation process ensures every recommendation is
-            backed by thorough research and real-world testing.
+            {resolvedDescription}
           </motion.p>
         </motion.div>
 
@@ -54,20 +68,18 @@ export default function ReviewProcess({ processes }: ReviewProcessProps) {
           variants={staggerContainer}
           className="grid md:grid-cols-2 lg:grid-cols-3 gap-2"
         >
-          {processes.map((step) => {
-            return (
-              <ProcessCard
-                _id={step._id}
-                key={step._id}
-                title={step.title}
-                description={step.description}
-                icon={step.icon}
-                order={step.order}
-              />
-            );
-          })}
+          {processes.map((step) => (
+            <ProcessCard
+              _id={step._id}
+              key={step._id}
+              title={step.title}
+              description={step.description}
+              icon={step.icon}
+              order={step.order}
+            />
+          ))}
         </motion.div>
       </div>
-    </div>
+    </section>
   );
 }

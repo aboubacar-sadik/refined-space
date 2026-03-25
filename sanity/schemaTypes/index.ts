@@ -14,6 +14,7 @@ import { ourMissionType } from "./blocks/ourMission";
 import { ctaCard } from "./blocks/ctaCard";
 import { ctaSectionType } from "./blocks/ctaSection";
 import { categoryGridType } from "./blocks/categoryGrid";
+import { reviewProcessType } from "./blocks/reviewProcess";
 // import { contentType } from "./blocks/content";
 // import { imageType } from "./blocks/image";
 // import { ctaType } from "./blocks/cta";
@@ -34,5 +35,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     ctaCard,
     ctaSectionType,
     categoryGridType,
+    reviewProcessType,
   ],
 };

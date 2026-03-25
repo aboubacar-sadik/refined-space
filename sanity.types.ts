@@ -13,6 +13,15 @@
  */
 
 // Source: schema.json
+export type ReviewProcess = {
+  _type: "reviewProcess";
+  eyebrow?: string;
+  heading?: string;
+  highlightedText?: string;
+  description?: string;
+  sectionId?: string;
+};
+
 export type CategoryGrid = {
   _type: "categoryGrid";
   eyebrow?: string;
@@ -88,7 +97,9 @@ export type PageBuilder = Array<{
   _key: string;
 } & CtaSection | {
   _key: string;
-} & CategoryGrid>;
+} & CategoryGrid | {
+  _key: string;
+} & ReviewProcess>;
 
 export type Slug = {
   _type: "slug";
@@ -421,7 +432,7 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type AllSanitySchemaTypes = CategoryGrid | CtaSection | CtaCard | OurMission | HeroSimple | Page | PageBuilder | Slug | Process | Article | BlockContent | SanityImageCrop | SanityImageHotspot | Author | ArticleType | Tag | Category | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
+export type AllSanitySchemaTypes = ReviewProcess | CategoryGrid | CtaSection | CtaCard | OurMission | HeroSimple | Page | PageBuilder | Slug | Process | Article | BlockContent | SanityImageCrop | SanityImageHotspot | Author | ArticleType | Tag | Category | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: lib/queries.ts
 // Variable: PAGE_QUERY

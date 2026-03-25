@@ -5,13 +5,16 @@ import OurMission from "./blocks/our-mission";
 import CTASection from "@/sections/about/CTASection";
 import CategoryGridBlock from "./blocks/category-grid";
 import { Categories } from "@/sanity/lib/types";
+import { GET_ALL_PROCESSES_QUERYResult } from "@/sanity.types";
+import ReviewProcessBlock from "./blocks/review-process";
 
 type PageBuilderProps = {
   page: NonNullable<PAGE_QUERYResult>;
   categories?: Categories;
+  processes?: NonNullable<GET_ALL_PROCESSES_QUERYResult>;
 };
 
-export function PageBuilder({ page, categories = [] }: PageBuilderProps) {
+export function PageBuilder({ page, categories = [], processes = [] }: PageBuilderProps) {
   const { _id, _type, content } = page;
 
   if (!Array.isArray(content)) {
@@ -53,6 +56,12 @@ export function PageBuilder({ page, categories = [] }: PageBuilderProps) {
             return (
               <div key={block._key} data-sanity={blockDataAttribute()}>
                 <CategoryGridBlock {...block} categories={categories} />
+              </div>
+            );
+          case "reviewProcess":
+            return (
+              <div key={block._key} data-sanity={blockDataAttribute()}>
+                <ReviewProcessBlock {...block} processes={processes} />
               </div>
             );
           default:
